@@ -14,6 +14,10 @@ import java.awt.*;
 public class GUIBatallaNaval extends JFrame {
 
     private Header headerProject;
+    private JPanel espacio1, espacio2;
+    private JButton fragata, portavion, submarino, destructor, ayuda;
+    private ImageIcon unaImagen, imagenNuevoTamanho;
+    private Image imagenOtroTamanho;
 
     /**
      * Constructor of GUIBatallaNaval class
@@ -43,7 +47,97 @@ public class GUIBatallaNaval extends JFrame {
         //Create Listener Object and Control Object
         //Set up JComponents
         headerProject = new Header("Batalla Naval", new Color(68, 114, 196));
+        constraints.gridx = 0;
+        constraints.gridy = 0;
+        constraints.gridwidth = 12;
+        constraints.fill = GridBagConstraints.HORIZONTAL;
 
+        this.add(headerProject, constraints);
+
+        espacio1 = new JPanel();
+        espacio1.setOpaque(false);
+        espacio1.setPreferredSize(new Dimension(50, 100));
+        constraints.gridx = 0;
+        constraints.gridy = 1;
+        constraints.gridheight = 8;
+        constraints.fill = GridBagConstraints.VERTICAL;
+
+        this.add(espacio1, constraints);
+
+        espacio2 = new JPanel();
+        espacio2.setOpaque(false);
+        espacio2.setPreferredSize(new Dimension(50, 50));
+        constraints.gridx = 1;
+        constraints.gridy = 2;
+        constraints.gridwidth = 1;
+        constraints.gridheight = 1;
+        constraints.fill = GridBagConstraints.CENTER;
+        constraints.anchor = GridBagConstraints.CENTER;
+
+        this.add(espacio2, constraints);
+
+        fragata = new JButton();
+        unaImagen = new ImageIcon(getClass().getResource("/resources/1.png"));
+        imagenOtroTamanho = unaImagen.getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
+        imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
+        fragata.setIcon(imagenNuevoTamanho);
+        constraints.gridx = 2;
+        constraints.gridy = 2;
+        constraints.fill = GridBagConstraints.CENTER;
+        constraints.anchor = GridBagConstraints.CENTER;
+
+        this.add(fragata, constraints);
+
+        portavion = new JButton();
+        unaImagen = new ImageIcon(getClass().getResource("/resources/2.png"));
+        imagenOtroTamanho = unaImagen.getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
+        imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
+        portavion.setIcon(imagenNuevoTamanho);
+        constraints.gridx = 3;
+        constraints.gridy = 2;
+        constraints.fill = GridBagConstraints.CENTER;
+        constraints.anchor = GridBagConstraints.CENTER;
+
+        this.add(portavion, constraints);
+
+        submarino = new JButton();
+        unaImagen = new ImageIcon(getClass().getResource("/resources/3.png"));
+        imagenOtroTamanho = unaImagen.getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
+        imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
+        submarino.setIcon(imagenNuevoTamanho);
+        constraints.gridx = 4;
+        constraints.gridy = 2;
+        constraints.fill = GridBagConstraints.CENTER;
+        constraints.anchor = GridBagConstraints.CENTER;
+
+        this.add(submarino, constraints);
+
+        destructor = new JButton();
+        unaImagen = new ImageIcon(getClass().getResource("/resources/4.png"));
+        imagenOtroTamanho = unaImagen.getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
+        imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
+        destructor.setIcon(imagenNuevoTamanho);
+        constraints.gridx = 5;
+        constraints.gridy = 2;
+        constraints.fill = GridBagConstraints.CENTER;
+        constraints.anchor = GridBagConstraints.CENTER;
+
+        this.add(destructor, constraints);
+
+        ayuda = new JButton(" ? ");
+        ayuda.setFont(new Font("SansSerif", Font.BOLD + Font.PLAIN, 14));
+        ayuda.setForeground(Color.white);
+        ayuda.setBackground(new Color(0, 112, 192));
+        constraints.gridx = 7;
+        constraints.gridy = 1;
+        constraints.gridwidth = 1;
+        constraints.fill = GridBagConstraints.CENTER;
+        constraints.anchor = GridBagConstraints.CENTER;
+
+        add(ayuda, constraints);
+
+        revalidate();
+        repaint();
     }
 
     /**

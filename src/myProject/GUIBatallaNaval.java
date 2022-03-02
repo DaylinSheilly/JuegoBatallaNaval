@@ -43,6 +43,7 @@ public class GUIBatallaNaval extends JFrame {
         //Create Listener Object and Control Object
         //Set up JComponents
         headerProject = new Header("Batalla Naval", new Color(68, 114, 196));
+
     }
 
     /**

@@ -22,9 +22,9 @@ public class GUIBatallaNaval extends JFrame {
         initGUI();
 
         //Default JFrame configuration
-        this.setTitle("The Title app");
-        this.setSize(200,100);
-        //this.pack();
+        this.setTitle("Batalla Naval");
+        //this.setSize(200,100);
+        this.pack();
         this.setResizable(true);
         this.setVisible(true);
         this.setLocationRelativeTo(null);
@@ -38,11 +38,11 @@ public class GUIBatallaNaval extends JFrame {
      */
     private void initGUI() {
         //Set up JFrame Container's Layout
+        this.getContentPane().setLayout(new GridBagLayout());
+        GridBagConstraints constraints = new GridBagConstraints();
         //Create Listener Object and Control Object
         //Set up JComponents
-        headerProject = new Header("Header ...", Color.BLACK);
-
-        this.add(headerProject,BorderLayout.NORTH); //Change this line if you change JFrame Container's Layout
+        headerProject = new Header("Batalla Naval", new Color(68, 114, 196));
     }
 
     /**

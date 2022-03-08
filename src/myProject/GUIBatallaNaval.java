@@ -29,7 +29,7 @@ public class GUIBatallaNaval extends JFrame {
 
         //Default JFrame configuration
         this.setTitle("Batalla Naval");
-        //this.setSize(200,100);
+        //this.setSize(1320,700);
         this.pack();
         this.setResizable(true);
         this.setVisible(true);
@@ -59,9 +59,10 @@ public class GUIBatallaNaval extends JFrame {
 
         espacio1 = new JPanel();
         espacio1.setOpaque(false);
-        espacio1.setPreferredSize(new Dimension(50, 400));
+        espacio1.setPreferredSize(new Dimension(50, 600));
         constraints.gridx = 0;
         constraints.gridy = 1;
+        constraints.gridwidth = 1;
         constraints.gridheight = 8;
         constraints.fill = GridBagConstraints.VERTICAL;
 
@@ -79,11 +80,11 @@ public class GUIBatallaNaval extends JFrame {
 
         this.add(espacio2, constraints);
 
-        fragata = new JButton("Fragata");
-        fragata.setFont(new Font("SansSerif", Font.BOLD + Font.PLAIN, 14));
-        fragata.setForeground(Color.black);
-        fragata.setBackground(Color.white);
-        fragata.setPreferredSize(new Dimension(119,20));
+        fragata = new JButton();
+        unaImagen = new ImageIcon(getClass().getResource("/resources/1.png"));
+        imagenOtroTamanho = unaImagen.getImage().getScaledInstance(25,25,Image.SCALE_SMOOTH);
+        imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
+        fragata.setIcon(imagenNuevoTamanho);
         constraints.gridx = 2;
         constraints.gridy = 2;
         constraints.fill = GridBagConstraints.CENTER;
@@ -91,11 +92,11 @@ public class GUIBatallaNaval extends JFrame {
 
         this.add(fragata, constraints);
 
-        portavion = new JButton("Portaviones");
-        portavion.setFont(new Font("SansSerif", Font.BOLD + Font.PLAIN, 14));
-        portavion.setForeground(Color.black);
-        portavion.setBackground(Color.white);
-        portavion.setPreferredSize(new Dimension(119,20));
+        portavion = new JButton();
+        unaImagen = new ImageIcon(getClass().getResource("/resources/2.png"));
+        imagenOtroTamanho = unaImagen.getImage().getScaledInstance(50,25,Image.SCALE_SMOOTH);
+        imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
+        portavion.setIcon(imagenNuevoTamanho);
         constraints.gridx = 3;
         constraints.gridy = 2;
         constraints.fill = GridBagConstraints.CENTER;
@@ -103,11 +104,11 @@ public class GUIBatallaNaval extends JFrame {
 
         this.add(portavion, constraints);
 
-        submarino = new JButton("Submarino");
-        submarino.setFont(new Font("SansSerif", Font.BOLD + Font.PLAIN, 14));
-        submarino.setForeground(Color.black);
-        submarino.setBackground(Color.white);
-        submarino.setPreferredSize(new Dimension(119,20));
+        submarino = new JButton();
+        unaImagen = new ImageIcon(getClass().getResource("/resources/3.png"));
+        imagenOtroTamanho = unaImagen.getImage().getScaledInstance(75,25,Image.SCALE_SMOOTH);
+        imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
+        submarino.setIcon(imagenNuevoTamanho);
         constraints.gridx = 4;
         constraints.gridy = 2;
         constraints.fill = GridBagConstraints.CENTER;
@@ -115,11 +116,11 @@ public class GUIBatallaNaval extends JFrame {
 
         this.add(submarino, constraints);
 
-        destructor = new JButton("Destructor");
-        destructor.setFont(new Font("SansSerif", Font.BOLD + Font.PLAIN, 14));
-        destructor.setForeground(Color.black);
-        destructor.setBackground(Color.white);
-        destructor.setPreferredSize(new Dimension(119,20));
+        destructor = new JButton();
+        unaImagen = new ImageIcon(getClass().getResource("/resources/4.png"));
+        imagenOtroTamanho = unaImagen.getImage().getScaledInstance(100,25,Image.SCALE_SMOOTH);
+        imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
+        destructor.setIcon(imagenNuevoTamanho);
         constraints.gridx = 5;
         constraints.gridy = 2;
         constraints.fill = GridBagConstraints.CENTER;
@@ -163,7 +164,7 @@ public class GUIBatallaNaval extends JFrame {
 
         espacio3 = new JPanel();
         espacio3.setOpaque(false);
-        espacio3.setPreferredSize(new Dimension(50, 400));
+        espacio3.setPreferredSize(new Dimension(50, 50));
         constraints.gridx = 11;
         constraints.gridy = 1;
         constraints.gridheight = 8;
@@ -173,7 +174,7 @@ public class GUIBatallaNaval extends JFrame {
 
         espacio4 = new JPanel();
         espacio4.setOpaque(false);
-        espacio4.setPreferredSize(new Dimension(50, 30));
+        espacio4.setPreferredSize(new Dimension(50, 50));
         constraints.gridx = 0;
         constraints.gridy = 3;
         constraints.gridwidth = 12;
@@ -282,11 +283,11 @@ public class GUIBatallaNaval extends JFrame {
         panelInfo.add(infoFallo, constraintsPanelInfo);
 
         imagenFallo = new JLabel();
-        unaImagen = new ImageIcon(getClass().getResource("/resources/4.png"));
-        imagenOtroTamanho = unaImagen.getImage().getScaledInstance(100,75,Image.SCALE_SMOOTH);
+        unaImagen = new ImageIcon(getClass().getResource("/resources/fallar.png"));
+        imagenOtroTamanho = unaImagen.getImage().getScaledInstance(47,75,Image.SCALE_SMOOTH);
         imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
         imagenFallo.setIcon(imagenNuevoTamanho);
-        imagenFallo.setPreferredSize(new Dimension(100,75));
+        imagenFallo.setPreferredSize(new Dimension(47,75));
         constraintsPanelInfo.gridx = 0;
         constraintsPanelInfo.gridy = 0;
         constraintsPanelInfo.fill = GridBagConstraints.CENTER;
@@ -310,7 +311,7 @@ public class GUIBatallaNaval extends JFrame {
         panelInfo.add(infoImpacto, constraintsPanelInfo);
 
         infoImpacto = new JLabel("\uF0FB");
-        infoImpacto.setFont(new Font("SansSerif", Font.BOLD + Font.PLAIN, 14));
+        infoImpacto.setFont(new Font("SansSerif", Font.BOLD + Font.PLAIN, 50));
         infoImpacto.setForeground(Color.red);
         infoImpacto.setBackground(Color.white);
         infoImpacto.setPreferredSize(new Dimension(100,75));
@@ -340,11 +341,11 @@ public class GUIBatallaNaval extends JFrame {
         panelInfo.add(infoHundido, constraintsPanelInfo);
 
         imagenHundido = new JLabel();
-        unaImagen = new ImageIcon(getClass().getResource("/resources/4.png"));
-        imagenOtroTamanho = unaImagen.getImage().getScaledInstance(100,75,Image.SCALE_SMOOTH);
+        unaImagen = new ImageIcon(getClass().getResource("/resources/hundido.png"));
+        imagenOtroTamanho = unaImagen.getImage().getScaledInstance(100,50,Image.SCALE_SMOOTH);
         imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
         imagenHundido.setIcon(imagenNuevoTamanho);
-        imagenHundido.setPreferredSize(new Dimension(100,75));
+        imagenHundido.setPreferredSize(new Dimension(100,50));
         constraintsPanelInfo.gridx = 0;
         constraintsPanelInfo.gridy = 2;
         constraintsPanelInfo.fill = GridBagConstraints.CENTER;

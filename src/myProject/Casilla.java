@@ -5,9 +5,13 @@ import java.awt.*;
 
 public class Casilla extends JButton {
     int fila, columna, nombreDelBarco;
-    boolean parteDelBarco;
+    boolean barcoCompleto;
     private ImageIcon imageBarco, imagenNuevoTamanho;
     private Image imagenOtroTamanho;
+
+    public Casilla( int fila, int columna, int nombreDelBarco){
+
+    }
 
     @Override
     protected void paintComponent(Graphics g){
@@ -23,18 +27,8 @@ public class Casilla extends JButton {
 
     }
 
-    public boolean getParteDelBarco(Casilla casilla){
-        return parteDelBarco;
+    public boolean getBarcoCompleto(Casilla casilla){
+        return barcoCompleto;
     }
 
-    /*public void insertarBarco(int nombreDelBarco){
-        if(nombreDelBarco == 1){
-            parteDelBarco=false;
-            barco.insertarTodoElBarco;
-        }
-        if(nombreDelBarco == 2){
-            parteDelBarco = true;
-            barco.insertarTodoElBarco;
-        }
-    }*/
 }

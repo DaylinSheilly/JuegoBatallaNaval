@@ -3,7 +3,7 @@ package myProject;
 import javax.swing.*;
 import java.awt.*;
 
-public class PintarBarcos {
+public class PintarBarcos extends JLabel {
 
     private int parteDelBarco, columna, fila;
     private boolean barcoCompleto;
@@ -19,7 +19,7 @@ public class PintarBarcos {
      * Case 3: boat start horizontal
      * Case 4: horizontal end of the boat
      * Case 5: boat body
-     * @param g
+     * @param
      */
 
     public PintarBarcos(int fila, int columna){
@@ -29,7 +29,7 @@ public class PintarBarcos {
         barcoCompleto = false;
     }
 
-    public void insertarBarco(int nombreDelBarco, int fila, int columna){
+    /*public void insertarBarco(int nombreDelBarco, int fila, int columna){
         if(nombreDelBarco == 1){
             barcoCompleto = true;
             parteDelBarco++;
@@ -45,11 +45,19 @@ public class PintarBarcos {
             barcoCompleto = false;
             parteDelBarco++;
         }
+    }*/
+
+    public void insertarBarco(){
+        parteDelBarco++;
+        repaint();
     }
 
+
+
+
     @Override
-    protected void paintComponentBarcos(Graphics g){
-        super.paintComponentBarcos(g);
+    protected void paintComponent(Graphics g){
+        super.paintComponent(g);
         switch (parteDelBarco){
             case 1: g.setColor(Color.BLACK);
                     g.drawRect(fila, columna, 5, 5);

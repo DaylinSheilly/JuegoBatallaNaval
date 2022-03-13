@@ -2,6 +2,8 @@ package myProject;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * This class is used for ...
@@ -14,6 +16,7 @@ import java.awt.*;
 public class GUIBatallaNaval extends JFrame {
 
     private Header headerProject;
+    private PintarTablero tableroPosicion, tableroPrincipal;
 
     /**
      * Constructor of GUIBatallaNaval class
@@ -41,8 +44,12 @@ public class GUIBatallaNaval extends JFrame {
         //Create Listener Object and Control Object
         //Set up JComponents
         headerProject = new Header("Header ...", Color.BLACK);
-
         this.add(headerProject,BorderLayout.NORTH); //Change this line if you change JFrame Container's Layout
+
+        tableroPosicion = new PintarTablero();
+        tableroPrincipal = new PintarTablero();
+
+
     }
 
     /**
@@ -59,7 +66,13 @@ public class GUIBatallaNaval extends JFrame {
     /**
      * inner class that extends an Adapter Class or implements Listeners used by GUIBatallaNaval class
      */
-    private class Escucha {
+    /*private class Escucha implements ActionListener {
 
-    }
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if(e.getSource() == casillaSeleccionada){
+                Casilla casillaSeleccionada = (Casilla)e.getSource(); //convierte el objeto casilla en objeto
+            }
+        }
+    }*/
 }

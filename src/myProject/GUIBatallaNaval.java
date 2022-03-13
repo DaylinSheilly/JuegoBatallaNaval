@@ -17,6 +17,7 @@ public class GUIBatallaNaval extends JFrame {
 
     private Header headerProject;
     private PintarTablero tableroPosicion, tableroPrincipal;
+    private JPanel tableros;
 
     /**
      * Constructor of GUIBatallaNaval class
@@ -26,7 +27,7 @@ public class GUIBatallaNaval extends JFrame {
 
         //Default JFrame configuration
         this.setTitle("The Title app");
-        this.setSize(200,100);
+        this.setSize(2000,1000);
         //this.pack();
         this.setResizable(true);
         this.setVisible(true);
@@ -46,8 +47,16 @@ public class GUIBatallaNaval extends JFrame {
         headerProject = new Header("Header ...", Color.BLACK);
         this.add(headerProject,BorderLayout.NORTH); //Change this line if you change JFrame Container's Layout
 
+        tableros = new JPanel();
+        tableros.setBackground(Color.cyan);
+        //tableros.setSize(1000, 2000);
+        add(tableros, BorderLayout.CENTER);
+
         tableroPosicion = new PintarTablero();
+        tableroPosicion.decoradoDelTablero();
+        tableros.add(tableroPosicion, BorderLayout.CENTER);
         tableroPrincipal = new PintarTablero();
+        //add(tableroPrincipal);
 
 
     }

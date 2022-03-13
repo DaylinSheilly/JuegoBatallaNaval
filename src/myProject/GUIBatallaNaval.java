@@ -14,8 +14,9 @@ import java.awt.*;
 public class GUIBatallaNaval extends JFrame {
 
     private Header headerProject;
+    private PintarTablero tableroPrincipal, tableroPosicion;
     private JPanel espacio1, espacio2, espacio3, espacio4, espacio5, espacio6, espacio7
-            , panelInfo, tableroPosicion, tableroPrincipal;
+            , panelInfo;
     private JButton fragata, portavion, submarino, destructor, ayuda, salir, trampa;
     private JLabel infoFallo, imagenFallo, infoImpacto, infoHundido, imagenHundido;
     private ImageIcon unaImagen, imagenNuevoTamanho;
@@ -222,9 +223,8 @@ public class GUIBatallaNaval extends JFrame {
 
         add(trampa, constraints);
 
-        tableroPosicion = new JPanel();
-        tableroPosicion.setBackground(Color.white);
-        tableroPosicion.setPreferredSize(new Dimension(510, 510));
+        tableroPosicion = new PintarTablero();
+        tableroPosicion.decoradoDelTablero();
         constraints.gridx = 1;
         constraints.gridy = 4;
         constraints.gridwidth = 6;
@@ -234,9 +234,8 @@ public class GUIBatallaNaval extends JFrame {
 
         this.add(tableroPosicion, constraints);
 
-        tableroPrincipal = new JPanel();
-        tableroPrincipal.setBackground(Color.white);
-        tableroPrincipal.setPreferredSize(new Dimension(510, 510));
+        tableroPrincipal = new PintarTablero();
+        tableroPrincipal.decoradoDelTablero();
         constraints.gridx = 10;
         constraints.gridy = 4;
         constraints.gridwidth = 1;

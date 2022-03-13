@@ -2,6 +2,8 @@ package myProject;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * This class is used for ...
@@ -15,8 +17,10 @@ public class GUIBatallaNaval extends JFrame {
 
     private Header headerProject;
     private PintarTablero tableroPrincipal, tableroPosicion;
-    private JPanel espacio1, espacio2, espacio3, espacio4, espacio5, espacio6, espacio7
-            , panelInfo;
+    private Casilla[][] casillas;
+    private Casilla casillaSeleccionada;
+    private Escucha escucha;
+    private JPanel espacio1, espacio2, espacio3, espacio4, espacio5, espacio6, espacio7, panelInfo;
     private JButton fragata, portavion, submarino, destructor, ayuda, salir, trampa;
     private JLabel infoFallo, imagenFallo, infoImpacto, infoHundido, imagenHundido;
     private ImageIcon unaImagen, imagenNuevoTamanho;
@@ -225,6 +229,21 @@ public class GUIBatallaNaval extends JFrame {
 
         tableroPosicion = new PintarTablero();
         tableroPosicion.decoradoDelTablero();
+
+        casillas = new Casilla [11][11];
+
+        for(int i = 0; i < 11; i++){
+            for(int j = 0; j < 11; j++){
+                casillas[i][j] = new Casilla(i, j);
+                casillas[i][j].addActionListener(escucha);
+                tableroPosicion.add(casillas[i][j]);
+                if(i==0 || j==0)
+                {
+                    casillas[i][j].setVisible(false);
+                }
+            }
+        }
+
         constraints.gridx = 1;
         constraints.gridy = 4;
         constraints.gridwidth = 6;
@@ -236,6 +255,20 @@ public class GUIBatallaNaval extends JFrame {
 
         tableroPrincipal = new PintarTablero();
         tableroPrincipal.decoradoDelTablero();
+
+        casillas = new Casilla [11][11];
+
+        for(int i = 0; i < 11; i++){
+            for(int j = 0; j < 11; j++){
+                casillas[i][j] = new Casilla(i, j);
+                casillas[i][j].addActionListener(escucha);
+                tableroPrincipal.add(casillas[i][j]);
+                if(i==0 || j==0)
+                {
+                    casillas[i][j].setVisible(false);
+                }
+            }
+        }
         constraints.gridx = 10;
         constraints.gridy = 4;
         constraints.gridwidth = 1;
@@ -367,8 +400,12 @@ public class GUIBatallaNaval extends JFrame {
     /**
      * inner class that extends an Adapter Class or implements Listeners used by GUIBatallaNaval class
      */
-    private class Escucha {
+    private class Escucha implements ActionListener {
 
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+        }
     }
 }
 

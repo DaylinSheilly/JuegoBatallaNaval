@@ -4,15 +4,12 @@ import javax.swing.*;
 import java.awt.*;
 
 public class PintarTablero extends JPanel {
-    private Casilla[][] casillas;
-    private Casilla casillaSeleccionada;
     private int encabezado;
 
     public PintarTablero(){
         setBackground(Color.pink);
         setPreferredSize(new Dimension(506, 506));
-        setLayout(new GridLayout(10,10));
-        casillas = new Casilla [10][10];
+        setLayout(new GridLayout(11,11));
     }
 
     public void decoradoDelTablero(){

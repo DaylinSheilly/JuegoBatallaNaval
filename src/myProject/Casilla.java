@@ -10,7 +10,8 @@ public class Casilla extends JButton {
     public Casilla(int fila, int columna){
         this.fila = fila;
         this.columna = columna;
-        this.setPreferredSize(new Dimension(5, 5));
+        this.setPreferredSize(new Dimension(46, 46));
+        setBackground(new Color(24, 90, 219));
 
     }
 

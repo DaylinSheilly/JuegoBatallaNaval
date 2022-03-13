@@ -189,10 +189,9 @@ public class PintarTablero extends JPanel {
                 g.fillRect(0, 460, 46, 46);
                 g.setColor(Color.BLACK);
                 g.setFont(new Font("SansSerif", Font.BOLD + Font.PLAIN, 26));
-                g.drawString("10", 16, 492);
+                g.drawString("10", 10, 492);
                 g.setColor(Color.BLACK);
                 g.drawRect(0, 460, 46, 46);
-
         }
     }
 }

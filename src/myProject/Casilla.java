@@ -2,17 +2,20 @@ package myProject;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.ImageObserver;
 
 public class Casilla extends JButton {
-    int fila, columna, nombreDelBarco, parteDelBarco;
-    boolean barcoCompleto;
+    private int fila, columna, nombreDelBarco, parteDelBarco, resultadoDeSeleccion;
+    private boolean barcoCompleto;
+    private ImageIcon imageHundido, imagenNuevoTamanho, imageFallar;
+    private Image imagenOtroTamanho;
+
 
     public Casilla(int fila, int columna){
         this.fila = fila;
         this.columna = columna;
         this.setPreferredSize(new Dimension(46, 46));
         setBackground(new Color(24, 90, 219));
-
     }
 
     public void insertarBarco(int nombreDelBarco){
@@ -33,6 +36,20 @@ public class Casilla extends JButton {
         }else{
             parteDelBarco = 4;
             barcoCompleto = false;
+            repaint();
+        }
+    }
+
+    public void determinarPrecision(int resultadoDeSeleccion){
+        if(resultadoDeSeleccion == 5){
+            parteDelBarco = 5;
+            repaint();
+        }
+        if(resultadoDeSeleccion == 6){
+            parteDelBarco = 6;
+            repaint();
+        }else {
+            parteDelBarco = 7;
             repaint();
         }
     }
@@ -59,6 +76,22 @@ public class Casilla extends JButton {
                  g.drawRect(fila, columna, 5, 5);
                  g.drawRect(fila, columna, 5, 5);
                  break;
+            case 5:
+                imageFallar = new ImageIcon(getClass().getResource("/resources/fallar.png"));
+                imagenOtroTamanho = imageFallar.getImage().getScaledInstance(60,60,Image.SCALE_SMOOTH);
+                imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
+                g.drawImage(imagenOtroTamanho, fila, columna, this);
+                break;
+            case 6:
+                imageHundido = new ImageIcon(getClass().getResource("/resources/hundido.png"));
+                imagenOtroTamanho = imageHundido.getImage().getScaledInstance(46,46,Image.SCALE_SMOOTH);
+                imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
+                g.drawImage(imagenOtroTamanho, fila, columna, this);
+                break;
+            case 7:
+                g.setColor(Color.red);
+                g.setFont(new Font("SansSerif", Font.BOLD + Font.PLAIN, 50));
+                g.drawString("\uF0FB", fila, columna);
         }
     }
 

@@ -409,8 +409,4 @@ public class GUIBatallaNaval extends JFrame {
     }
 }
 
-/*
-        unaImagen = new ImageIcon(getClass().getResource("/resources/4.png"));
-        imagenOtroTamanho = unaImagen.getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
-        imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
-        */
+

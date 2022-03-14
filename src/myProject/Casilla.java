@@ -9,6 +9,7 @@ public class Casilla extends JButton {
     private boolean barcoCompleto;
     private ImageIcon imageHundido, imagenNuevoTamanho, imageFallar;
     private Image imagenOtroTamanho;
+    private ImageIconToImage imageTransformada;
 
 
     public Casilla(int fila, int columna){
@@ -16,6 +17,8 @@ public class Casilla extends JButton {
         this.columna = columna;
         this.setPreferredSize(new Dimension(46, 46));
         setBackground(new Color(24, 90, 219));
+
+        imageTransformada = new ImageIconToImage();
     }
 
     public void insertarBarco(int nombreDelBarco){
@@ -80,13 +83,13 @@ public class Casilla extends JButton {
                 imageFallar = new ImageIcon(getClass().getResource("/resources/fallar.png"));
                 imagenOtroTamanho = imageFallar.getImage().getScaledInstance(60,60,Image.SCALE_SMOOTH);
                 imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
-                g.drawImage(imagenOtroTamanho, fila, columna, this);
+                g.drawImage(imageTransformada.scaledImage(imagenNuevoTamanho.getImage(), 46, 46), fila, columna, this);
                 break;
             case 6:
                 imageHundido = new ImageIcon(getClass().getResource("/resources/hundido.png"));
                 imagenOtroTamanho = imageHundido.getImage().getScaledInstance(46,46,Image.SCALE_SMOOTH);
                 imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
-                g.drawImage(imagenOtroTamanho, fila, columna, this);
+                g.drawImage(imageTransformada.scaledImage(imagenNuevoTamanho.getImage(), 46, 46), fila, columna, this);
                 break;
             case 7:
                 g.setColor(Color.red);

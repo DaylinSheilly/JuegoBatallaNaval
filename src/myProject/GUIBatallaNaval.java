@@ -403,8 +403,26 @@ public class GUIBatallaNaval extends JFrame {
     private class Escucha implements ActionListener {
 
         @Override
-        public void actionPerformed(ActionEvent e) {
-
+        public void actionPerformed(ActionEvent e)
+        {
+            /*for(int x=0; x<10; x++)
+            {
+                for(int y=0; y<10; y++)
+                {
+                    if (e.getSource() == casillas[x][y])
+                    {
+                        casillas[x][y].determinarPrecision(6);
+                        System.out.println("FUNCIONA!! pero no como debería");
+                        break;
+                    }
+                }
+            }*/
+            System.out.println(e.getSource());
+            if(e.getSource()==casillas)
+            {
+                Casilla casillaSeleccionada = (Casilla)e.getSource();
+                casillaSeleccionada.determinarPrecision(6);
+            }
         }
     }
 }

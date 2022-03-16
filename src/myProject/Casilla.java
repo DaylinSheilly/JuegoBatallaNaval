@@ -89,12 +89,13 @@ public class Casilla extends JButton {
                 imageHundido = new ImageIcon(getClass().getResource("/resources/hundido.png"));
                 imagenOtroTamanho = imageHundido.getImage().getScaledInstance(46,46,Image.SCALE_SMOOTH);
                 imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
-                g.drawImage(imageTransformada.scaledImage(imagenNuevoTamanho.getImage(), 46, 46), fila, columna, this);
+                g.drawImage(imageTransformada.scaledImage(imagenNuevoTamanho.getImage(), fila, columna), fila, columna, this);
                 break;
             case 7:
                 g.setColor(Color.red);
                 g.setFont(new Font("SansSerif", Font.BOLD + Font.PLAIN, 50));
                 g.drawString("\uF0FB", fila, columna);
+                break;
         }
     }
 

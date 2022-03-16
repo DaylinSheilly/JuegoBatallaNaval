@@ -53,6 +53,7 @@ public class GUIBatallaNaval extends JFrame {
         this.getContentPane().setLayout(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
         //Create Listener Object and Control Object
+        escucha = new Escucha();
         //Set up JComponents
         headerProject = new Header("Batalla Naval", new Color(68, 114, 196));
         constraints.gridx = 0;
@@ -405,19 +406,19 @@ public class GUIBatallaNaval extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e)
         {
-            /*for(int x=0; x<10; x++)
+            for(int x=0; x<10; x++)
             {
                 for(int y=0; y<10; y++)
                 {
                     if (e.getSource() == casillas[x][y])
                     {
-                        casillas[x][y].determinarPrecision(6);
+                        casillas[x][y].determinarPrecision(7);
                         System.out.println("FUNCIONA!! pero no como debería");
                         break;
                     }
                 }
-            }*/
-            System.out.println(e.getSource());
+            }
+            System.out.println("pitos");
             if(e.getSource()==casillas)
             {
                 Casilla casillaSeleccionada = (Casilla)e.getSource();

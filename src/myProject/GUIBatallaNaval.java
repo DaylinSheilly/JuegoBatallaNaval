@@ -17,8 +17,10 @@ public class GUIBatallaNaval extends JFrame {
 
     private Header headerProject;
     private PintarTablero tableroPrincipal, tableroPosicion;
-    private Casilla[][] casillas;
-    private Casilla casillaSeleccionada;
+    private CasillaPrincipal[][] casillasPrincipal;
+    private CasillaPrincipal casillaPrincipalSeleccionada;
+    private CasillaPosicion[][] casillasPosicion;
+    private CasillaPosicion casillaPosicionSeleccionada;
     private Escucha escucha;
     private JPanel espacio1, espacio2, espacio3, espacio4, espacio5, espacio6, espacio7, panelInfo;
     private JButton fragata, portavion, submarino, destructor, ayuda, salir, trampa;
@@ -231,16 +233,16 @@ public class GUIBatallaNaval extends JFrame {
         tableroPosicion = new PintarTablero();
         tableroPosicion.decoradoDelTablero();
 
-        casillas = new Casilla [11][11];
+        casillasPrincipal = new CasillaPrincipal[11][11];
 
         for(int i = 0; i < 11; i++){
             for(int j = 0; j < 11; j++){
-                casillas[i][j] = new Casilla(i, j);
-                casillas[i][j].addActionListener(escucha);
-                tableroPosicion.add(casillas[i][j]);
+                casillasPrincipal[i][j] = new CasillaPrincipal(i, j);
+                casillasPrincipal[i][j].addActionListener(escucha);
+                tableroPosicion.add(casillasPrincipal[i][j]);
                 if(i==0 || j==0)
                 {
-                    casillas[i][j].setVisible(false);
+                    casillasPrincipal[i][j].setVisible(false);
                 }
             }
         }
@@ -257,16 +259,16 @@ public class GUIBatallaNaval extends JFrame {
         tableroPrincipal = new PintarTablero();
         tableroPrincipal.decoradoDelTablero();
 
-        casillas = new Casilla [11][11];
+        casillasPosicion = new CasillaPosicion[11][11];
 
         for(int i = 0; i < 11; i++){
             for(int j = 0; j < 11; j++){
-                casillas[i][j] = new Casilla(i, j);
-                casillas[i][j].addActionListener(escucha);
-                tableroPrincipal.add(casillas[i][j]);
+                casillasPosicion[i][j] = new CasillaPosicion(i, j);
+                casillasPosicion[i][j].addActionListener(escucha);
+                tableroPrincipal.add(casillasPosicion[i][j]);
                 if(i==0 || j==0)
                 {
-                    casillas[i][j].setVisible(false);
+                    casillasPosicion[i][j].setVisible(false);
                 }
             }
         }
@@ -406,13 +408,13 @@ public class GUIBatallaNaval extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e)
         {
-            for(int x=0; x<11; x++)
+            for(int x=1; x<11; x++)
             {
-                for(int y=0; y<11; y++)
+                for(int y=1; y<11; y++)
                 {
-                    if (e.getSource() == casillas[x][y])
+                    if (e.getSource() == casillasPrincipal[x][y])
                     {
-                        casillas[x][y].insertarBarco("destructor");
+                        casillasPrincipal[x][y].insertarBarco("destructor");
                         //casillas[x][y].determinarPrecision(6);
                         System.out.println("FUNCIONA!! pero no como debería");
                         break;

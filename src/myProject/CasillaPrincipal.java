@@ -3,7 +3,7 @@ package myProject;
 import javax.swing.*;
 import java.awt.*;
 
-public class Casilla extends JButton {
+public class CasillaPrincipal extends JButton {
     private int fila, columna, insertarElBarco, resultadoDeSeleccion;
     private String nombreDelBarco;
     private boolean barcoCompleto, parteDelBarco;
@@ -12,7 +12,7 @@ public class Casilla extends JButton {
     private ImageIconToImage imageTransformada;
 
 
-    public Casilla(int fila, int columna){
+    public CasillaPrincipal(int fila, int columna){
         this.fila = fila;
         this.columna = columna;
         this.setPreferredSize(new Dimension(46, 46));
@@ -67,8 +67,7 @@ public class Casilla extends JButton {
     protected void paintComponent(Graphics g){
         super.paintComponent(g);
         System.out.println(insertarElBarco);
-        System.out.print(columna);
-        System.out.println(" "+fila);
+        System.out.print(columna+" "+fila);
         switch (insertarElBarco){
             case 1:
                  g.setColor(Color.BLACK);
@@ -117,9 +116,9 @@ public class Casilla extends JButton {
         return columna;
     }
 
-    public String getBarco(Casilla casilla){ return  casilla.nombreDelBarco; }
+    public String getBarco(CasillaPrincipal casilla){ return  casilla.nombreDelBarco; }
 
-    public boolean getBarcoCompleto(Casilla casilla){
+    public boolean getBarcoCompleto(CasillaPrincipal casilla){
         return casilla.barcoCompleto;
     }
 

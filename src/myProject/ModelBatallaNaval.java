@@ -3,19 +3,19 @@ package myProject;
 import java.util.Vector;
 
 public class ModelBatallaNaval {
-    private Casilla casilla;
+    private CasillaPrincipal casilla;
     private int fila, columna, puntos;
     private boolean ganar;
-    private Vector<Casilla> barco;
+    private Vector<CasillaPrincipal> barco;
 
 
     public ModelBatallaNaval(){
-        casilla = new Casilla(fila, columna);
+        casilla = new CasillaPrincipal(fila, columna);
         puntos = 0;
 
     }
 
-    public void dispararACasilla(Casilla casilla){
+    public void dispararACasilla(CasillaPrincipal casilla){
         if(casilla.getBarcoCompleto(casilla) == true){
             puntos ++;
             casilla.determinarPrecision(6);

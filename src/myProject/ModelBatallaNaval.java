@@ -1,9 +1,12 @@
 package myProject;
 
+import java.util.Vector;
+
 public class ModelBatallaNaval {
     private Casilla casilla;
     private int fila, columna, puntos;
     private boolean ganar;
+    private Vector<Casilla> barco;
 
 
     public ModelBatallaNaval(){

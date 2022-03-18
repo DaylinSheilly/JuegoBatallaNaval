@@ -2,10 +2,10 @@ package myProject;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.ImageObserver;
 
 public class Casilla extends JButton {
-    private int fila, columna, nombreDelBarco, insertarElBarco, resultadoDeSeleccion;
+    private int fila, columna, insertarElBarco, resultadoDeSeleccion;
+    private String nombreDelBarco;
     private boolean barcoCompleto, parteDelBarco;
     private ImageIcon imageHundido, imagenNuevoTamanho, imageFallar;
     private Image imagenOtroTamanho;
@@ -19,31 +19,34 @@ public class Casilla extends JButton {
         setBackground(new Color(24, 90, 219));
 
         imageTransformada = new ImageIconToImage();
+
+        insertarElBarco = 199;
     }
 
-    public void insertarBarco(int nombreDelBarco){
-        if(nombreDelBarco == 1){
+    public void insertarBarco(String nombreDelBarco){
+        if(nombreDelBarco.equals("fragata")){
             insertarElBarco = 1;
             barcoCompleto = true;
-            repaint();
+            //repaint();
         }
-        if(nombreDelBarco == 2){
+        else if(nombreDelBarco.equals("destructor")){
             insertarElBarco = 2;
             barcoCompleto = false;
             parteDelBarco = true;
-            repaint();
+            //repaint();
         }
-        if(nombreDelBarco == 3){
+        else if(nombreDelBarco.equals("submarino")){
             insertarElBarco = 3;
             barcoCompleto = false;
             parteDelBarco = true;
-            repaint();
+            //repaint();
         }else{
             insertarElBarco = 4;
             barcoCompleto = false;
             parteDelBarco = true;
-            repaint();
+            //repaint();
         }
+        repaint();
     }
 
     public void determinarPrecision(int resultadoDeSeleccion){
@@ -51,7 +54,7 @@ public class Casilla extends JButton {
             insertarElBarco = 5;
             repaint();
         }
-        if(resultadoDeSeleccion == 6){
+        else if(resultadoDeSeleccion == 6){
             insertarElBarco = 6;
             repaint();
         }else {
@@ -63,13 +66,17 @@ public class Casilla extends JButton {
     @Override
     protected void paintComponent(Graphics g){
         super.paintComponent(g);
+        System.out.println(insertarElBarco);
+        System.out.print(columna);
+        System.out.println(" "+fila);
         switch (insertarElBarco){
-            case 1: g.setColor(Color.BLACK);
+            case 1:
+                 g.setColor(Color.BLACK);
                  g.fillRect(fila, columna, 46, 46);
                 break;
             case 2: g.setColor(Color.BLACK);
                  g.fillRect(fila, columna, 46, 46);
-                 g.fillRect(fila, columna, 46, 46);
+                 g.fillRect(fila + 1, columna, 46, 46);
                 break;
             case 3: g.setColor(Color.BLACK);
                  g.fillRect(fila, columna, 46, 46);
@@ -110,7 +117,7 @@ public class Casilla extends JButton {
         return columna;
     }
 
-    public int getBarco(Casilla casilla){ return  casilla.nombreDelBarco; }
+    public String getBarco(Casilla casilla){ return  casilla.nombreDelBarco; }
 
     public boolean getBarcoCompleto(Casilla casilla){
         return casilla.barcoCompleto;

@@ -406,24 +406,20 @@ public class GUIBatallaNaval extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e)
         {
-            for(int x=0; x<10; x++)
+            for(int x=0; x<11; x++)
             {
-                for(int y=0; y<10; y++)
+                for(int y=0; y<11; y++)
                 {
                     if (e.getSource() == casillas[x][y])
                     {
-                        casillas[x][y].insertarBarco(2);
+                        casillas[x][y].insertarBarco("destructor");
+                        //casillas[x][y].determinarPrecision(6);
                         System.out.println("FUNCIONA!! pero no como debería");
                         break;
                     }
                 }
             }
             System.out.println("pitos");
-            if(e.getSource()==casillas)
-            {
-                Casilla casillaSeleccionada = (Casilla)e.getSource();
-                casillaSeleccionada.determinarPrecision(6);
-            }
         }
     }
 }

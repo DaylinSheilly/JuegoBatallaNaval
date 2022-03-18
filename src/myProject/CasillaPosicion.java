@@ -25,25 +25,25 @@ public class CasillaPosicion extends JButton {
 
     public void insertarBarco(String nombreDelBarco){
         if(nombreDelBarco.equals("fragata")){
-            insertarElBarco = 1;
-            barcoCompleto = true;
+            this.insertarElBarco = 1;
+            this.barcoCompleto = true;
             //repaint();
         }
         else if(nombreDelBarco.equals("destructor")){
-            insertarElBarco = 2;
-            barcoCompleto = false;
-            parteDelBarco = true;
+            this.insertarElBarco = 2;
+            this.barcoCompleto = false;
+            this.parteDelBarco = true;
             //repaint();
         }
         else if(nombreDelBarco.equals("submarino")){
-            insertarElBarco = 3;
-            barcoCompleto = false;
-            parteDelBarco = true;
+            this.insertarElBarco = 3;
+            this.barcoCompleto = false;
+            this.parteDelBarco = true;
             //repaint();
         }else{
-            insertarElBarco = 4;
-            barcoCompleto = false;
-            parteDelBarco = true;
+            this.insertarElBarco = 4;
+            this.barcoCompleto = false;
+            this.parteDelBarco = true;
             //repaint();
         }
         repaint();
@@ -51,43 +51,44 @@ public class CasillaPosicion extends JButton {
 
     public void determinarPrecision(int resultadoDeSeleccion){
         if(resultadoDeSeleccion == 5){
-            insertarElBarco = 5;
-            repaint();
+            this.insertarElBarco = 5;
         }
         else if(resultadoDeSeleccion == 6){
-            insertarElBarco = 6;
-            repaint();
+            this.insertarElBarco = 6;
         }else {
-            insertarElBarco = 7;
-            repaint();
+            this.insertarElBarco = 7;
         }
+        repaint();
     }
 
     @Override
     protected void paintComponent(Graphics g){
         super.paintComponent(g);
-        System.out.println(insertarElBarco);
-        System.out.print(columna);
-        System.out.println(" "+fila);
+        //System.out.println(insertarElBarco);
+        //System.out.println(columna+" "+fila);
         switch (insertarElBarco){
             case 1:
                 g.setColor(Color.BLACK);
                 g.fillRect(fila, columna, 46, 46);
+                System.out.println("La opción 1 :/");
                 break;
             case 2: g.setColor(Color.BLACK);
-                g.fillRect(fila, columna, 46, 46);
-                g.fillRect(fila + 1, columna, 46, 46);
+                g.fillRect(3, columna, 46, 46);
+                g.fillRect(5, columna, 46, 46);
+                System.out.println("La opción 2 :D");
                 break;
             case 3: g.setColor(Color.BLACK);
                 g.fillRect(fila, columna, 46, 46);
                 g.fillRect(fila, columna, 46, 46);
                 g.fillRect(fila, columna, 46, 46);
+                System.out.println("La opción 3 :|");
                 break;
             case 4: g.setColor(Color.BLACK);
                 g.fillRect(fila, columna, 46, 46);
                 g.fillRect(fila, columna, 46, 46);
                 g.fillRect(fila, columna, 46, 46);
                 g.fillRect(fila, columna, 46, 46);
+                System.out.println("La opción 4 ._.");
                 break;
             case 5:
                 imageFallar = new ImageIcon(getClass().getResource("/resources/fallar.png"));

@@ -412,7 +412,7 @@ public class GUIBatallaNaval extends JFrame {
                 {
                     if (e.getSource() == casillas[x][y])
                     {
-                        casillas[x][y].determinarPrecision(7);
+                        casillas[x][y].insertarBarco(2);
                         System.out.println("FUNCIONA!! pero no como debería");
                         break;
                     }

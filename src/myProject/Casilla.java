@@ -5,8 +5,8 @@ import java.awt.*;
 import java.awt.image.ImageObserver;
 
 public class Casilla extends JButton {
-    private int fila, columna, nombreDelBarco, parteDelBarco, resultadoDeSeleccion;
-    private boolean barcoCompleto;
+    private int fila, columna, nombreDelBarco, insertarElBarco, resultadoDeSeleccion;
+    private boolean barcoCompleto, parteDelBarco;
     private ImageIcon imageHundido, imagenNuevoTamanho, imageFallar;
     private Image imagenOtroTamanho;
     private ImageIconToImage imageTransformada;
@@ -23,36 +23,39 @@ public class Casilla extends JButton {
 
     public void insertarBarco(int nombreDelBarco){
         if(nombreDelBarco == 1){
-            parteDelBarco = 1;
+            insertarElBarco = 1;
             barcoCompleto = true;
             repaint();
         }
         if(nombreDelBarco == 2){
-            parteDelBarco = 2;
+            insertarElBarco = 2;
             barcoCompleto = false;
+            parteDelBarco = true;
             repaint();
         }
         if(nombreDelBarco == 3){
-            parteDelBarco = 3;
+            insertarElBarco = 3;
             barcoCompleto = false;
+            parteDelBarco = true;
             repaint();
         }else{
-            parteDelBarco = 4;
+            insertarElBarco = 4;
             barcoCompleto = false;
+            parteDelBarco = true;
             repaint();
         }
     }
 
     public void determinarPrecision(int resultadoDeSeleccion){
         if(resultadoDeSeleccion == 5){
-            parteDelBarco = 5;
+            insertarElBarco = 5;
             repaint();
         }
         if(resultadoDeSeleccion == 6){
-            parteDelBarco = 6;
+            insertarElBarco = 6;
             repaint();
         }else {
-            parteDelBarco = 7;
+            insertarElBarco = 7;
             repaint();
         }
     }
@@ -60,24 +63,24 @@ public class Casilla extends JButton {
     @Override
     protected void paintComponent(Graphics g){
         super.paintComponent(g);
-        switch (parteDelBarco){
+        switch (insertarElBarco){
             case 1: g.setColor(Color.BLACK);
-                 g.drawRect(fila, columna, 5, 5);
+                 g.fillRect(fila, columna, 46, 46);
                 break;
             case 2: g.setColor(Color.BLACK);
-                 g.drawRect(fila, columna, 5, 5);
-                 g.drawRect(fila, columna, 5, 5);
+                 g.fillRect(fila, columna, 46, 46);
+                 g.fillRect(fila, columna, 46, 46);
                 break;
             case 3: g.setColor(Color.BLACK);
-                 g.drawRect(fila, columna, 5, 5);
-                 g.drawRect(fila, columna, 5, 5);
-                 g.drawRect(fila, columna, 5, 5);
+                 g.fillRect(fila, columna, 46, 46);
+                 g.fillRect(fila, columna, 46, 46);
+                 g.fillRect(fila, columna, 46, 46);
                 break;
             case 4: g.setColor(Color.BLACK);
-                 g.drawRect(fila, columna, 5, 5);
-                 g.drawRect(fila, columna, 5, 5);
-                 g.drawRect(fila, columna, 5, 5);
-                 g.drawRect(fila, columna, 5, 5);
+                 g.fillRect(fila, columna, 46, 46);
+                 g.fillRect(fila, columna, 46, 46);
+                 g.fillRect(fila, columna, 46, 46);
+                 g.fillRect(fila, columna, 46, 46);
                  break;
             case 5:
                 imageFallar = new ImageIcon(getClass().getResource("/resources/fallar.png"));
@@ -107,10 +110,13 @@ public class Casilla extends JButton {
         return columna;
     }
 
-    public int getBarco(Casilla casilla){ return  nombreDelBarco; }
+    public int getBarco(Casilla casilla){ return  casilla.nombreDelBarco; }
 
     public boolean getBarcoCompleto(Casilla casilla){
-        return barcoCompleto;
+        return casilla.barcoCompleto;
     }
 
+    public boolean isParteDelBarco() {
+        return parteDelBarco;
+    }
 }

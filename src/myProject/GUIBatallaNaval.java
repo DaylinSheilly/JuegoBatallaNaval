@@ -20,6 +20,7 @@ public class GUIBatallaNaval extends JFrame {
     private Header headerProject;
     private PintarTablero tableroPrincipal, tableroPosicion;
     private CasillaPrincipal[][] casillasPrincipal;
+    private ModelBatallaNaval game;
     private CasillaPrincipal casillaPrincipalSeleccionada;
     private CasillaPosicion[][] casillasPosicion;
     private CasillaPosicion casillaPosicionSeleccionada;
@@ -57,6 +58,7 @@ public class GUIBatallaNaval extends JFrame {
         GridBagConstraints constraints = new GridBagConstraints();
         //Create Listener Object and Control Object
         escucha = new Escucha();
+        game = new ModelBatallaNaval();
         //Set up JComponents
         headerProject = new Header("Batalla Naval", new Color(68, 114, 196));
         constraints.gridx = 0;
@@ -412,14 +414,13 @@ public class GUIBatallaNaval extends JFrame {
                     for (int y = 0; y < 11; y++) {
                         if (e.getSource() == casillasPosicion[x][y]) {
                             casillaPosicionSeleccionada = casillasPosicion[x][y];
-                            casillasPosicion[x][y].insertarBarco("destructor");
+                            game.casillasDelBote(casillaPosicionSeleccionada, casillasPosicion[x][y+1],
+                                    casillasPosicion[x][y+2], casillasPosicion[x][y+3]);
                             //casillas[x][y].determinarPrecision(6);
-                            System.out.println("FUNCIONA!! pero no como debería");
                             break;
                         }
                     }
                 }
-                System.out.println("pitos");
             }
         }
     }

@@ -1,11 +1,12 @@
+
 package myProject;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class CasillaPrincipal extends JButton {
-    private int fila, columna, insertarElBarco, resultadoDeSeleccion;
-    private String nombreDelBarco;
+    private int fila, columna, resultadoDeTiro;
+    private  String nombreDelBarco;
     private boolean barcoCompleto, parteDelBarco;
     private ImageIcon imageHundido, imagenNuevoTamanho, imageFallar;
     private Image imagenOtroTamanho;
@@ -20,43 +21,17 @@ public class CasillaPrincipal extends JButton {
 
         imageTransformada = new ImageIconToImage();
 
-        insertarElBarco = 199;
+        resultadoDeTiro = 0;
     }
 
-    public void insertarBarco(String nombreDelBarco){
-        if(nombreDelBarco.equals("fragata")){
-            this.insertarElBarco = 1;
-            this.barcoCompleto = true;
-            //repaint();
+    public void determinarPrecision(int resultadoDeTiro){
+        if(resultadoDeTiro == 1){
+            this.resultadoDeTiro = 1;
         }
-        else if(nombreDelBarco.equals("destructor")){
-            this.insertarElBarco = 2;
-            this.barcoCompleto = false;
-            this.parteDelBarco = true;
-            //repaint();
-        }
-        else if(nombreDelBarco.equals("submarino")){
-            this.insertarElBarco = 3;
-            this.barcoCompleto = false;
-            this.parteDelBarco = true;
-            //repaint();
-        }else{
-            this.insertarElBarco = 4;
-            this.barcoCompleto = false;
-            this.parteDelBarco = true;
-            //repaint();
-        }
-        repaint();
-    }
-
-    public void determinarPrecision(int resultadoDeSeleccion){
-        if(resultadoDeSeleccion == 5){
-            this.insertarElBarco = 5;
-        }
-        else if(resultadoDeSeleccion == 6){
-            this.insertarElBarco = 6;
+        else if(resultadoDeTiro == 6){
+            this.resultadoDeTiro = 6;
         }else {
-            this.insertarElBarco = 7;
+            this.resultadoDeTiro = 7;
         }
         repaint();
     }
@@ -64,45 +39,20 @@ public class CasillaPrincipal extends JButton {
     @Override
     protected void paintComponent(Graphics g){
         super.paintComponent(g);
-        //System.out.println(insertarElBarco);
-        //System.out.println(columna+" "+fila);
-        switch (insertarElBarco){
+        switch (resultadoDeTiro){
             case 1:
-                 g.setColor(Color.BLACK);
-                 g.fillRect(fila, columna, 46, 46);
-                System.out.println("La opción 1 :/");
-                break;
-            case 2: g.setColor(Color.BLACK);
-                 g.fillRect(3, columna, 46, 46);
-                 g.fillRect(5, columna, 46, 46);
-                System.out.println("La opción 2 :D");
-                break;
-            case 3: g.setColor(Color.BLACK);
-                 g.fillRect(fila, columna, 46, 46);
-                 g.fillRect(fila, columna, 46, 46);
-                 g.fillRect(fila, columna, 46, 46);
-                System.out.println("La opción 3 :|");
-                break;
-            case 4: g.setColor(Color.BLACK);
-                 g.fillRect(fila, columna, 46, 46);
-                 g.fillRect(fila, columna, 46, 46);
-                 g.fillRect(fila, columna, 46, 46);
-                 g.fillRect(fila, columna, 46, 46);
-                System.out.println("La opción 4 ._.");
-                 break;
-            case 5:
                 imageFallar = new ImageIcon(getClass().getResource("/resources/fallar.png"));
                 imagenOtroTamanho = imageFallar.getImage().getScaledInstance(60,60,Image.SCALE_SMOOTH);
                 imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
                 g.drawImage(imageTransformada.scaledImage(imagenNuevoTamanho.getImage(), 46, 46), fila, columna, this);
                 break;
-            case 6:
+            case 2:
                 imageHundido = new ImageIcon(getClass().getResource("/resources/hundido.png"));
                 imagenOtroTamanho = imageHundido.getImage().getScaledInstance(46,46,Image.SCALE_SMOOTH);
                 imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
                 g.drawImage(imageTransformada.scaledImage(imagenNuevoTamanho.getImage(), fila, columna), fila, columna, this);
                 break;
-            case 7:
+            case 3:
                 g.setColor(Color.red);
                 g.setFont(new Font("SansSerif", Font.BOLD + Font.PLAIN, 50));
                 g.drawString("\uF0FB", fila, columna);
@@ -128,3 +78,4 @@ public class CasillaPrincipal extends JButton {
         return parteDelBarco;
     }
 }
+

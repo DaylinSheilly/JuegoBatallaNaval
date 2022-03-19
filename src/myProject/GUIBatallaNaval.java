@@ -60,6 +60,10 @@ public class GUIBatallaNaval extends JFrame {
         escucha = new Escucha();
         game = new ModelBatallaNaval();
         //Set up JComponents
+
+        casillaPosicionSeleccionada = new CasillaPosicion(0, 0);
+        casillaPrincipalSeleccionada = new CasillaPrincipal(0, 0);
+
         headerProject = new Header("Batalla Naval", new Color(68, 114, 196));
         constraints.gridx = 0;
         constraints.gridy = 0;
@@ -414,11 +418,21 @@ public class GUIBatallaNaval extends JFrame {
                     for (int y = 0; y < 11; y++) {
                         if (e.getSource() == casillasPosicion[x][y]) {
                             casillaPosicionSeleccionada = casillasPosicion[x][y];
-                            game.casillasDelBote(casillaPosicionSeleccionada, casillasPosicion[x][y+1],
-                                    casillasPosicion[x][y+2], casillasPosicion[x][y+3]);
+                            game.casillasDelBote(casillaPosicionSeleccionada, casillasPosicion[x][y + 1],
+                                    casillasPosicion[x][y + 2], casillasPosicion[x][y + 3]);
                             //casillas[x][y].determinarPrecision(6);
                             break;
                         }
+                    }
+                }
+                for (int x = 0; x < 11; x++) {
+                    for (int y = 0; y < 11; y++) {
+                        if (e.getSource() == casillasPrincipal[x][y]) {
+                            casillaPrincipalSeleccionada = casillasPrincipal[x][y];
+                            casillaPrincipalSeleccionada.determinarPrecision(5);
+                            break;
+                        }
+
                     }
                 }
             }

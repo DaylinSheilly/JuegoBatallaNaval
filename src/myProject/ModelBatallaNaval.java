@@ -15,7 +15,7 @@ public class ModelBatallaNaval {
 
     }
 
-    public void dispararACasilla(CasillaPrincipal casilla){
+    /*public void dispararACasilla(CasillaPrincipal casilla){
         if(casilla.getBarcoCompleto(casilla) == true){
             puntos ++;
             casilla.determinarPrecision(6);
@@ -28,7 +28,7 @@ public class ModelBatallaNaval {
         }
 
 
-    }
+    }*/
 
     public void casillasDelBote(CasillaPosicion parte1, CasillaPosicion parte2,
                                CasillaPosicion parte3, CasillaPosicion parte4){

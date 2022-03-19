@@ -6,7 +6,7 @@ import java.awt.*;
 public class CasillaPosicion extends JButton {
     private int fila, columna, insertarElBarco, resultadoDeSeleccion, resistenciaDeImpactos;
     private String nombreDelBarco;
-    private boolean barcoCompleto, parteDelBarco;
+    private boolean barcoCompleto, parteDelBarco, tieneBarco;
     private ImageIcon imageHundido, imagenNuevoTamanho, imageFallar;
     private Image imagenOtroTamanho;
     private ImageIconToImage imageTransformada;
@@ -19,6 +19,7 @@ public class CasillaPosicion extends JButton {
         setBackground(new Color(24, 90, 219));
 
         imageTransformada = new ImageIconToImage();
+        tieneBarco = false;
     }
 
     public void pintarParteDelBarco(String nombreDelBarco){
@@ -58,7 +59,7 @@ public class CasillaPosicion extends JButton {
                 resistenciaDeImpactos = 1;
                 break;
             case 2: g.setColor(Color.pink);
-                g.fillRect(0, 0, 10, 10);
+                g.fillRect(0, 0, 46, 46);
                 resistenciaDeImpactos = 2;
                 break;
             case 3: g.setColor(Color.MAGENTA);
@@ -92,5 +93,12 @@ public class CasillaPosicion extends JButton {
 
     public int getResistenciaDeImpactos() {
         return resistenciaDeImpactos;
+    }
+
+    public void setTieneBarco(boolean tieneBarco) {
+        this.tieneBarco = tieneBarco;
+    }
+    public boolean isTieneBarco() {
+        return tieneBarco;
     }
 }

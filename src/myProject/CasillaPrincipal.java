@@ -39,22 +39,25 @@ public class CasillaPrincipal extends JButton {
         super.paintComponent(g);
         switch (resultadoDeTiro){
             case 5:
-                g.setColor(Color.white);
-                g.fillRect(0, 0, 46, 46);
                 imageFallar = new ImageIcon(getClass().getResource("/resources/fallar.png"));
-                imagenOtroTamanho = imageFallar.getImage().getScaledInstance(20,20,Image.SCALE_SMOOTH);
+                imagenOtroTamanho = imageFallar.getImage().getScaledInstance(46,46,Image.SCALE_SMOOTH);
                 imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
                 g.drawImage(imageTransformada.scaledImage(imagenNuevoTamanho.getImage(), 46, 46), 0, 0, this);
+
+                g.setColor(Color.white);
+                g.drawString("\uF0FB", 0, 0);
                 break;
             case 6:
-                g.setColor(Color.white);
-                g.fillRect(0, 0, 46, 46);
                 imageHundido = new ImageIcon(getClass().getResource("/resources/hundido.png"));
                 imagenOtroTamanho = imageHundido.getImage().getScaledInstance(46,46,Image.SCALE_SMOOTH);
                 imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
                 g.drawImage(imageTransformada.scaledImage(imagenNuevoTamanho.getImage(), 46, 46), 0, 0, this);
+
+                g.setColor(Color.white);
+                g.drawString("\uF0FB", 0, 0);
                 break;
             case 7:
+                g.drawString("\uF0FB", 0, 0);
                 g.setColor(Color.red);
                 g.setFont(new Font("SansSerif", Font.BOLD + Font.PLAIN, 50));
                 g.drawString("\uF0FB", 0, 0);

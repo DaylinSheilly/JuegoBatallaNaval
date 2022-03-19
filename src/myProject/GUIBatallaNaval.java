@@ -423,16 +423,11 @@ public class GUIBatallaNaval extends JFrame {
                             //casillas[x][y].determinarPrecision(6);
                             break;
                         }
-                    }
-                }
-                for (int x = 0; x < 11; x++) {
-                    for (int y = 0; y < 11; y++) {
                         if (e.getSource() == casillasPrincipal[x][y]) {
                             casillaPrincipalSeleccionada = casillasPrincipal[x][y];
                             casillaPrincipalSeleccionada.determinarPrecision(5);
                             break;
                         }
-
                     }
                 }
             }

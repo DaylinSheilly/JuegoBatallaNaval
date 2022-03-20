@@ -4,21 +4,19 @@ import java.util.ArrayList;
 
 public class ModelBatallaNaval {
     private CasillaPosicion parte1;
-    private int fila, columna, puntos,
+    private int puntos,
             fragataPosicion1Resistencia, fragataPosicion2Resistencia, fragataPosicion3Resistencia, fragataPosicion4Resistencia, destructorPosicion1Resistencia,
             destructorPosicion2Resistencia, destructorPosicion3Resistencia, submarinoPosicion1Resistencia, submarinoPosicion2Resistencia, portavionPosicionResistencia,
             fragataPrincipal1Resistencia, fragataPrincipal2Resistencia, fragataPrincipal3Resistencia, fragataPrincipal4Resistencia, destructorPrincipal1Resistencia,
-            destructorPrincipal2Resistencia, destructorPrincipal3Resistencia, submarinoPrincipal1Resistencia, submarinoPrincipal2Resistencia, portavionPrincipalResistencia;
+            destructorPrincipal2Resistencia, destructorPrincipal3Resistencia, submarinoPrincipal1Resistencia, submarinoPrincipal2Resistencia, portavionPrincipalResistencia = 0;
     private boolean ganar;
     private ArrayList<CasillaPosicion> fragataPosicion1, fragataPosicion2, fragataPosicion3, fragataPosicion4, destructorPosicion1, destructorPosicion2,
-            destructorPosicion3, submarinoPosicion1, submarinoPosicion2, portavionPosicion;
+            destructorPosicion3, submarinoPosicion1, submarinoPosicion2, portavionPosicion = new ArrayList<CasillaPosicion>();
     private ArrayList<CasillaPrincipal> fragataPrincipal1, fragataPrincipal2, fragataPrincipal3, fragataPrincipal4, destructorPrincipal1, destructorPrincipal2,
-            destructorPrincipal3, submarinoPrincipal1, submarinoPrincipal2, portavionPrincipal;
+            destructorPrincipal3, submarinoPrincipal1, submarinoPrincipal2, portavionPrincipal = new ArrayList<CasillaPrincipal>();
 
 
     public ModelBatallaNaval(){
-        //casillaPosicion = new CasillaPosicion(fila, columna);
-        puntos = 0;
 
     }
 
@@ -63,13 +61,13 @@ public class ModelBatallaNaval {
         parte2.setTieneBarco(true);
         parte3.pintarParteDelBarco("submarino");
         parte3.setTieneBarco(true);
-        if(submarinoPosicion1.size() == 0){
+        if(submarinoPosicion1 == null){
             submarinoPosicion1.add(parte1);
             submarinoPosicion1.add(parte2);
             submarinoPosicion1.add(parte3);
             submarinoPosicion1Resistencia = 3;
         }
-        else if(submarinoPosicion2.size() == 0){
+        else if(submarinoPosicion2 == null){
             submarinoPosicion2.add(parte1);
             submarinoPosicion2.add(parte2);
             submarinoPosicion2.add(parte3);
@@ -82,17 +80,17 @@ public class ModelBatallaNaval {
         parte1.setTieneBarco(true);
         parte2.pintarParteDelBarco("destructor");
         parte2.setTieneBarco(true);
-        if(destructorPosicion1.size() == 0){
+        if(destructorPosicion1 == null){
             destructorPosicion1.add(parte1);
             destructorPosicion1.add(parte2);
             destructorPosicion1Resistencia = 2;
         }
-        else if(destructorPosicion2.size() == 0){
+        else if(destructorPosicion2 == null){
             destructorPosicion2.add(parte1);
             destructorPosicion2.add(parte2);
             destructorPosicion2Resistencia = 2;
         }
-        else if(destructorPosicion3.size() == 0){
+        else if(destructorPosicion3 == null){
             destructorPosicion3.add(parte1);
             destructorPosicion3.add(parte2);
             destructorPosicion3Resistencia = 2;
@@ -102,19 +100,19 @@ public class ModelBatallaNaval {
     public void casillasDelBote(CasillaPosicion parte1){
         parte1.pintarParteDelBarco("fragata");
         parte1.setTieneBarco(true);
-        if(fragataPosicion1.size() == 0){
+        if(fragataPosicion1 == null){
             fragataPosicion1.add(parte1);
             fragataPosicion1Resistencia = 1;
         }
-        else if(fragataPosicion2.size() == 0){
+        else if(fragataPosicion2 == null){
             fragataPosicion2.add(parte1);
             fragataPosicion2Resistencia = 1;
         }
-        else if(fragataPosicion3.size() == 0){
+        else if(fragataPosicion3 == null){
             fragataPosicion3.add(parte1);
             fragataPosicion3Resistencia = 1;
         }
-        else if(fragataPosicion4.size() == 0){
+        else if(fragataPosicion4 == null){
             fragataPosicion4.add(parte1);
             fragataPosicion4Resistencia = 1;
         }

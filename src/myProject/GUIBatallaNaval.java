@@ -475,28 +475,35 @@ public class GUIBatallaNaval extends JFrame {
                         casillaPosicionSeleccionada = casillasPosicion[x][y];
                         if(cualBarco.equals("fragata"))
                         {
+                            cantidadFragatas--;
                             game.casillasDelBote(casillaPosicionSeleccionada);
                         }
                         else if(orientacion==1) {
                             if (cualBarco.equals("destructor")) {
+                                cantidadDestructores--;
                                 game.casillasDelBote(casillaPosicionSeleccionada,
                                         casillasPosicion[x][y + 1]);
                             } else if (cualBarco.equals("submarino")) {
+                                cantidadSubmarinos--;
                                 game.casillasDelBote(casillaPosicionSeleccionada,
                                         casillasPosicion[x][y + 1], casillasPosicion[x][y + 2]);
                             } else if (cualBarco.equals("portavion")) {
+                                cantidadPortaviones--;
                                 game.casillasDelBote(casillaPosicionSeleccionada,
                                         casillasPosicion[x][y + 1], casillasPosicion[x][y + 2], casillasPosicion[x][y + 3]);
                             }
                         }
                         else if(orientacion==0) {
                             if (cualBarco.equals("destructor")) {
+                                cantidadDestructores--;
                                 game.casillasDelBote(casillaPosicionSeleccionada,
                                         casillasPosicion[x + 1][y]);
                             } else if (cualBarco.equals("submarino")) {
+                                cantidadSubmarinos--;
                                 game.casillasDelBote(casillaPosicionSeleccionada,
                                         casillasPosicion[x + 1][y], casillasPosicion[x + 2][y]);
                             } else if (cualBarco.equals("portavion")) {
+                                cantidadPortaviones--;
                                 game.casillasDelBote(casillaPosicionSeleccionada,
                                         casillasPosicion[x + 1][y], casillasPosicion[x + 2][y], casillasPosicion[x + 3][y]);
                             }
@@ -523,14 +530,12 @@ public class GUIBatallaNaval extends JFrame {
             else if(e.getSource()==fragata)
             {
                 cualBarco = "fragata";
-                cantidadFragatas--;
                 removerEscuchasColocarBarcos();
                 añadirEscuchasTableroPosiciones();
             }
             else if(e.getSource()==destructor)
             {
                 cualBarco = "destructor";
-                cantidadDestructores--;
                 orientacion = JOptionPane.showOptionDialog( null,"Orientacion",
                         "Seleccione la orientación del barco",JOptionPane.YES_NO_CANCEL_OPTION,
                         JOptionPane.QUESTION_MESSAGE,null,// null para icono por defecto.
@@ -541,7 +546,6 @@ public class GUIBatallaNaval extends JFrame {
             else if(e.getSource()==submarino)
             {
                 cualBarco = "submarino";
-                cantidadSubmarinos--;
                 orientacion = JOptionPane.showOptionDialog( null,"Orientacion",
                         "Seleccione la orientación del barco",JOptionPane.YES_NO_CANCEL_OPTION,
                         JOptionPane.QUESTION_MESSAGE,null,// null para icono por defecto.
@@ -552,7 +556,6 @@ public class GUIBatallaNaval extends JFrame {
             else if(e.getSource()==portavion)
             {
                 cualBarco = "portavion";
-                cantidadPortaviones--;
                 orientacion = JOptionPane.showOptionDialog( null,"Orientacion",
                         "Seleccione la orientación del barco",JOptionPane.YES_NO_CANCEL_OPTION,
                         JOptionPane.QUESTION_MESSAGE,null,// null para icono por defecto.
@@ -591,34 +594,34 @@ public class GUIBatallaNaval extends JFrame {
                     }
                 }
             }
-
             ocultarBotonesBarcos();
         }
     }
 
     public void ocultarBotonesBarcos()
     {
-        if(cantidadFragatas == 0)
+        if(cantidadFragatas <= 1)
         {
             fragata.setVisible(false);
         }
-        if(cantidadDestructores == 0)
+        if(cantidadDestructores <= 1)
         {
             destructor.setVisible(false);
         }
-        if(cantidadSubmarinos == 0)
+        if(cantidadSubmarinos <= 1)
         {
             submarino.setVisible(false);
         }
-        if(cantidadPortaviones == 0)
+        if(cantidadPortaviones <= 0)
         {
             portavion.setVisible(false);
         }
-        if(cantidadFragatas==0 & cantidadSubmarinos==0 & cantidadDestructores==0 & cantidadPortaviones==0)
+        if(cantidadFragatas<=1 & cantidadSubmarinos<=1 & cantidadDestructores<=1 & cantidadPortaviones<=0)
         {
+            System.out.println("Ya no hay mas barcos pa colocar");
             removerEscuchasTableroPosiciones();
             añadirEscuchasTableroPrincipal();
-            añadirEscuchasColocarBarcos();
+            removerEscuchasColocarBarcos();
         }
     }
 

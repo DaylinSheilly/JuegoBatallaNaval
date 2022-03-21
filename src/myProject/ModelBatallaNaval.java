@@ -16,30 +16,91 @@ public class ModelBatallaNaval {
     }
 
     public void dispararACasilla(CasillaPrincipal casilla){
-        if(casilla.getTieneBarco() /*& casilla.isParteDelBarco() == true*/) {
+        casilla.setFueImpactada(true);
+        if(casilla.getTieneBarco()) {
+            if(casilla.getTipoDeBarco().equals("portaviones")){
+                portavionIA.quitarResistencia();
+                if(portavionIA.getResistencia() == 0){
+                    portavionIA.get(0).determinarPrecision(6);
+                    portavionIA.get(1).determinarPrecision(6);
+                    portavionIA.get(2).determinarPrecision(6);
+                    portavionIA.get(3).determinarPrecision(6);
+                }
+                else
+                {
+                    casilla.determinarPrecision(5);
+                }
+            }
+            else if(casilla.getTipoDeBarco().equals("submarino")){
+                if(casilla == submarinoIA1.get(0) || casilla == submarinoIA1.get(1) || casilla == submarinoIA1.get(2)) {
+                    submarinoIA1.quitarResistencia();
+                    if (submarinoIA1.getResistencia() == 0) {
+                        submarinoIA1.get(0).determinarPrecision(6);
+                        submarinoIA1.get(1).determinarPrecision(6);
+                        submarinoIA1.get(2).determinarPrecision(6);
+                    } else {
+                        casilla.determinarPrecision(5);
+                    }
+                }
+                else if(casilla == submarinoIA2.get(0) || casilla == submarinoIA2.get(1) || casilla == submarinoIA2.get(2)) {
+                    submarinoIA2.quitarResistencia();
+                    if (submarinoIA2.getResistencia() == 0) {
+                        submarinoIA2.get(0).determinarPrecision(6);
+                        submarinoIA2.get(1).determinarPrecision(6);
+                        submarinoIA2.get(2).determinarPrecision(6);
+                    } else {
+                        casilla.determinarPrecision(5);
+                    }
+                }
+            }
+            else if(casilla.getTipoDeBarco().equals("destructor")){
+                if(casilla == destructorIA1.get(0) || casilla == destructorIA1.get(1)) {
+                    destructorIA1.quitarResistencia();
+                    if (destructorIA1.getResistencia() == 0) {
+                        destructorIA1.get(0).determinarPrecision(6);
+                        destructorIA1.get(1).determinarPrecision(6);
+                    } else {
+                        casilla.determinarPrecision(5);
+                    }
+                }
+                else if(casilla == destructorIA2.get(0) || casilla == destructorIA2.get(1)) {
+                    destructorIA2.quitarResistencia();
+                    if (destructorIA2.getResistencia() == 0) {
+                        destructorIA2.get(0).determinarPrecision(6);
+                        destructorIA2.get(1).determinarPrecision(6);
+                    } else {
+                        casilla.determinarPrecision(5);
+                    }
+                }
+                else if(casilla == destructorIA3.get(0) || casilla == destructorIA3.get(1)) {
+                    destructorIA3.quitarResistencia();
+                    if (destructorIA3.getResistencia() == 0) {
+                        destructorIA3.get(0).determinarPrecision(6);
+                        destructorIA3.get(1).determinarPrecision(6);
+                    } else {
+                        casilla.determinarPrecision(5);
+                    }
+                }
+            }
+            else if(casilla.getTipoDeBarco().equals("fragata")){
+                casilla.determinarPrecision(6);
+            }
             puntos++;
-            casilla.determinarPrecision(5);
-        }
-        else if(casilla.getTieneBarco()){
-            puntos ++;
-            casilla.determinarPrecision(6);
         }
         else{
             casilla.determinarPrecision(7);
         }
-
-
     }
 
     public void casillasDelBote(CasillaPosicion parte1, CasillaPosicion parte2,
                                CasillaPosicion parte3, CasillaPosicion parte4) {
-        parte1.pintarParteDelBarco("portaaviones");
+        parte1.pintarParteDelBarco("portaviones");
         parte1.setTieneBarco(true);
-        parte2.pintarParteDelBarco("portaaviones");
+        parte2.pintarParteDelBarco("portaviones");
         parte2.setTieneBarco(true);
-        parte3.pintarParteDelBarco("portaaviones");
+        parte3.pintarParteDelBarco("portaviones");
         parte3.setTieneBarco(true);
-        parte4.pintarParteDelBarco("portaaviones");
+        parte4.pintarParteDelBarco("portaviones");
         parte4.setTieneBarco(true);
         portavionUsuario = new BarcosPosicion(parte1, parte2, parte3, parte4);
         portaviones = 0;

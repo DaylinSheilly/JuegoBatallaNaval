@@ -480,32 +480,92 @@ public class GUIBatallaNaval extends JFrame {
                         }
                         else if(orientacion==1) {
                             if (cualBarco.equals("destructor")) {
+                                if(y==10){
+                                    game.casillasDelBote(casillasPosicion[x][y - 1],
+                                            casillaPosicionSeleccionada);
+                                }
+                                else{
+                                    game.casillasDelBote(casillaPosicionSeleccionada,
+                                            casillasPosicion[x][y + 1]);
+                                }
                                 cantidadDestructores--;
-                                game.casillasDelBote(casillaPosicionSeleccionada,
-                                        casillasPosicion[x][y + 1]);
                             } else if (cualBarco.equals("submarino")) {
+                                if(y==9){
+                                    game.casillasDelBote(casillasPosicion[x][y - 1],
+                                            casillaPosicionSeleccionada, casillasPosicion[x][y + 1]);
+                                }
+                                else if(y==10){
+                                    game.casillasDelBote(casillasPosicion[x][y - 2],
+                                            casillasPosicion[x][y - 1], casillaPosicionSeleccionada);
+                                }
+                                else{
+                                    game.casillasDelBote(casillaPosicionSeleccionada,
+                                            casillasPosicion[x][y + 1], casillasPosicion[x][y + 2]);
+                                }
                                 cantidadSubmarinos--;
-                                game.casillasDelBote(casillaPosicionSeleccionada,
-                                        casillasPosicion[x][y + 1], casillasPosicion[x][y + 2]);
                             } else if (cualBarco.equals("portavion")) {
+                                if(y==8){
+                                    game.casillasDelBote(casillasPosicion[x][y - 1],
+                                            casillaPosicionSeleccionada, casillasPosicion[x][y + 1], casillasPosicion[x][y + 2]);
+                                }
+                                else if(y==9){
+                                    game.casillasDelBote(casillasPosicion[x][y - 2],
+                                            casillasPosicion[x][y - 1], casillaPosicionSeleccionada, casillasPosicion[x][y + 1]);
+                                }
+                                else if(y==10){
+                                    game.casillasDelBote(casillasPosicion[x][y - 3],
+                                            casillasPosicion[x][y - 2], casillasPosicion[x][y - 1], casillaPosicionSeleccionada);
+                                }
+                                else{
+                                    game.casillasDelBote(casillaPosicionSeleccionada,
+                                            casillasPosicion[x][y + 1], casillasPosicion[x][y + 2], casillasPosicion[x][y + 3]);
+                                }
                                 cantidadPortaviones--;
-                                game.casillasDelBote(casillaPosicionSeleccionada,
-                                        casillasPosicion[x][y + 1], casillasPosicion[x][y + 2], casillasPosicion[x][y + 3]);
                             }
                         }
                         else if(orientacion==0) {
                             if (cualBarco.equals("destructor")) {
+                                if(x==10){
+                                    game.casillasDelBote(casillasPosicion[x - 1][y],
+                                            casillaPosicionSeleccionada);
+                                }
+                                else{
+                                    game.casillasDelBote(casillaPosicionSeleccionada,
+                                            casillasPosicion[x + 1][y]);
+                                }
                                 cantidadDestructores--;
-                                game.casillasDelBote(casillaPosicionSeleccionada,
-                                        casillasPosicion[x + 1][y]);
                             } else if (cualBarco.equals("submarino")) {
+                                if(x==9){
+                                    game.casillasDelBote(casillasPosicion[x - 1][y],
+                                            casillaPosicionSeleccionada, casillasPosicion[x + 1][y]);
+                                }
+                                else if(x==10){
+                                    game.casillasDelBote(casillasPosicion[x - 2][y],
+                                            casillasPosicion[x - 1][y], casillaPosicionSeleccionada);
+                                }
+                                else{
+                                    game.casillasDelBote(casillaPosicionSeleccionada,
+                                            casillasPosicion[x + 1][y], casillasPosicion[x + 2][y]);
+                                }
                                 cantidadSubmarinos--;
-                                game.casillasDelBote(casillaPosicionSeleccionada,
-                                        casillasPosicion[x + 1][y], casillasPosicion[x + 2][y]);
                             } else if (cualBarco.equals("portavion")) {
+                                if(x==8){
+                                    game.casillasDelBote(casillasPosicion[x - 1][y],
+                                            casillaPosicionSeleccionada, casillasPosicion[x + 1][y], casillasPosicion[x + 2][y]);
+                                }
+                                else if(x==9){
+                                    game.casillasDelBote(casillasPosicion[x - 2][y],
+                                            casillasPosicion[x - 1][y], casillaPosicionSeleccionada, casillasPosicion[x + 1][y]);
+                                }
+                                else if(x==10){
+                                    game.casillasDelBote(casillasPosicion[x - 3][y],
+                                            casillasPosicion[x - 2][y], casillasPosicion[x - 1][y], casillaPosicionSeleccionada);
+                                }
+                                else{
+                                    game.casillasDelBote(casillaPosicionSeleccionada,
+                                            casillasPosicion[x + 1][y], casillasPosicion[x + 2][y], casillasPosicion[x + 3][y]);
+                                }
                                 cantidadPortaviones--;
-                                game.casillasDelBote(casillaPosicionSeleccionada,
-                                        casillasPosicion[x + 1][y], casillasPosicion[x + 2][y], casillasPosicion[x + 3][y]);
                             }
                         }
                         break;

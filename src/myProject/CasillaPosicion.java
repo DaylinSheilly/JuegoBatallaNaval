@@ -5,8 +5,8 @@ import java.awt.*;
 
 public class CasillaPosicion extends JButton {
     private int fila, columna, insertarElBarco, resultadoDeSeleccion, resistenciaDeImpactos;
-    private String nombreDelBarco;
-    private boolean barcoCompleto, parteDelBarco, tieneBarco;
+    private String tipoDeBarco;
+    private boolean barcoCompleto, parteDelBarco, tieneBarco, fueImpactada;
     private ImageIcon imageHundido, imagenNuevoTamanho, imageFallar;
     private Image imagenOtroTamanho;
     private ImageIconToImage imageTransformada;
@@ -20,26 +20,31 @@ public class CasillaPosicion extends JButton {
 
         imageTransformada = new ImageIconToImage();
         tieneBarco = false;
+        fueImpactada = false;
     }
 
     public void pintarParteDelBarco(String nombreDelBarco){
         if(nombreDelBarco.equals("fragata")){
+            this.tipoDeBarco = nombreDelBarco;
             this.insertarElBarco = 1;
             this.barcoCompleto = true;
 
         }
         else if(nombreDelBarco.equals("destructor")){
+            this.tipoDeBarco = nombreDelBarco;
             this.insertarElBarco = 2;
             this.barcoCompleto = false;
             this.parteDelBarco = true;
 
         }
         else if(nombreDelBarco.equals("submarino")){
+            this.tipoDeBarco = nombreDelBarco;
             this.insertarElBarco = 3;
             this.barcoCompleto = false;
             this.parteDelBarco = true;
 
-        }else if (nombreDelBarco.equals("portaaviones")){
+        }else if (nombreDelBarco.equals("portaviones")){
+            this.tipoDeBarco = nombreDelBarco;
             this.insertarElBarco = 4;
             this.barcoCompleto = false;
             this.parteDelBarco = true;
@@ -81,8 +86,6 @@ public class CasillaPosicion extends JButton {
         return columna;
     }
 
-    public String getBarco(CasillaPosicion casilla){ return  casilla.nombreDelBarco; }
-
     public boolean getBarcoCompleto(CasillaPosicion casilla){
         return casilla.barcoCompleto;
     }
@@ -100,5 +103,19 @@ public class CasillaPosicion extends JButton {
     }
     public boolean isTieneBarco() {
         return tieneBarco;
+    }
+
+    public void setTipoDeBarco(String nombreDelBarco) {
+        this.tipoDeBarco = nombreDelBarco;
+    }
+    public String getTipoDeBarco() {
+        return tipoDeBarco;
+    }
+
+    public void setFueImpactada(boolean fueImpactada) {
+        this.fueImpactada = fueImpactada;
+    }
+    public boolean getFueImpactada() {
+        return fueImpactada;
     }
 }

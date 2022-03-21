@@ -35,4 +35,16 @@ public class BarcosPrincipal extends ArrayList<CasillaPrincipal> {
         this.add(parte3);
         this.add(parte4);
     }
+
+    public void quitarResistencia(){
+        this.resistencia = resistencia--;
+    }
+
+    public String getTipoDeBarco() {
+        return tipoDeBarco;
+    }
+
+    public int getResistencia() {
+        return resistencia;
+    }
 }

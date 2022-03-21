@@ -6,10 +6,11 @@ import java.awt.*;
 
 public class CasillaPrincipal extends JButton {
     private int fila, columna, resultadoDeTiro;
+    private String tipoDeBarco;
     private ImageIcon imageHundido, imagenNuevoTamanho, imageFallar;
     private Image imagenOtroTamanho;
     private ImageIconToImage imageTransformada;
-    private boolean tieneBarco;
+    private boolean tieneBarco, fueImpactada;
 
 
     public CasillaPrincipal(int fila, int columna){
@@ -22,6 +23,7 @@ public class CasillaPrincipal extends JButton {
 
         resultadoDeTiro = 0;
         tieneBarco = false;
+        fueImpactada = false;
     }
 
     public void determinarPrecision(int resultadoDeTiro){
@@ -80,6 +82,20 @@ public class CasillaPrincipal extends JButton {
     }
     public boolean getTieneBarco() {
         return tieneBarco;
+    }
+
+    public void setTipoDeBarco(String nombreDelBarco) {
+        this.tipoDeBarco = nombreDelBarco;
+    }
+    public String getTipoDeBarco() {
+        return tipoDeBarco;
+    }
+
+    public void setFueImpactada(boolean fueImpactada) {
+        this.fueImpactada = fueImpactada;
+    }
+    public boolean getFueImpactada() {
+        return fueImpactada;
     }
 }
 

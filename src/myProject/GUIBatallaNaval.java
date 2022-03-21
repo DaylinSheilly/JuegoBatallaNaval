@@ -471,185 +471,163 @@ public class GUIBatallaNaval extends JFrame {
 
             for (int x = 0; x < 11; x++) {
                 for (int y = 0; y < 11; y++) {
+                    añadirEscuchasColocarBarcos();
                     if (e.getSource() == casillasPosicion[x][y]) {
                         casillaPosicionSeleccionada = casillasPosicion[x][y];
-                        if(cualBarco.equals("fragata"))
-                        {
-                            cantidadFragatas--;
-                            game.casillasDelBote(casillaPosicionSeleccionada);
-                        }
-                        else if(orientacion==1) {
-                            if (cualBarco.equals("destructor")) {
-                                if(y==10){
-                                    game.casillasDelBote(casillasPosicion[x][y - 1],
-                                            casillaPosicionSeleccionada);
-                                }
-                                else{
-                                    game.casillasDelBote(casillaPosicionSeleccionada,
-                                            casillasPosicion[x][y + 1]);
-                                }
-                                cantidadDestructores--;
-                            } else if (cualBarco.equals("submarino")) {
-                                if(y==9){
-                                    game.casillasDelBote(casillasPosicion[x][y - 1],
-                                            casillaPosicionSeleccionada, casillasPosicion[x][y + 1]);
-                                }
-                                else if(y==10){
-                                    game.casillasDelBote(casillasPosicion[x][y - 2],
-                                            casillasPosicion[x][y - 1], casillaPosicionSeleccionada);
-                                }
-                                else{
-                                    game.casillasDelBote(casillaPosicionSeleccionada,
-                                            casillasPosicion[x][y + 1], casillasPosicion[x][y + 2]);
-                                }
-                                cantidadSubmarinos--;
-                            } else if (cualBarco.equals("portavion")) {
-                                if(y==8){
-                                    game.casillasDelBote(casillasPosicion[x][y - 1],
-                                            casillaPosicionSeleccionada, casillasPosicion[x][y + 1], casillasPosicion[x][y + 2]);
-                                }
-                                else if(y==9){
-                                    game.casillasDelBote(casillasPosicion[x][y - 2],
-                                            casillasPosicion[x][y - 1], casillaPosicionSeleccionada, casillasPosicion[x][y + 1]);
-                                }
-                                else if(y==10){
-                                    game.casillasDelBote(casillasPosicion[x][y - 3],
-                                            casillasPosicion[x][y - 2], casillasPosicion[x][y - 1], casillaPosicionSeleccionada);
-                                }
-                                else{
-                                    game.casillasDelBote(casillaPosicionSeleccionada,
-                                            casillasPosicion[x][y + 1], casillasPosicion[x][y + 2], casillasPosicion[x][y + 3]);
-                                }
-                                cantidadPortaviones--;
+                        if (cualBarco.equals("fragata")) {
+                            if (casillaPosicionSeleccionada.getTieneBarco()) {
+                                JOptionPane.showMessageDialog(null, "No puedes poner un barco sobre otro.");
+                            } else {
+                                cantidadFragatas--;
+                                game.casillasDelBote(casillaPosicionSeleccionada);
                             }
-                        }
-                        else if(orientacion==0) {
+                        } else if (orientacion == 1) {
                             if (cualBarco.equals("destructor")) {
-                                if(x==10){
-                                    game.casillasDelBote(casillasPosicion[x - 1][y],
-                                            casillaPosicionSeleccionada);
-                                }
-                                else{
-                                    game.casillasDelBote(casillaPosicionSeleccionada,
-                                            casillasPosicion[x + 1][y]);
-                                }
                                 cantidadDestructores--;
+                                if (y == 10 & !(casillasPosicion[x][y - 1].getTieneBarco() || casillaPosicionSeleccionada.getTieneBarco())) {
+                                    game.casillasDelBote(casillasPosicion[x][y - 1], casillaPosicionSeleccionada);
+                                } else if (!(casillaPosicionSeleccionada.getTieneBarco() || casillasPosicion[x][y + 1].getTieneBarco())) {
+                                    game.casillasDelBote(casillaPosicionSeleccionada, casillasPosicion[x][y + 1]);
+                                } else {
+                                    JOptionPane.showMessageDialog(null, "No puedes poner un barco sobre otro.");
+                                    cantidadDestructores++;
+                                }
                             } else if (cualBarco.equals("submarino")) {
-                                if(x==9){
-                                    game.casillasDelBote(casillasPosicion[x - 1][y],
-                                            casillaPosicionSeleccionada, casillasPosicion[x + 1][y]);
-                                }
-                                else if(x==10){
-                                    game.casillasDelBote(casillasPosicion[x - 2][y],
-                                            casillasPosicion[x - 1][y], casillaPosicionSeleccionada);
-                                }
-                                else{
-                                    game.casillasDelBote(casillaPosicionSeleccionada,
-                                            casillasPosicion[x + 1][y], casillasPosicion[x + 2][y]);
-                                }
                                 cantidadSubmarinos--;
+                                if (y == 9 & !(casillasPosicion[x][y - 1].getTieneBarco() || casillaPosicionSeleccionada.getTieneBarco() || casillasPosicion[x][y + 1].getTieneBarco())) {
+                                    game.casillasDelBote(casillasPosicion[x][y - 1], casillaPosicionSeleccionada, casillasPosicion[x][y + 1]);
+                                } else if (y == 10 & !(casillasPosicion[x][y - 2].getTieneBarco() || casillasPosicion[x][y - 1].getTieneBarco() || casillaPosicionSeleccionada.getTieneBarco())) {
+                                    game.casillasDelBote(casillasPosicion[x][y - 2], casillasPosicion[x][y - 1], casillaPosicionSeleccionada);
+                                } else if (!(casillaPosicionSeleccionada.getTieneBarco() || casillasPosicion[x][y + 1].getTieneBarco() || casillasPosicion[x][y + 2].getTieneBarco())) {
+                                    game.casillasDelBote(casillaPosicionSeleccionada, casillasPosicion[x][y + 1], casillasPosicion[x][y + 2]);
+                                } else {
+                                    JOptionPane.showMessageDialog(null, "No puedes poner un barco sobre otro.");
+                                    cantidadSubmarinos++;
+                                }
                             } else if (cualBarco.equals("portavion")) {
-                                if(x==8){
-                                    game.casillasDelBote(casillasPosicion[x - 1][y],
-                                            casillaPosicionSeleccionada, casillasPosicion[x + 1][y], casillasPosicion[x + 2][y]);
-                                }
-                                else if(x==9){
-                                    game.casillasDelBote(casillasPosicion[x - 2][y],
-                                            casillasPosicion[x - 1][y], casillaPosicionSeleccionada, casillasPosicion[x + 1][y]);
-                                }
-                                else if(x==10){
-                                    game.casillasDelBote(casillasPosicion[x - 3][y],
-                                            casillasPosicion[x - 2][y], casillasPosicion[x - 1][y], casillaPosicionSeleccionada);
-                                }
-                                else{
-                                    game.casillasDelBote(casillaPosicionSeleccionada,
-                                            casillasPosicion[x + 1][y], casillasPosicion[x + 2][y], casillasPosicion[x + 3][y]);
-                                }
                                 cantidadPortaviones--;
+                                if (y == 8 & !(casillasPosicion[x][y - 1].getTieneBarco() || casillaPosicionSeleccionada.getTieneBarco() || casillasPosicion[x][y + 1].getTieneBarco() || casillasPosicion[x][y + 2].getTieneBarco())) {
+                                    game.casillasDelBote(casillasPosicion[x][y - 1], casillaPosicionSeleccionada, casillasPosicion[x][y + 1], casillasPosicion[x][y + 2]);
+                                } else if (y == 9 & !(casillasPosicion[x][y - 2].getTieneBarco() || casillasPosicion[x][y - 1].getTieneBarco() || casillaPosicionSeleccionada.getTieneBarco() || casillasPosicion[x][y + 1].getTieneBarco())) {
+                                    game.casillasDelBote(casillasPosicion[x][y - 2], casillasPosicion[x][y - 1], casillaPosicionSeleccionada, casillasPosicion[x][y + 1]);
+                                } else if (y == 10 & !(casillasPosicion[x][y - 3].getTieneBarco() || casillasPosicion[x][y - 2].getTieneBarco() || casillasPosicion[x][y - 1].getTieneBarco() || casillaPosicionSeleccionada.getTieneBarco())) {
+                                    game.casillasDelBote(casillasPosicion[x][y - 3], casillasPosicion[x][y - 2], casillasPosicion[x][y - 1], casillaPosicionSeleccionada);
+                                } else if (!(casillaPosicionSeleccionada.getTieneBarco() || casillasPosicion[x][y + 1].getTieneBarco() || casillasPosicion[x][y + 2].getTieneBarco() || casillasPosicion[x][y + 3].getTieneBarco())) {
+                                    game.casillasDelBote(casillaPosicionSeleccionada, casillasPosicion[x][y + 1], casillasPosicion[x][y + 2], casillasPosicion[x][y + 3]);
+                                } else {
+                                    JOptionPane.showMessageDialog(null, "No puedes poner un barco sobre otro.");
+                                    cantidadPortaviones++;
+                                }
                             }
+                            añadirEscuchasColocarBarcos();
+                            removerEscuchasTableroPosiciones();
+                            break;
+                        } else if (orientacion == 0) {
+                            if (cualBarco.equals("destructor")) {
+                                cantidadDestructores--;
+                                if (x == 10 & !(casillasPosicion[x - 1][y].getTieneBarco() || casillaPosicionSeleccionada.getTieneBarco())) {
+                                    game.casillasDelBote(casillasPosicion[x - 1][y], casillaPosicionSeleccionada);
+                                } else if (!(casillaPosicionSeleccionada.getTieneBarco() || casillasPosicion[x + 1][y].getTieneBarco())) {
+                                    game.casillasDelBote(casillaPosicionSeleccionada, casillasPosicion[x + 1][y]);
+                                } else {
+                                    JOptionPane.showMessageDialog(null, "No puedes poner un barco sobre otro.");
+                                    cantidadDestructores++;
+                                }
+                            } else if (cualBarco.equals("submarino")) {
+                                cantidadSubmarinos--;
+                                if (x == 9 & !(casillasPosicion[x - 1][y].getTieneBarco() || casillaPosicionSeleccionada.getTieneBarco() || casillasPosicion[x + 1][y].getTieneBarco())) {
+                                    game.casillasDelBote(casillasPosicion[x - 1][y], casillaPosicionSeleccionada, casillasPosicion[x + 1][y]);
+                                } else if (x == 10 & !(casillasPosicion[x - 2][y].getTieneBarco() || casillasPosicion[x - 1][y].getTieneBarco() || casillaPosicionSeleccionada.getTieneBarco())) {
+                                    game.casillasDelBote(casillasPosicion[x - 2][y], casillasPosicion[x - 1][y], casillaPosicionSeleccionada);
+                                } else if (!(casillaPosicionSeleccionada.getTieneBarco() || casillasPosicion[x + 1][y].getTieneBarco() || casillasPosicion[x + 2][y].getTieneBarco())) {
+                                    game.casillasDelBote(casillaPosicionSeleccionada, casillasPosicion[x + 1][y], casillasPosicion[x + 2][y]);
+                                } else {
+                                    JOptionPane.showMessageDialog(null, "No puedes poner un barco sobre otro.");
+                                    cantidadSubmarinos++;
+                                }
+                            } else if (cualBarco.equals("portavion")) {
+                                cantidadPortaviones--;
+                                if (x == 8 & !(casillasPosicion[x - 1][y].getTieneBarco() || casillaPosicionSeleccionada.getTieneBarco() || casillasPosicion[x + 1][y].getTieneBarco() || casillasPosicion[x + 2][y].getTieneBarco())) {
+                                    game.casillasDelBote(casillasPosicion[x - 1][y], casillaPosicionSeleccionada, casillasPosicion[x + 1][y], casillasPosicion[x + 2][y]);
+                                } else if (x == 9 & !(casillasPosicion[x - 2][y].getTieneBarco() || casillasPosicion[x - 1][y].getTieneBarco() || casillaPosicionSeleccionada.getTieneBarco() || casillasPosicion[x + 1][y].getTieneBarco())) {
+                                    game.casillasDelBote(casillasPosicion[x - 2][y], casillasPosicion[x - 1][y], casillaPosicionSeleccionada, casillasPosicion[x + 1][y]);
+                                } else if (x == 10 & !(casillasPosicion[x - 3][y].getTieneBarco() || casillasPosicion[x - 2][y].getTieneBarco() || casillasPosicion[x - 1][y].getTieneBarco() || casillaPosicionSeleccionada.getTieneBarco())) {
+                                    game.casillasDelBote(casillasPosicion[x - 3][y], casillasPosicion[x - 2][y], casillasPosicion[x - 1][y], casillaPosicionSeleccionada);
+                                } else if (!(casillaPosicionSeleccionada.getTieneBarco() || casillasPosicion[x + 1][y].getTieneBarco() || casillasPosicion[x + 2][y].getTieneBarco() || casillasPosicion[x + 3][y].getTieneBarco())) {
+                                    game.casillasDelBote(casillaPosicionSeleccionada, casillasPosicion[x + 1][y], casillasPosicion[x + 2][y], casillasPosicion[x + 3][y]);
+                                } else {
+                                    JOptionPane.showMessageDialog(null, "No puedes poner un barco sobre otro.");
+                                    cantidadPortaviones++;
+                                }
+                            }
+                            añadirEscuchasColocarBarcos();
+                            removerEscuchasTableroPosiciones();
+                            break;
                         }
-                        break;
                     }
                     if (e.getSource() == casillasPrincipal[x][y]) {
                         casillaPrincipalSeleccionada = casillasPrincipal[x][y];
                         game.dispararACasilla(casillaPrincipalSeleccionada);
+                        añadirEscuchasColocarBarcos();
+                        removerEscuchasTableroPosiciones();
                         break;
                     }
-                    añadirEscuchasColocarBarcos();
-                    removerEscuchasTableroPosiciones();
                 }
             }
-            if(e.getSource()==ayuda)
-            {
+            if (e.getSource() == ayuda) {
 
-            }
-            else if(e.getSource()==salir)
-            {
+            } else if (e.getSource() == salir) {
                 System.exit(0);
-            }
-            else if(e.getSource()==fragata)
-            {
+            } else if (e.getSource() == fragata) {
                 cualBarco = "fragata";
                 removerEscuchasColocarBarcos();
                 añadirEscuchasTableroPosiciones();
-            }
-            else if(e.getSource()==destructor)
-            {
+            } else if (e.getSource() == destructor) {
                 cualBarco = "destructor";
-                orientacion = JOptionPane.showOptionDialog( null,"Orientacion",
-                        "Seleccione la orientación del barco",JOptionPane.YES_NO_CANCEL_OPTION,
-                        JOptionPane.QUESTION_MESSAGE,null,// null para icono por defecto.
-                        new Object[] { "Vertical", "Horizontal"},"opcion 1");
+                orientacion = JOptionPane.showOptionDialog(null, "Orientacion",
+                        "Seleccione la orientación del barco", JOptionPane.YES_NO_CANCEL_OPTION,
+                        JOptionPane.QUESTION_MESSAGE, null,// null para icono por defecto.
+                        new Object[]{"Vertical", "Horizontal"}, "opcion 1");
                 removerEscuchasColocarBarcos();
                 añadirEscuchasTableroPosiciones();
-            }
-            else if(e.getSource()==submarino)
-            {
+            } else if (e.getSource() == submarino) {
                 cualBarco = "submarino";
-                orientacion = JOptionPane.showOptionDialog( null,"Orientacion",
-                        "Seleccione la orientación del barco",JOptionPane.YES_NO_CANCEL_OPTION,
-                        JOptionPane.QUESTION_MESSAGE,null,// null para icono por defecto.
-                        new Object[] { "Vertical", "Horizontal"},"opcion 1");
+                orientacion = JOptionPane.showOptionDialog(null, "Orientacion",
+                        "Seleccione la orientación del barco", JOptionPane.YES_NO_CANCEL_OPTION,
+                        JOptionPane.QUESTION_MESSAGE, null,// null para icono por defecto.
+                        new Object[]{"Vertical", "Horizontal"}, "opcion 1");
                 removerEscuchasColocarBarcos();
                 añadirEscuchasTableroPosiciones();
-            }
-            else if(e.getSource()==portavion)
-            {
+            } else if (e.getSource() == portavion) {
                 cualBarco = "portavion";
-                orientacion = JOptionPane.showOptionDialog( null,"Orientacion",
-                        "Seleccione la orientación del barco",JOptionPane.YES_NO_CANCEL_OPTION,
-                        JOptionPane.QUESTION_MESSAGE,null,// null para icono por defecto.
-                        new Object[] { "Vertical", "Horizontal"},"opcion 1");
+                orientacion = JOptionPane.showOptionDialog(null, "Orientacion",
+                        "Seleccione la orientación del barco", JOptionPane.YES_NO_CANCEL_OPTION,
+                        JOptionPane.QUESTION_MESSAGE, null,// null para icono por defecto.
+                        new Object[]{"Vertical", "Horizontal"}, "opcion 1");
                 removerEscuchasColocarBarcos();
                 añadirEscuchasTableroPosiciones();
-            }
-
-            else if(e.getSource()==trampa)
-            {
-                if(!acceso) {
+            } else if (e.getSource() == trampa) {
+                if (!acceso) {
                     String password = JOptionPane.showInputDialog("Digite la contraseña de permisos de administrador");
                     if (password.equals("Profe ponga 5.0 por favor")) {
                         JOptionPane.showMessageDialog(null, "Contraseña Correcta");
                         trampa.setBackground(new Color(146, 208, 80));
-                        acceso=true;
-                        trampaAbilitada=true;
+                        acceso = true;
+                        trampaAbilitada = true;
 
-                    }
-                    else {
+                    } else {
                         trampa.setVisible(false);
                         JOptionPane.showMessageDialog(null, "Para reintentar debes reabrir el juego");
-                        acceso=false;
+                        acceso = false;
                     }
-                }
-                else {
-                    if(trampaAbilitada) {
+                } else {
+                    if (trampaAbilitada) {
                         trampa.setBackground(new Color(231, 230, 230));
-                        trampaAbilitada=false;
+                        trampaAbilitada = false;
 
-                    }
-                    else{
+                    } else {
                         trampa.setBackground(new Color(146, 208, 80));
-                        trampaAbilitada=true;
+                        trampaAbilitada = true;
 
                     }
                 }
@@ -658,35 +636,27 @@ public class GUIBatallaNaval extends JFrame {
         }
     }
 
-    public void ocultarBotonesBarcos()
-    {
-        if(cantidadFragatas <= 1)
-        {
+    public void ocultarBotonesBarcos() {
+        if (cantidadFragatas <= 0) {
             fragata.setVisible(false);
         }
-        if(cantidadDestructores <= 1)
-        {
+        if (cantidadDestructores <= 0) {
             destructor.setVisible(false);
         }
-        if(cantidadSubmarinos <= 1)
-        {
+        if (cantidadSubmarinos <= 0) {
             submarino.setVisible(false);
         }
-        if(cantidadPortaviones <= 0)
-        {
+        if (cantidadPortaviones <= 0) {
             portavion.setVisible(false);
         }
-        if(cantidadFragatas<=1 & cantidadSubmarinos<=1 & cantidadDestructores<=1 & cantidadPortaviones<=0)
-        {
+        if (cantidadFragatas <= 0 & cantidadSubmarinos <= 0 & cantidadDestructores <= 0 & cantidadPortaviones <= 0) {
             System.out.println("Ya no hay mas barcos pa colocar");
             removerEscuchasTableroPosiciones();
             añadirEscuchasTableroPrincipal();
-            removerEscuchasColocarBarcos();
         }
     }
 
-    public void añadirEscuchasTableroPosiciones()
-    {
+    public void añadirEscuchasTableroPosiciones() {
         for (int i = 0; i < 11; i++) {
             for (int j = 0; j < 11; j++) {
                 casillasPosicion[i][j].removeMouseListener(escucha);
@@ -694,16 +664,16 @@ public class GUIBatallaNaval extends JFrame {
             }
         }
     }
-    public void removerEscuchasTableroPosiciones()
-    {
+
+    public void removerEscuchasTableroPosiciones() {
         for (int i = 0; i < 11; i++) {
             for (int j = 0; j < 11; j++) {
                 casillasPosicion[i][j].removeMouseListener(escucha);
             }
         }
     }
-    public void añadirEscuchasTableroPrincipal()
-    {
+
+    public void añadirEscuchasTableroPrincipal() {
         for (int i = 0; i < 11; i++) {
             for (int j = 0; j < 11; j++) {
                 casillasPrincipal[i][j].removeMouseListener(escucha);
@@ -711,8 +681,8 @@ public class GUIBatallaNaval extends JFrame {
             }
         }
     }
-    public void removerEscuchasTableroPrincipal()
-    {
+
+    public void removerEscuchasTableroPrincipal() {
         for (int i = 0; i < 11; i++) {
             for (int j = 0; j < 11; j++) {
                 casillasPrincipal[i][j].removeMouseListener(escucha);
@@ -720,13 +690,14 @@ public class GUIBatallaNaval extends JFrame {
         }
     }
 
-    public void removerEscuchasColocarBarcos(){
+    public void removerEscuchasColocarBarcos() {
         fragata.removeMouseListener(escucha);
         destructor.removeMouseListener(escucha);
         submarino.removeMouseListener(escucha);
         portavion.removeMouseListener(escucha);
     }
-    public void añadirEscuchasColocarBarcos(){
+
+    public void añadirEscuchasColocarBarcos() {
         fragata.removeMouseListener(escucha);
         fragata.addMouseListener(escucha);
         destructor.removeMouseListener(escucha);

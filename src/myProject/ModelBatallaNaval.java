@@ -344,6 +344,7 @@ public class ModelBatallaNaval {
      * This function defines how many and which squares an opponent's frigate will occupy
      * @param parte1
      */
+
     public void casillasDelBoteIA(CasillaPrincipal parte1) {
         parte1.pintarParteDelBarco("fragata");
         parte1.setTieneBarco(true);

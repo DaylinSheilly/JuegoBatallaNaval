@@ -5,13 +5,12 @@ package myProject;
  */
 
 public class ModelBatallaNaval {
-    private BarcosPosicion portavionUsuario, submarinoUsuario1, submarinoUsuario2, destructorUsuario1, destructorUsuario2, destructorUsuario3,
-            fragataUsuario1, fragataUsuario2, fragataUsuario3, fragataUsuario4;
-    private BarcosPrincipal portavionIA, submarinoIA1, submarinoIA2, destructorIA1, destructorIA2, destructorIA3, fragataIA1, fragataIA2, fragataIA3, fragataIA4;
-
+    private BarcosPosicion portavionUsuario, submarinoUsuario1, submarinoUsuario2, destructorUsuario1, destructorUsuario2,
+            destructorUsuario3, fragataUsuario1, fragataUsuario2, fragataUsuario3, fragataUsuario4;
+    private BarcosPrincipal portavionIA, submarinoIA1, submarinoIA2, destructorIA1, destructorIA2, destructorIA3,
+            fragataIA1, fragataIA2, fragataIA3, fragataIA4;
     private int puntos, puntosIA, fragatas, destructores, submarinos, portaviones;
     private boolean ganar;
-
 
     /**
      * Constructor of ModelBatallaNaval class
@@ -199,6 +198,11 @@ public class ModelBatallaNaval {
         }
     }
 
+    /**
+     * This function allows the opponent to shoot at a square
+     * @param casilla
+     */
+
     public void dispararACasillaIA(CasillaPosicion casilla) {
         casilla.setFueImpactada(true);
         if (casilla.getTieneBarco()) {
@@ -267,6 +271,14 @@ public class ModelBatallaNaval {
         }
     }
 
+    /**
+     * This function defines how many and which spaces an opponent's carrier will occupy
+     * @param parte1
+     * @param parte2
+     * @param parte3
+     * @param parte4
+     */
+
     public void casillasDelBoteIA(CasillaPrincipal parte1, CasillaPrincipal parte2,
                                   CasillaPrincipal parte3, CasillaPrincipal parte4) {
         parte1.pintarParteDelBarco("portaviones");
@@ -280,6 +292,13 @@ public class ModelBatallaNaval {
         portavionIA = new BarcosPrincipal(parte1, parte2, parte3, parte4);
         portaviones = 0;
     }
+
+    /**
+     * This function defines how many and which squares an opponent's submarine will occupy
+     * @param parte1
+     * @param parte2
+     * @param parte3
+     */
 
     public void casillasDelBoteIA(CasillaPrincipal parte1, CasillaPrincipal parte2,
                                 CasillaPrincipal parte3) {
@@ -298,6 +317,12 @@ public class ModelBatallaNaval {
         }
     }
 
+    /**
+     * This function defines how many and which squares an opponent's destroyer will occupy
+     * @param parte1
+     * @param parte2
+     */
+
     public void casillasDelBoteIA(CasillaPrincipal parte1, CasillaPrincipal parte2) {
         parte1.pintarParteDelBarco("destructor");
         parte1.setTieneBarco(true);
@@ -315,6 +340,10 @@ public class ModelBatallaNaval {
         }
     }
 
+    /**
+     * This function defines how many and which squares an opponent's frigate will occupy
+     * @param parte1
+     */
     public void casillasDelBoteIA(CasillaPrincipal parte1) {
         parte1.pintarParteDelBarco("fragata");
         parte1.setTieneBarco(true);

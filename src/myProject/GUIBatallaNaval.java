@@ -53,6 +53,7 @@ public class GUIBatallaNaval extends JFrame {
      * This method is used to set up the default JComponent Configuration,
      * create Listener and control Objects used for the GUIBatallaNaval class
      */
+
     private void initGUI() {
         //Set up JFrame Container's Layout
         this.getContentPane().setLayout(new GridBagLayout());

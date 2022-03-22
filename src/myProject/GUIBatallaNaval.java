@@ -9,12 +9,11 @@ import java.awt.event.MouseEvent;
 import java.util.Random;
 
 /**
- * This class is used for ...
- * @autor Paola-J Rodriguez-C paola.rodriguez@correounivalle.edu.co
- * @version v.1.0.0 date:21/11/2021
- *
- * (ejemplo v.17.3.8 se lee: versión 17 del sofware, la tercera actualización del software
- *  * y la octava corrección de errores)
+ * This class is used for to show game on screen and allow to play.
+ * @autor Juan Esteban Mazuera Yunda, juan.yunda@correounivalle.edu.co
+ * @autor Sheilly Daylin Ortega Granobles, sheilly.ortega@correounivalle.edu.co
+ * @author Alejandro Rodriguez Marulanda, alejandro.marulanda@correounivalle.edu.co
+ * @version v.1.0.0 date: 08/03/2022
  */
 public class GUIBatallaNaval extends JFrame {
 
@@ -38,6 +37,7 @@ public class GUIBatallaNaval extends JFrame {
     /**
      * Constructor of GUIBatallaNaval class
      */
+
     public GUIBatallaNaval() {
         initGUI();
 
@@ -56,6 +56,7 @@ public class GUIBatallaNaval extends JFrame {
      * This method is used to set up the default JComponent Configuration,
      * create Listener and control Objects used for the GUIBatallaNaval class
      */
+
     private void initGUI() {
         //Set up JFrame Container's Layout
         this.getContentPane().setLayout(new GridBagLayout());
@@ -288,6 +289,10 @@ public class GUIBatallaNaval extends JFrame {
 
         casillasPosicion = new CasillaPosicion[11][11];
 
+        /**
+         * This for creates the array of buttons in the position board
+         */
+
         for (int i = 0; i < 11; i++) {
             for (int j = 0; j < 11; j++) {
                 casillasPosicion[i][j] = new CasillaPosicion(i, j);
@@ -314,6 +319,10 @@ public class GUIBatallaNaval extends JFrame {
         tableroPrincipal.decoradoDelTablero();
 
         casillasPrincipal = new CasillaPrincipal[11][11];
+
+        /**
+         * This for creates the button array on the main board
+         */
 
         for (int i = 0; i < 11; i++) {
             for (int j = 0; j < 11; j++) {
@@ -361,6 +370,11 @@ public class GUIBatallaNaval extends JFrame {
         revalidate();
         repaint();
     }
+
+    /**
+     * This function creates the panel and displays the images that appear when a shot is missed, a ship is sunk,
+     * and when a part of the ship is hit.
+     */
 
     public void addInfo() {
         panelInfo.setLayout(new GridBagLayout());
@@ -588,6 +602,7 @@ public class GUIBatallaNaval extends JFrame {
      * @param args Object used in order to send input data from command line when
      *             the program is execute by console.
      */
+
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
             GUIBatallaNaval miProjectGUIBatallaNaval = new GUIBatallaNaval();
@@ -597,6 +612,7 @@ public class GUIBatallaNaval extends JFrame {
     /**
      * inner class that extends an Adapter Class or implements Listeners used by GUIBatallaNaval class
      */
+
     private class Escucha extends MouseAdapter {
 
         @Override
@@ -793,6 +809,10 @@ public class GUIBatallaNaval extends JFrame {
         }
     }
 
+    /**
+     * This function removes the buttons to insert ships in the board position
+     */
+
     public void ocultarBotonesBarcos() {
         if (cantidadFragatas <= 0) {
             fragata.setVisible(false);
@@ -812,6 +832,10 @@ public class GUIBatallaNaval extends JFrame {
         }
     }
 
+    /**
+     * This function activates the position board listeners
+     */
+
     public void añadirEscuchasTableroPosiciones() {
         for (int i = 0; i < 11; i++) {
             for (int j = 0; j < 11; j++) {
@@ -821,6 +845,10 @@ public class GUIBatallaNaval extends JFrame {
         }
     }
 
+    /**
+     * This function disables position board listeners.
+     */
+
     public void removerEscuchasTableroPosiciones() {
         for (int i = 0; i < 11; i++) {
             for (int j = 0; j < 11; j++) {
@@ -828,6 +856,10 @@ public class GUIBatallaNaval extends JFrame {
             }
         }
     }
+
+    /**
+     * This function activates the main board listeners
+     */
 
     public void añadirEscuchasTableroPrincipal() {
         for (int i = 0; i < 11; i++) {
@@ -838,6 +870,10 @@ public class GUIBatallaNaval extends JFrame {
         }
     }
 
+    /**
+     * This function disables the main board listeners
+     */
+
     public void removerEscuchasTableroPrincipal() {
         for (int i = 0; i < 11; i++) {
             for (int j = 0; j < 11; j++) {
@@ -846,6 +882,10 @@ public class GUIBatallaNaval extends JFrame {
         }
     }
 
+    /**
+     * This function disables button listeners to insert ships
+     */
+
     public void removerEscuchasColocarBarcos() {
         fragata.removeMouseListener(escucha);
         destructor.removeMouseListener(escucha);
@@ -853,6 +893,9 @@ public class GUIBatallaNaval extends JFrame {
         portavion.removeMouseListener(escucha);
     }
 
+    /**
+     * This function activates the button listeners to insert ships
+     */
     public void añadirEscuchasColocarBarcos() {
         fragata.removeMouseListener(escucha);
         fragata.addMouseListener(escucha);

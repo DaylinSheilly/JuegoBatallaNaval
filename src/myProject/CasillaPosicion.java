@@ -3,6 +3,10 @@ package myProject;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * This class is used to make a square on the board position
+ */
+
 public class CasillaPosicion extends JButton {
     private int fila, columna, insertarElBarco, resultadoDeTiro, resistenciaDeImpactos;
     private String tipoDeBarco;
@@ -11,6 +15,11 @@ public class CasillaPosicion extends JButton {
     private Image imagenOtroTamanho;
     private ImageIconToImage imageTransformada;
 
+    /**
+     * Constructor of CasillaPosicion class
+     * @param fila
+     * @param columna
+     */
 
     public CasillaPosicion(int fila, int columna) {
         this.fila = fila;
@@ -25,6 +34,11 @@ public class CasillaPosicion extends JButton {
         resultadoDeTiro=0;
         insertarElBarco=0;
     }
+
+    /**
+     * This function paints the ships inside the square
+     * @param nombreDelBarco
+     */
 
     public void pintarParteDelBarco(String nombreDelBarco) {
         resultadoDeTiro=0;
@@ -71,6 +85,10 @@ public class CasillaPosicion extends JButton {
         repaint();
     }
 
+    /**
+     * In this method, the ships are drawn and placed inside the square
+     * @param g
+     */
 
     @Override
     protected void paintComponent(Graphics g) {
@@ -99,17 +117,37 @@ public class CasillaPosicion extends JButton {
         }
     }
 
+    /**
+     * In this method, the ships are drawn and placed inside the square
+     * @return fila
+     */
+
     public int getFila() {
         return fila;
     }
 
+    /**
+     * This method gets the column of the button
+     * @return columna
+     */
     public int getColumna() {
         return columna;
     }
 
+    /**
+     * This method tells if the square has the whole ship or not
+     * @param casilla
+     * @return if you have the whole boat or not
+     */
+
     public boolean getBarcoCompleto(CasillaPosicion casilla) {
         return casilla.barcoCompleto;
     }
+
+    /**
+     * This method tells if you have a ship part or not
+     * @return if you have a part of the boat or not
+     */
 
     public boolean isParteDelBarco() {
         return parteDelBarco;
@@ -142,6 +180,11 @@ public class CasillaPosicion extends JButton {
     public boolean getFueImpactada() {
         return fueImpactada;
     }
+
+    /**
+     * This method tells if you have a ship or not
+     * @return if you have a ship or not
+     */
 
     public boolean getTieneBarco() {
         return tieneBarco;

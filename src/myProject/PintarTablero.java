@@ -3,8 +3,16 @@ package myProject;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * This class is used to draw the decoration of the boards
+ */
+
 public class PintarTablero extends JPanel {
     private int encabezado;
+
+    /**
+     * Constructor of PintarTablero class
+     */
 
     public PintarTablero(){
         setBackground(Color.pink);
@@ -12,11 +20,19 @@ public class PintarTablero extends JPanel {
         setLayout(new GridLayout(11,11));
     }
 
+    /**
+     * This function inserts the decoration
+     */
+
     public void decoradoDelTablero(){
         encabezado = 1;
         repaint();
     }
 
+    /**
+     * Here the decoration is drawn and placed on the board
+     * @param g
+     */
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);

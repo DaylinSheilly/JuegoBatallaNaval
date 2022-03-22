@@ -9,7 +9,7 @@ import java.awt.*;
  */
 
 public class CasillaPrincipal extends JButton {
-    private int fila, columna, resultadoDeTiro;
+    private int fila, columna, resultadoDeTiro, insertarElBarco;
     private String tipoDeBarco;
     private ImageIcon imageHundido, imagenNuevoTamanho, imageFallar;
     private Image imagenOtroTamanho;
@@ -31,6 +31,7 @@ public class CasillaPrincipal extends JButton {
         imageTransformada = new ImageIconToImage();
 
         resultadoDeTiro = 0;
+        insertarElBarco = 0;
         tieneBarco = false;
         fueImpactada = false;
     }
@@ -41,12 +42,38 @@ public class CasillaPrincipal extends JButton {
      */
 
     public void determinarPrecision(int resultadoDeTiro) {
+        insertarElBarco=0;
         if (resultadoDeTiro == 5) {
             this.resultadoDeTiro = 5;
         } else if (resultadoDeTiro == 6) {
             this.resultadoDeTiro = 6;
         } else {
             this.resultadoDeTiro = 7;
+        }
+        repaint();
+    }
+    public void pintarParteDelBarco(String nombreDelBarco) {
+        resultadoDeTiro=0;
+        if (nombreDelBarco.equals("fragata")) {
+            this.tipoDeBarco = nombreDelBarco;
+            this.insertarElBarco = 1;
+            this.tieneBarco = true;
+
+        } else if (nombreDelBarco.equals("destructor")) {
+            this.tipoDeBarco = nombreDelBarco;
+            this.insertarElBarco = 2;
+            this.tieneBarco = true;
+
+        } else if (nombreDelBarco.equals("submarino")) {
+            this.tipoDeBarco = nombreDelBarco;
+            this.insertarElBarco = 3;
+            this.tieneBarco = true;
+
+        } else if (nombreDelBarco.equals("portaviones")) {
+            this.tipoDeBarco = nombreDelBarco;
+            this.insertarElBarco = 4;
+            this.tieneBarco = true;
+
         }
         repaint();
     }
@@ -82,6 +109,25 @@ public class CasillaPrincipal extends JButton {
                 g.setColor(Color.red);
                 g.setFont(new Font("SansSerif", Font.BOLD + Font.PLAIN, 50));
                 g.drawString("\uF0FB", 0, 0);
+                break;
+
+        }
+        switch (insertarElBarco) {
+            case 1:
+                g.setColor(Color.BLACK);
+                g.fillRect(0, 0, 46, 46);
+                break;
+            case 2:
+                g.setColor(Color.pink);
+                g.fillRect(0, 0, 46, 46);
+                break;
+            case 3:
+                g.setColor(Color.MAGENTA);
+                g.fillRect(0, 0, 46, 46);
+                break;
+            case 4:
+                g.setColor(Color.BLUE);
+                g.fillRect(0, 0, 46, 46);
                 break;
         }
     }

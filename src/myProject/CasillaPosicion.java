@@ -8,7 +8,7 @@ import java.awt.*;
  */
 
 public class CasillaPosicion extends JButton {
-    private int fila, columna, insertarElBarco, resultadoDeSeleccion, resistenciaDeImpactos;
+    private int fila, columna, insertarElBarco, resultadoDeTiro, resistenciaDeImpactos;
     private String tipoDeBarco;
     private boolean barcoCompleto, parteDelBarco, tieneBarco, fueImpactada;
     private ImageIcon imageHundido, imagenNuevoTamanho, imageFallar;
@@ -30,6 +30,9 @@ public class CasillaPosicion extends JButton {
         imageTransformada = new ImageIconToImage();
         tieneBarco = false;
         fueImpactada = false;
+
+        resultadoDeTiro=0;
+        insertarElBarco=0;
     }
 
     /**
@@ -38,6 +41,7 @@ public class CasillaPosicion extends JButton {
      */
 
     public void pintarParteDelBarco(String nombreDelBarco) {
+        resultadoDeTiro=0;
         if (nombreDelBarco.equals("fragata")) {
             this.tipoDeBarco = nombreDelBarco;
             this.insertarElBarco = 1;
@@ -65,6 +69,18 @@ public class CasillaPosicion extends JButton {
             this.parteDelBarco = true;
             this.tieneBarco = true;
 
+        }
+        repaint();
+    }
+
+    public void determinarPrecision(int resultadoDeTiro) {
+        insertarElBarco=0;
+        if (resultadoDeTiro == 5) {
+            this.resultadoDeTiro = 5;
+        } else if (resultadoDeTiro == 6) {
+            this.resultadoDeTiro = 6;
+        } else {
+            this.resultadoDeTiro = 7;
         }
         repaint();
     }

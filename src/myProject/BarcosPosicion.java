@@ -46,4 +46,8 @@ public class BarcosPosicion extends ArrayList<CasillaPosicion> {
     public String getTipoDeBarco() {
         return tipoDeBarco;
     }
+
+    public int getResistencia() {
+        return resistencia;
+    }
 }

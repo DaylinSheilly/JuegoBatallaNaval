@@ -771,7 +771,7 @@ public class GUIBatallaNaval extends JFrame {
                         trampa.setBackground(new Color(146, 208, 80));
                         acceso = true;
                         trampaAbilitada = true;
-
+                        game.pintarBotesRival();
                     } else {
                         trampa.setVisible(false);
                         JOptionPane.showMessageDialog(null, "Para reintentar debes reabrir el juego");
@@ -781,11 +781,16 @@ public class GUIBatallaNaval extends JFrame {
                     if (trampaAbilitada) {
                         trampa.setBackground(new Color(231, 230, 230));
                         trampaAbilitada = false;
+                        for (int i = 0; i < 11; i++) {
+                            for (int j = 0; j < 11; j++) {
+                                casillasPrincipal[i][j].pintarParteDelBarco("fondo");
+                            }
+                        }
 
                     } else {
                         trampa.setBackground(new Color(146, 208, 80));
                         trampaAbilitada = true;
-
+                        game.pintarBotesRival();
                     }
                 }
             }

@@ -60,6 +60,8 @@ public class CasillaPrincipal extends JButton {
             this.insertarElBarco = 4;
             this.tieneBarco = true;
 
+        } else if (nombreDelBarco.equals("fondo")) {
+            this.insertarElBarco = 5;
         }
         repaint();
     }
@@ -109,6 +111,10 @@ public class CasillaPrincipal extends JButton {
                 break;
             case 4:
                 g.setColor(Color.BLUE);
+                g.fillRect(0, 0, 46, 46);
+                break;
+            case 5:
+                g.setColor(new Color(24, 90, 219));
                 g.fillRect(0, 0, 46, 46);
                 break;
         }

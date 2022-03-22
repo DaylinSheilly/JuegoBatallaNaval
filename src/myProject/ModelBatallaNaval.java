@@ -1,6 +1,8 @@
 package myProject;
 
-import java.util.ArrayList;
+/**
+ * This class is used to implement the game logic and rules
+ */
 
 public class ModelBatallaNaval {
     private BarcosPosicion portavionUsuario, submarinoUsuario1, submarinoUsuario2, destructorUsuario1, destructorUsuario2, destructorUsuario3,
@@ -11,10 +13,19 @@ public class ModelBatallaNaval {
     private boolean ganar;
 
 
+    /**
+     * Constructor of ModelBatallaNaval class
+     */
+
     public ModelBatallaNaval() {
         puntos=0;
         puntosIA=0;
     }
+
+    /**
+     * This function is to shoot at a square
+     * @param casilla
+     */
 
     public void dispararACasilla(CasillaPrincipal casilla) {
         casilla.setFueImpactada(true);
@@ -84,6 +95,14 @@ public class ModelBatallaNaval {
         }
     }
 
+    /**
+     * This function is to create the aircraft carrier
+     * @param parte1
+     * @param parte2
+     * @param parte3
+     * @param parte4
+     */
+
     public void casillasDelBote(CasillaPosicion parte1, CasillaPosicion parte2,
                                 CasillaPosicion parte3, CasillaPosicion parte4) {
         parte1.pintarParteDelBarco("portaviones");
@@ -97,6 +116,13 @@ public class ModelBatallaNaval {
         portavionUsuario = new BarcosPosicion(parte1, parte2, parte3, parte4);
         portaviones = 0;
     }
+
+    /**
+     * This function is to create the submarine
+     * @param parte1
+     * @param parte2
+     * @param parte3
+     */
 
     public void casillasDelBote(CasillaPosicion parte1, CasillaPosicion parte2,
                                 CasillaPosicion parte3) {
@@ -115,6 +141,12 @@ public class ModelBatallaNaval {
         }
     }
 
+    /**
+     * This function is to create the destructor
+     * @param parte1
+     * @param parte2
+     */
+
     public void casillasDelBote(CasillaPosicion parte1, CasillaPosicion parte2) {
         parte1.pintarParteDelBarco("destructor");
         parte1.setTieneBarco(true);
@@ -131,6 +163,11 @@ public class ModelBatallaNaval {
             destructores = 0;
         }
     }
+
+    /**
+     * This function is to create the frigate
+     * @param parte1
+     */
 
     public void casillasDelBote(CasillaPosicion parte1) {
         parte1.pintarParteDelBarco("fragata");
@@ -149,6 +186,10 @@ public class ModelBatallaNaval {
             fragatas = 0;
         }
     }
+
+    /**
+     * This function determines who won
+     */
 
     public void determinarGanador() {
         if (puntos == 20) {

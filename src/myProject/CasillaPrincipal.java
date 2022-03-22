@@ -4,6 +4,10 @@ package myProject;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * This class is used to make a square on the main board
+ */
+
 public class CasillaPrincipal extends JButton {
     private int fila, columna, resultadoDeTiro, insertarElBarco;
     private String tipoDeBarco;
@@ -12,6 +16,11 @@ public class CasillaPrincipal extends JButton {
     private ImageIconToImage imageTransformada;
     private boolean tieneBarco, fueImpactada;
 
+    /**
+     * Constructor of CasillaPrincipal class
+     * @param fila
+     * @param columna
+     */
 
     public CasillaPrincipal(int fila, int columna) {
         this.fila = fila;
@@ -26,6 +35,11 @@ public class CasillaPrincipal extends JButton {
         tieneBarco = false;
         fueImpactada = false;
     }
+
+    /**
+     * This function displays an image depending on the shot
+     * @param resultadoDeTiro
+     */
 
     public void determinarPrecision(int resultadoDeTiro) {
         insertarElBarco=0;
@@ -66,6 +80,10 @@ public class CasillaPrincipal extends JButton {
         repaint();
     }
 
+    /**
+     * Here the images of sunken, water and fail are painted inside the box
+     * @param g
+     */
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -132,6 +150,11 @@ public class CasillaPrincipal extends JButton {
         this.tieneBarco = tieneBarco;
     }
 
+    /**
+     * This method tells if you have a ship or not
+     * @return if you have a ship or not
+     */
+
     public boolean getTieneBarco() {
         return tieneBarco;
     }
@@ -139,6 +162,11 @@ public class CasillaPrincipal extends JButton {
     public void setTipoDeBarco(String nombreDelBarco) {
         this.tipoDeBarco = nombreDelBarco;
     }
+
+    /**
+     * This method gets the ship from the square that is painted on it
+     * @return the ship from the square that is painted on it
+     */
 
     public String getTipoDeBarco() {
         return tipoDeBarco;

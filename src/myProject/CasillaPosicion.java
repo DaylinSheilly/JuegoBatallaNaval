@@ -169,6 +169,7 @@ public class CasillaPosicion extends JButton {
      * This method tells if you have a ship or not
      * @return if you have a ship or not
      */
+
     public boolean getTieneBarco() {
         return tieneBarco;
     }

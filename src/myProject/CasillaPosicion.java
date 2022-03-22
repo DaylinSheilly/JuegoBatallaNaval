@@ -73,6 +73,11 @@ public class CasillaPosicion extends JButton {
         repaint();
     }
 
+    /**
+     * This function displays an image depending on the shot
+     * @param resultadoDeTiro
+     */
+
     public void determinarPrecision(int resultadoDeTiro) {
         insertarElBarco=0;
         if (resultadoDeTiro == 5) {
@@ -118,67 +123,30 @@ public class CasillaPosicion extends JButton {
     }
 
     /**
-     * In this method, the ships are drawn and placed inside the square
-     * @return fila
+     * This method changes the value of tieneBarco
+     * @param tieneBarco
      */
-
-    public int getFila() {
-        return fila;
-    }
-
-    /**
-     * This method gets the column of the button
-     * @return columna
-     */
-    public int getColumna() {
-        return columna;
-    }
-
-    /**
-     * This method tells if the square has the whole ship or not
-     * @param casilla
-     * @return if you have the whole boat or not
-     */
-
-    public boolean getBarcoCompleto(CasillaPosicion casilla) {
-        return casilla.barcoCompleto;
-    }
-
-    /**
-     * This method tells if you have a ship part or not
-     * @return if you have a part of the boat or not
-     */
-
-    public boolean isParteDelBarco() {
-        return parteDelBarco;
-    }
-
-    public int getResistenciaDeImpactos() {
-        return resistenciaDeImpactos;
-    }
 
     public void setTieneBarco(boolean tieneBarco) {
         this.tieneBarco = tieneBarco;
     }
 
-    public boolean isTieneBarco() {
-        return tieneBarco;
-    }
-
-    public void setTipoDeBarco(String nombreDelBarco) {
-        this.tipoDeBarco = nombreDelBarco;
-    }
+    /**
+     * This method gets the ship from the square that is painted on it
+     * @return the ship from the square that is painted on it
+     */
 
     public String getTipoDeBarco() {
         return tipoDeBarco;
     }
 
+    /**
+     * This method changes the value of fueImpactda
+     * @param fueImpactada
+     */
+
     public void setFueImpactada(boolean fueImpactada) {
         this.fueImpactada = fueImpactada;
-    }
-
-    public boolean getFueImpactada() {
-        return fueImpactada;
     }
 
     /**

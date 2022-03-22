@@ -1,11 +1,18 @@
 package myProject;
 
-import javax.swing.*;
 import java.util.Random;
+
+/**
+ * This class is the opponent of the game
+ */
 
 public class Oponente {
     int fila, columna;
     ModelBatallaNaval game;
+
+    /**
+     * Constructor of Oponente class
+     */
 
     public Oponente(){
         fila = 0;
@@ -13,6 +20,10 @@ public class Oponente {
 
         game = new ModelBatallaNaval();
     }
+
+    /**
+     *
+     */
 
     public void elegirCasilla() {
         Random coordenadas = new Random();

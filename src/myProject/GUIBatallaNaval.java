@@ -804,18 +804,18 @@ public class GUIBatallaNaval extends JFrame {
                 añadirEscuchasTableroPosiciones();
             } else if (e.getSource() == trampa) {
                 if (!acceso) {
-                    String password = JOptionPane.showInputDialog("Digite la contraseña de permisos de administrador");
-                    if (password.equals("Profe ponga 5.0 por favor")) {
-                        JOptionPane.showMessageDialog(null, "Contraseña Correcta");
+                    //String password = JOptionPane.showInputDialog("Digite la contraseña de permisos de administrador");
+                    //if (password.equals("Profe ponga 5.0 por favor")) {
+                    //    JOptionPane.showMessageDialog(null, "Contraseña Correcta");
                         trampa.setBackground(new Color(146, 208, 80));
                         acceso = true;
                         trampaAbilitada = true;
                         game.pintarBotesRival();
-                    } else {
+                    /*} else {
                         trampa.setVisible(false);
                         JOptionPane.showMessageDialog(null, "Para reintentar debes reabrir el juego");
                         acceso = false;
-                    }
+                    }*/
                 } else {
                     if (trampaAbilitada) {
                         trampa.setBackground(new Color(231, 230, 230));

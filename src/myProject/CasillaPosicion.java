@@ -41,7 +41,7 @@ public class CasillaPosicion extends JButton {
      */
 
     public void pintarParteDelBarco(String nombreDelBarco) {
-        resultadoDeTiro=0;
+        this.resultadoDeTiro=0;
         if (nombreDelBarco.equals("fragata")) {
             this.tipoDeBarco = nombreDelBarco;
             this.insertarElBarco = 1;
@@ -79,7 +79,7 @@ public class CasillaPosicion extends JButton {
      */
 
     public void determinarPrecision(int resultadoDeTiro) {
-        insertarElBarco=0;
+        this.insertarElBarco=0;
         if (resultadoDeTiro == 5) {
             this.resultadoDeTiro = 5;
         } else if (resultadoDeTiro == 6) {
@@ -116,6 +116,24 @@ public class CasillaPosicion extends JButton {
                 break;
             case 4:
                 g.setColor(Color.BLUE);
+                g.fillRect(0, 0, 46, 46);
+                resistenciaDeImpactos = 4;
+                break;
+        }
+        switch (resultadoDeTiro) {
+            case 5:
+                g.setColor(Color.red);
+                g.fillRect(0, 0, 46, 46);
+                resistenciaDeImpactos = 4;
+                break;
+            case 6:
+                imageHundido = new ImageIcon(getClass().getResource("/resources/hundido.png"));
+                imagenOtroTamanho = imageHundido.getImage().getScaledInstance(46, 46, Image.SCALE_SMOOTH);
+                imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
+                g.drawImage(imageTransformada.scaledImage(imagenNuevoTamanho.getImage(), 46, 46), 0, 0, this);
+                break;
+            case 7:
+                g.setColor(Color.cyan);
                 g.fillRect(0, 0, 46, 46);
                 resistenciaDeImpactos = 4;
                 break;

@@ -598,6 +598,26 @@ public class GUIBatallaNaval extends JFrame {
         }
     }
 
+    public void casillaADispararIA(){
+        Random coordenadas = new Random();
+        Random time = new Random();
+
+        int a = coordenadas.nextInt(10)+1;
+        int b = coordenadas.nextInt(10)+1;
+
+        casillaPosicionSeleccionada = casillasPosicion[a][b];
+
+        if(casillaPosicionSeleccionada.getFueImpactada()) {
+            casillaADispararIA();
+        }
+        else{
+            game.dispararACasillaIA(casillaPosicionSeleccionada);
+        }
+        if(game.getTurnoDeLaIA()) {
+            casillaADispararIA();
+        }
+    }
+
     /**
      * Main process of the Java program
      *
@@ -741,10 +761,13 @@ public class GUIBatallaNaval extends JFrame {
                         }
                     }
                     if (e.getSource() == casillasPrincipal[x][y]) {
-                        casillaPrincipalSeleccionada = casillasPrincipal[x][y];
-                        game.dispararACasilla(casillaPrincipalSeleccionada);
-                        añadirEscuchasColocarBarcos();
-                        removerEscuchasTableroPosiciones();
+                        if(!(game.getTurnoDeLaIA())){
+                            casillaPrincipalSeleccionada = casillasPrincipal[x][y];
+                            game.dispararACasillaUsuario(casillaPrincipalSeleccionada);
+                        }
+                        if(game.getTurnoDeLaIA()) {
+                            casillaADispararIA();
+                        }
                         break;
                     }
                 }
@@ -789,7 +812,7 @@ public class GUIBatallaNaval extends JFrame {
                         trampa.setBackground(new Color(146, 208, 80));
                         acceso = true;
                         trampaAbilitada = true;
-
+                        game.pintarBotesRival();
                     } else {
                         trampa.setVisible(false);
                         JOptionPane.showMessageDialog(null, "Para reintentar debes reabrir el juego");
@@ -799,11 +822,16 @@ public class GUIBatallaNaval extends JFrame {
                     if (trampaAbilitada) {
                         trampa.setBackground(new Color(231, 230, 230));
                         trampaAbilitada = false;
+                        for (int i = 0; i < 11; i++) {
+                            for (int j = 0; j < 11; j++) {
+                                casillasPrincipal[i][j].pintarParteDelBarco("fondo");
+                            }
+                        }
 
                     } else {
                         trampa.setBackground(new Color(146, 208, 80));
                         trampaAbilitada = true;
-
+                        game.pintarBotesRival();
                     }
                 }
             }
@@ -830,6 +858,7 @@ public class GUIBatallaNaval extends JFrame {
         }
         if (cantidadFragatas <= 0 & cantidadSubmarinos <= 0 & cantidadDestructores <= 0 & cantidadPortaviones <= 0) {
             removerEscuchasTableroPosiciones();
+            removerEscuchasColocarBarcos();
             añadirEscuchasTableroPrincipal();
         }
     }

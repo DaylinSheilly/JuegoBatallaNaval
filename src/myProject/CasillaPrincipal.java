@@ -80,6 +80,8 @@ public class CasillaPrincipal extends JButton {
             this.insertarElBarco = 4;
             this.tieneBarco = true;
 
+        } else if (nombreDelBarco.equals("fondo")) {
+            this.insertarElBarco = 5;
         }
         repaint();
     }
@@ -94,30 +96,19 @@ public class CasillaPrincipal extends JButton {
         super.paintComponent(g);
         switch (resultadoDeTiro) {
             case 5:
-                imageFallar = new ImageIcon(getClass().getResource("/resources/fallar.png"));
-                imagenOtroTamanho = imageFallar.getImage().getScaledInstance(46, 46, Image.SCALE_SMOOTH);
-                imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
-                g.drawImage(imageTransformada.scaledImage(imagenNuevoTamanho.getImage(), 46, 46), 0, 0, this);
-
-                g.setColor(Color.white);
-                g.drawString("\uF0FB", 0, 0);
+                g.setColor(Color.red);
+                g.fillRect(0, 0, 46, 46);
                 break;
             case 6:
                 imageHundido = new ImageIcon(getClass().getResource("/resources/hundido.png"));
                 imagenOtroTamanho = imageHundido.getImage().getScaledInstance(46, 46, Image.SCALE_SMOOTH);
                 imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
                 g.drawImage(imageTransformada.scaledImage(imagenNuevoTamanho.getImage(), 46, 46), 0, 0, this);
-
-                g.setColor(Color.white);
-                g.drawString("\uF0FB", 0, 0);
                 break;
             case 7:
-                g.drawString("\uF0FB", 0, 0);
-                g.setColor(Color.red);
-                g.setFont(new Font("SansSerif", Font.BOLD + Font.PLAIN, 50));
-                g.drawString("\uF0FB", 0, 0);
+                g.setColor(Color.cyan);
+                g.fillRect(0, 0, 46, 46);
                 break;
-
         }
         switch (insertarElBarco) {
             case 1:
@@ -134,6 +125,10 @@ public class CasillaPrincipal extends JButton {
                 break;
             case 4:
                 g.setColor(Color.BLUE);
+                g.fillRect(0, 0, 46, 46);
+                break;
+            case 5:
+                g.setColor(new Color(24, 90, 219));
                 g.fillRect(0, 0, 46, 46);
                 break;
         }

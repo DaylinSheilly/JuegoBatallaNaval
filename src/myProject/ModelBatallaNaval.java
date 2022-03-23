@@ -220,7 +220,7 @@ public class ModelBatallaNaval {
     }
 
     public void casillasDelBoteIA(CasillaPrincipal parte1, CasillaPrincipal parte2,
-                                CasillaPrincipal parte3) {
+                                  CasillaPrincipal parte3) {
         parte1.setTieneBarco(true);
         parte2.setTieneBarco(true);
         parte3.setTieneBarco(true);

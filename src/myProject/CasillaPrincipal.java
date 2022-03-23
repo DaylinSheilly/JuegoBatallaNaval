@@ -1,4 +1,3 @@
-
 package myProject;
 
 import javax.swing.*;
@@ -52,12 +51,6 @@ public class CasillaPrincipal extends JButton {
         }
         repaint();
     }
-
-    /**
-     * This function paints the ships inside the square
-     * @param nombreDelBarco
-     */
-
     public void pintarParteDelBarco(String nombreDelBarco) {
         resultadoDeTiro=0;
         if (nombreDelBarco.equals("fragata")) {
@@ -90,7 +83,6 @@ public class CasillaPrincipal extends JButton {
      * Here the images of sunken, water and fail are painted inside the box
      * @param g
      */
-
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -134,10 +126,13 @@ public class CasillaPrincipal extends JButton {
         }
     }
 
-    /**
-     * This method changes the value of tieneBarco
-     * @param tieneBarco
-     */
+    public int getFila() {
+        return fila;
+    }
+
+    public int getColumna() {
+        return columna;
+    }
 
     public void setTieneBarco(boolean tieneBarco) {
         this.tieneBarco = tieneBarco;
@@ -152,11 +147,6 @@ public class CasillaPrincipal extends JButton {
         return tieneBarco;
     }
 
-    /**
-     * This method changes the value of nombreDelBarco
-     * @param nombreDelBarco
-     */
-
     public void setTipoDeBarco(String nombreDelBarco) {
         this.tipoDeBarco = nombreDelBarco;
     }
@@ -170,13 +160,11 @@ public class CasillaPrincipal extends JButton {
         return tipoDeBarco;
     }
 
-    /**
-     * This method changes the value of fueImpactada
-     * @param fueImpactada
-     */
-
     public void setFueImpactada(boolean fueImpactada) {
         this.fueImpactada = fueImpactada;
     }
-}
 
+    public boolean getFueImpactada() {
+        return fueImpactada;
+    }
+}

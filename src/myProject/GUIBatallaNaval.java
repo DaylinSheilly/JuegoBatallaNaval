@@ -2,8 +2,6 @@ package myProject;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Random;
@@ -466,6 +464,10 @@ public class GUIBatallaNaval extends JFrame {
 
         panelInfo.add(imagenHundido, constraintsPanelInfo);
     }
+
+    /**
+     * This function makes the opponent place their ships on the board position
+     */
 
     public void ponerBarcosIA()
     {

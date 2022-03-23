@@ -10,7 +10,7 @@ public class ModelBatallaNaval {
     private BarcosPrincipal portavionIA, submarinoIA1, submarinoIA2, destructorIA1, destructorIA2, destructorIA3, fragataIA1, fragataIA2, fragataIA3, fragataIA4;
 
     private int puntos, puntosIA, fragatas, destructores, submarinos, portaviones;
-    private boolean ganar;
+    private boolean ganar, turnoDeLaIA;
 
 
     /**
@@ -27,12 +27,11 @@ public class ModelBatallaNaval {
      * @param casilla
      */
 
-    public void dispararACasilla(CasillaPrincipal casilla) {
+    public void dispararACasillaUsuario(CasillaPrincipal casilla) {
         casilla.setFueImpactada(true);
         if (casilla.getTieneBarco()) {
             if (casilla.getTipoDeBarco().equals("portaviones")) {
-                portavionIA.quitarResistencia();
-                if (portavionIA.getResistencia() == 0) {
+                if (portavionIA.get(0).getFueImpactada() & portavionIA.get(1).getFueImpactada() & portavionIA.get(2).getFueImpactada() & portavionIA.get(3).getFueImpactada()) {
                     portavionIA.get(0).determinarPrecision(6);
                     portavionIA.get(1).determinarPrecision(6);
                     portavionIA.get(2).determinarPrecision(6);
@@ -42,8 +41,7 @@ public class ModelBatallaNaval {
                 }
             } else if (casilla.getTipoDeBarco().equals("submarino")) {
                 if (casilla == submarinoIA1.get(0) || casilla == submarinoIA1.get(1) || casilla == submarinoIA1.get(2)) {
-                    submarinoIA1.quitarResistencia();
-                    if (submarinoIA1.getResistencia() == 0) {
+                    if (submarinoIA1.get(0).getFueImpactada() & submarinoIA1.get(1).getFueImpactada() & submarinoIA1.get(2).getFueImpactada()) {
                         submarinoIA1.get(0).determinarPrecision(6);
                         submarinoIA1.get(1).determinarPrecision(6);
                         submarinoIA1.get(2).determinarPrecision(6);
@@ -51,8 +49,7 @@ public class ModelBatallaNaval {
                         casilla.determinarPrecision(5);
                     }
                 } else if (casilla == submarinoIA2.get(0) || casilla == submarinoIA2.get(1) || casilla == submarinoIA2.get(2)) {
-                    submarinoIA2.quitarResistencia();
-                    if (submarinoIA2.getResistencia() == 0) {
+                    if (submarinoIA2.get(0).getFueImpactada() & submarinoIA2.get(1).getFueImpactada() & submarinoIA2.get(2).getFueImpactada()) {
                         submarinoIA2.get(0).determinarPrecision(6);
                         submarinoIA2.get(1).determinarPrecision(6);
                         submarinoIA2.get(2).determinarPrecision(6);
@@ -62,24 +59,21 @@ public class ModelBatallaNaval {
                 }
             } else if (casilla.getTipoDeBarco().equals("destructor")) {
                 if (casilla == destructorIA1.get(0) || casilla == destructorIA1.get(1)) {
-                    destructorIA1.quitarResistencia();
-                    if (destructorIA1.getResistencia() == 0) {
+                    if (destructorIA1.get(0).getFueImpactada() & destructorIA1.get(1).getFueImpactada()) {
                         destructorIA1.get(0).determinarPrecision(6);
                         destructorIA1.get(1).determinarPrecision(6);
                     } else {
                         casilla.determinarPrecision(5);
                     }
                 } else if (casilla == destructorIA2.get(0) || casilla == destructorIA2.get(1)) {
-                    destructorIA2.quitarResistencia();
-                    if (destructorIA2.getResistencia() == 0) {
+                    if (destructorIA2.get(0).getFueImpactada() & destructorIA2.get(1).getFueImpactada()) {
                         destructorIA2.get(0).determinarPrecision(6);
                         destructorIA2.get(1).determinarPrecision(6);
                     } else {
                         casilla.determinarPrecision(5);
                     }
                 } else if (casilla == destructorIA3.get(0) || casilla == destructorIA3.get(1)) {
-                    destructorIA3.quitarResistencia();
-                    if (destructorIA3.getResistencia() == 0) {
+                    if (destructorIA3.get(0).getFueImpactada() & destructorIA3.get(1).getFueImpactada()) {
                         destructorIA3.get(0).determinarPrecision(6);
                         destructorIA3.get(1).determinarPrecision(6);
                     } else {
@@ -90,8 +84,10 @@ public class ModelBatallaNaval {
                 casilla.determinarPrecision(6);
             }
             puntos++;
+            setTurnoDeLaIA(false);
         } else {
             casilla.determinarPrecision(7);
+            setTurnoDeLaIA(true);
         }
     }
 
@@ -113,6 +109,10 @@ public class ModelBatallaNaval {
         parte3.setTieneBarco(true);
         parte4.pintarParteDelBarco("portaviones");
         parte4.setTieneBarco(true);
+        parte1.setTipoDeBarco("portaviones");
+        parte2.setTipoDeBarco("portaviones");
+        parte3.setTipoDeBarco("portaviones");
+        parte4.setTipoDeBarco("portaviones");
         portavionUsuario = new BarcosPosicion(parte1, parte2, parte3, parte4);
         portaviones = 0;
     }
@@ -132,6 +132,9 @@ public class ModelBatallaNaval {
         parte2.setTieneBarco(true);
         parte3.pintarParteDelBarco("submarino");
         parte3.setTieneBarco(true);
+        parte1.setTipoDeBarco("submarino");
+        parte2.setTipoDeBarco("submarino");
+        parte3.setTipoDeBarco("submarino");
         if (submarinos == 0) {
             submarinoUsuario1 = new BarcosPosicion(parte1, parte2, parte3);
             submarinos++;
@@ -152,6 +155,8 @@ public class ModelBatallaNaval {
         parte1.setTieneBarco(true);
         parte2.pintarParteDelBarco("destructor");
         parte2.setTieneBarco(true);
+        parte1.setTipoDeBarco("destructor");
+        parte2.setTipoDeBarco("destructor");
         if (destructores == 0) {
             destructorUsuario1 = new BarcosPosicion(parte1, parte2);
             destructores++;
@@ -172,6 +177,7 @@ public class ModelBatallaNaval {
     public void casillasDelBote(CasillaPosicion parte1) {
         parte1.pintarParteDelBarco("fragata");
         parte1.setTieneBarco(true);
+        parte1.setTipoDeBarco("fragata");
         if (fragatas == 0) {
             fragataUsuario1 = new BarcosPosicion(parte1);
             fragatas++;
@@ -199,80 +205,16 @@ public class ModelBatallaNaval {
         }
     }
 
-    public void dispararACasillaIA(CasillaPosicion casilla) {
-        casilla.setFueImpactada(true);
-        if (casilla.getTieneBarco()) {
-            if (casilla.getTipoDeBarco().equals("portaviones")) {
-                portavionUsuario.quitarResistencia();
-                if (portavionUsuario.getResistencia() == 0) {
-                    portavionUsuario.get(0).determinarPrecision(6);
-                    portavionUsuario.get(1).determinarPrecision(6);
-                    portavionUsuario.get(2).determinarPrecision(6);
-                    portavionUsuario.get(3).determinarPrecision(6);
-                } else {
-                    casilla.determinarPrecision(5);
-                }
-            } else if (casilla.getTipoDeBarco().equals("submarino")) {
-                if (casilla == submarinoUsuario1.get(0) || casilla == submarinoUsuario1.get(1) || casilla == submarinoUsuario1.get(2)) {
-                    submarinoUsuario1.quitarResistencia();
-                    if (submarinoUsuario1.getResistencia() == 0) {
-                        submarinoUsuario1.get(0).determinarPrecision(6);
-                        submarinoUsuario1.get(1).determinarPrecision(6);
-                        submarinoUsuario1.get(2).determinarPrecision(6);
-                    } else {
-                        casilla.determinarPrecision(5);
-                    }
-                } else if (casilla == submarinoUsuario2.get(0) || casilla == submarinoUsuario2.get(1) || casilla == submarinoUsuario2.get(2)) {
-                    submarinoUsuario2.quitarResistencia();
-                    if (submarinoUsuario2.getResistencia() == 0) {
-                        submarinoUsuario2.get(0).determinarPrecision(6);
-                        submarinoUsuario2.get(1).determinarPrecision(6);
-                        submarinoUsuario2.get(2).determinarPrecision(6);
-                    } else {
-                        casilla.determinarPrecision(5);
-                    }
-                }
-            } else if (casilla.getTipoDeBarco().equals("destructor")) {
-                if (casilla == destructorUsuario1.get(0) || casilla == destructorUsuario1.get(1)) {
-                    destructorUsuario1.quitarResistencia();
-                    if (destructorUsuario1.getResistencia() == 0) {
-                        destructorUsuario1.get(0).determinarPrecision(6);
-                        destructorUsuario1.get(1).determinarPrecision(6);
-                    } else {
-                        casilla.determinarPrecision(5);
-                    }
-                } else if (casilla == destructorUsuario2.get(0) || casilla == destructorUsuario2.get(1)) {
-                    destructorUsuario2.quitarResistencia();
-                    if (destructorUsuario2.getResistencia() == 0) {
-                        destructorUsuario2.get(0).determinarPrecision(6);
-                        destructorUsuario2.get(1).determinarPrecision(6);
-                    } else {
-                        casilla.determinarPrecision(5);
-                    }
-                } else if (casilla == destructorUsuario3.get(0) || casilla == destructorUsuario3.get(1)) {
-                    destructorUsuario3.quitarResistencia();
-                    if (destructorUsuario3.getResistencia() == 0) {
-                        destructorUsuario3.get(0).determinarPrecision(6);
-                        destructorUsuario3.get(1).determinarPrecision(6);
-                    } else {
-                        casilla.determinarPrecision(5);
-                    }
-                }
-            } else if (casilla.getTipoDeBarco().equals("fragata")) {
-                casilla.determinarPrecision(6);
-            }
-            puntosIA++;
-        } else {
-            casilla.determinarPrecision(7);
-        }
-    }
-
     public void casillasDelBoteIA(CasillaPrincipal parte1, CasillaPrincipal parte2,
                                   CasillaPrincipal parte3, CasillaPrincipal parte4) {
         parte1.setTieneBarco(true);
         parte2.setTieneBarco(true);
         parte3.setTieneBarco(true);
         parte4.setTieneBarco(true);
+        parte1.setTipoDeBarco("portaviones");
+        parte2.setTipoDeBarco("portaviones");
+        parte3.setTipoDeBarco("portaviones");
+        parte4.setTipoDeBarco("portaviones");
         portavionIA = new BarcosPrincipal(parte1, parte2, parte3, parte4);
         portaviones = 0;
     }
@@ -282,6 +224,9 @@ public class ModelBatallaNaval {
         parte1.setTieneBarco(true);
         parte2.setTieneBarco(true);
         parte3.setTieneBarco(true);
+        parte1.setTipoDeBarco("submarino");
+        parte2.setTipoDeBarco("submarino");
+        parte3.setTipoDeBarco("submarino");
         if (submarinos == 0) {
             submarinoIA1 = new BarcosPrincipal(parte1, parte2, parte3);
             submarinos++;
@@ -294,6 +239,8 @@ public class ModelBatallaNaval {
     public void casillasDelBoteIA(CasillaPrincipal parte1, CasillaPrincipal parte2) {
         parte1.setTieneBarco(true);
         parte2.setTieneBarco(true);
+        parte1.setTipoDeBarco("destructor");
+        parte2.setTipoDeBarco("destructor");
         if (destructores == 0) {
             destructorIA1 = new BarcosPrincipal(parte1, parte2);
             destructores++;
@@ -308,6 +255,7 @@ public class ModelBatallaNaval {
 
     public void casillasDelBoteIA(CasillaPrincipal parte1) {
         parte1.setTieneBarco(true);
+        parte1.setTipoDeBarco("fragata");
         if (fragatas == 0) {
             fragataIA1 = new BarcosPrincipal(parte1);
             fragatas++;
@@ -350,8 +298,7 @@ public class ModelBatallaNaval {
         casilla.setFueImpactada(true);
         if (casilla.getTieneBarco()) {
             if (casilla.getTipoDeBarco().equals("portaviones")) {
-                portavionUsuario.quitarResistencia();
-                if (portavionUsuario.getResistencia() == 0) {
+                if (portavionUsuario.get(0).getFueImpactada() & portavionUsuario.get(1).getFueImpactada() & portavionUsuario.get(2).getFueImpactada() & portavionUsuario.get(3).getFueImpactada()) {
                     portavionUsuario.get(0).determinarPrecision(6);
                     portavionUsuario.get(1).determinarPrecision(6);
                     portavionUsuario.get(2).determinarPrecision(6);
@@ -361,46 +308,41 @@ public class ModelBatallaNaval {
                 }
             } else if (casilla.getTipoDeBarco().equals("submarino")) {
                 if (casilla == submarinoUsuario1.get(0) || casilla == submarinoUsuario1.get(1) || casilla == submarinoUsuario1.get(2)) {
-                    submarinoUsuario1.quitarResistencia();
-                    if (submarinoUsuario1.getResistencia() == 0) {
+                    if (submarinoUsuario1.get(0).getFueImpactada() & submarinoUsuario1.get(1).getFueImpactada() & submarinoUsuario1.get(2).getFueImpactada()) {
                         submarinoUsuario1.get(0).determinarPrecision(6);
                         submarinoUsuario1.get(1).determinarPrecision(6);
                         submarinoUsuario1.get(2).determinarPrecision(6);
                     } else {
                         casilla.determinarPrecision(5);
                     }
-                } else if (casilla == submarinoUsuario2.get(0) || casilla == submarinoUsuario2.get(1) || casilla == submarinoIA2.get(2)) {
-                    submarinoIA2.quitarResistencia();
-                    if (submarinoIA2.getResistencia() == 0) {
-                        submarinoIA2.get(0).determinarPrecision(6);
-                        submarinoIA2.get(1).determinarPrecision(6);
-                        submarinoIA2.get(2).determinarPrecision(6);
+                } else if (casilla == submarinoUsuario2.get(0) || casilla == submarinoUsuario2.get(1) || casilla == submarinoUsuario2.get(2)) {
+                    if (submarinoUsuario2.get(0).getFueImpactada() & submarinoUsuario2.get(1).getFueImpactada() & submarinoUsuario2.get(2).getFueImpactada()) {
+                        submarinoUsuario2.get(0).determinarPrecision(6);
+                        submarinoUsuario2.get(1).determinarPrecision(6);
+                        submarinoUsuario2.get(2).determinarPrecision(6);
                     } else {
                         casilla.determinarPrecision(5);
                     }
                 }
             } else if (casilla.getTipoDeBarco().equals("destructor")) {
-                if (casilla == destructorIA1.get(0) || casilla == destructorIA1.get(1)) {
-                    destructorIA1.quitarResistencia();
-                    if (destructorIA1.getResistencia() == 0) {
-                        destructorIA1.get(0).determinarPrecision(6);
-                        destructorIA1.get(1).determinarPrecision(6);
+                if (casilla == destructorUsuario1.get(0) || casilla == destructorUsuario1.get(1)) {
+                    if (destructorUsuario1.get(0).getFueImpactada() & destructorUsuario1.get(1).getFueImpactada()) {
+                        destructorUsuario1.get(0).determinarPrecision(6);
+                        destructorUsuario1.get(1).determinarPrecision(6);
                     } else {
                         casilla.determinarPrecision(5);
                     }
-                } else if (casilla == destructorIA2.get(0) || casilla == destructorIA2.get(1)) {
-                    destructorIA2.quitarResistencia();
-                    if (destructorIA2.getResistencia() == 0) {
-                        destructorIA2.get(0).determinarPrecision(6);
-                        destructorIA2.get(1).determinarPrecision(6);
+                } else if (casilla == destructorUsuario2.get(0) || casilla == destructorUsuario2.get(1)) {
+                    if (destructorUsuario2.get(0).getFueImpactada() & destructorUsuario2.get(1).getFueImpactada()) {
+                        destructorUsuario2.get(0).determinarPrecision(6);
+                        destructorUsuario2.get(1).determinarPrecision(6);
                     } else {
                         casilla.determinarPrecision(5);
                     }
-                } else if (casilla == destructorIA3.get(0) || casilla == destructorIA3.get(1)) {
-                    destructorIA3.quitarResistencia();
-                    if (destructorIA3.getResistencia() == 0) {
-                        destructorIA3.get(0).determinarPrecision(6);
-                        destructorIA3.get(1).determinarPrecision(6);
+                } else if (casilla == destructorUsuario3.get(0) || casilla == destructorUsuario3.get(1)) {
+                    if (destructorUsuario3.get(0).getFueImpactada() & destructorUsuario3.get(1).getFueImpactada()) {
+                        destructorUsuario3.get(0).determinarPrecision(6);
+                        destructorUsuario3.get(1).determinarPrecision(6);
                     } else {
                         casilla.determinarPrecision(5);
                     }
@@ -408,9 +350,18 @@ public class ModelBatallaNaval {
             } else if (casilla.getTipoDeBarco().equals("fragata")) {
                 casilla.determinarPrecision(6);
             }
+            setTurnoDeLaIA(true);
             puntos++;
         } else {
             casilla.determinarPrecision(7);
+            setTurnoDeLaIA(false);
         }
+    }
+
+    public void setTurnoDeLaIA(boolean turnoDeLaIA) {
+        this.turnoDeLaIA = turnoDeLaIA;
+    }
+    public boolean getTurnoDeLaIA(){
+        return this.turnoDeLaIA;
     }
 }

@@ -596,6 +596,26 @@ public class GUIBatallaNaval extends JFrame {
         }
     }
 
+    public void casillaADispararIA(){
+        Random coordenadas = new Random();
+        Random time = new Random();
+
+        int a = coordenadas.nextInt(10)+1;
+        int b = coordenadas.nextInt(10)+1;
+
+        casillaPosicionSeleccionada = casillasPosicion[a][b];
+
+        if(casillaPosicionSeleccionada.getFueImpactada()) {
+            casillaADispararIA();
+        }
+        else{
+            game.dispararACasillaIA(casillaPosicionSeleccionada);
+        }
+        if(game.getTurnoDeLaIA()) {
+            casillaADispararIA();
+        }
+    }
+
     /**
      * Main process of the Java program
      *
@@ -739,10 +759,13 @@ public class GUIBatallaNaval extends JFrame {
                         }
                     }
                     if (e.getSource() == casillasPrincipal[x][y]) {
-                        casillaPrincipalSeleccionada = casillasPrincipal[x][y];
-                        game.dispararACasilla(casillaPrincipalSeleccionada);
-                        añadirEscuchasColocarBarcos();
-                        removerEscuchasTableroPosiciones();
+                        if(!(game.getTurnoDeLaIA())){
+                            casillaPrincipalSeleccionada = casillasPrincipal[x][y];
+                            game.dispararACasillaUsuario(casillaPrincipalSeleccionada);
+                        }
+                        if(game.getTurnoDeLaIA()) {
+                            casillaADispararIA();
+                        }
                         break;
                     }
                 }
@@ -833,6 +856,7 @@ public class GUIBatallaNaval extends JFrame {
         }
         if (cantidadFragatas <= 0 & cantidadSubmarinos <= 0 & cantidadDestructores <= 0 & cantidadPortaviones <= 0) {
             removerEscuchasTableroPosiciones();
+            removerEscuchasColocarBarcos();
             añadirEscuchasTableroPrincipal();
         }
     }

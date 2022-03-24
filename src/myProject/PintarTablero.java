@@ -33,7 +33,6 @@ public class PintarTablero extends JPanel {
      * Here the decoration is drawn and placed on the board
      * @param g
      */
-
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -209,4 +208,3 @@ public class PintarTablero extends JPanel {
         }
     }
 }
-

@@ -572,6 +572,7 @@ public class GUIBatallaNaval extends JFrame {
                             game.casillasDelBoteIA(casillaPrincipalSeleccionada, casillasPrincipal[a][b + 1], casillasPrincipal[a][b + 2], casillasPrincipal[a][b + 3]);
                         }
                         else{
+                            ponerBarcosIA();
                         }
                     }
                     else if(orientacion==0){
@@ -591,6 +592,7 @@ public class GUIBatallaNaval extends JFrame {
                             game.casillasDelBoteIA(casillaPrincipalSeleccionada, casillasPrincipal[a + 1][b], casillasPrincipal[a + 2][b], casillasPrincipal[a + 3][b]);
                         }
                         else {
+                            ponerBarcosIA();
                         }
                     }
                     break;
@@ -767,6 +769,7 @@ public class GUIBatallaNaval extends JFrame {
                         if(!(game.getTurnoDeLaIA() & casillasPrincipal[x][y].getFueImpactada())){
                             casillaPrincipalSeleccionada = casillasPrincipal[x][y];
                             game.dispararACasillaUsuario(casillaPrincipalSeleccionada);
+                            casillaPrincipalSeleccionada.removeMouseListener(escucha);
                         }
                         if(game.getTurnoDeLaIA()) {
                             casillaADispararIA();
@@ -827,6 +830,7 @@ public class GUIBatallaNaval extends JFrame {
                         trampaAbilitada = false;
                         for (int i = 0; i < 11; i++) {
                             for (int j = 0; j < 11; j++) {
+                                if(!(casillasPrincipal[i][j].getFueImpactada()))
                                 casillasPrincipal[i][j].pintarParteDelBarco("fondo");
                             }
                         }

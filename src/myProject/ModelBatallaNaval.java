@@ -5,13 +5,12 @@ package myProject;
  */
 
 public class ModelBatallaNaval {
-    private BarcosPosicion portavionUsuario, submarinoUsuario1, submarinoUsuario2, destructorUsuario1, destructorUsuario2, destructorUsuario3,
-            fragataUsuario1, fragataUsuario2, fragataUsuario3, fragataUsuario4;
-    private BarcosPrincipal portavionIA, submarinoIA1, submarinoIA2, destructorIA1, destructorIA2, destructorIA3, fragataIA1, fragataIA2, fragataIA3, fragataIA4;
-
+    private BarcosPosicion portavionUsuario, submarinoUsuario1, submarinoUsuario2, destructorUsuario1, destructorUsuario2,
+            destructorUsuario3, fragataUsuario1, fragataUsuario2, fragataUsuario3, fragataUsuario4;
+    private BarcosPrincipal portavionIA, submarinoIA1, submarinoIA2, destructorIA1, destructorIA2, destructorIA3,
+            fragataIA1, fragataIA2, fragataIA3, fragataIA4;
     private int puntosUsuario, puntosIA, fragatas, destructores, submarinos, portaviones;
     private boolean ganarUsuario, ganarIA, turnoDeLaIA;
-
 
     /**
      * Constructor of ModelBatallaNaval class
@@ -213,7 +212,7 @@ public class ModelBatallaNaval {
      */
 
     public boolean determinarGanarIA() {
-        if (puntosUsuario == 20) {
+        if (puntosIA == 20) {
             ganarIA = true;
         } else {
             ganarIA = false;
@@ -449,6 +448,33 @@ public class ModelBatallaNaval {
     }
 
     /**
+     * This function deletes all the ships
+     */
+
+    public void borrarBarcos(){
+        portavionUsuario.clear();
+        submarinoUsuario1.clear();
+        submarinoUsuario2.clear();
+        destructorUsuario1.clear();
+        destructorUsuario2.clear();
+        destructorUsuario3.clear();
+        fragataUsuario1.clear();
+        fragataUsuario2.clear();
+        fragataUsuario3.clear();
+        fragataUsuario4.clear();
+        portavionIA.clear();
+        submarinoIA1.clear();
+        submarinoIA2.clear();
+        destructorIA1.clear();
+        destructorIA2.clear();
+        destructorIA3.clear();
+        fragataIA1.clear();
+        fragataIA2.clear();
+        fragataIA3.clear();
+        fragataIA4.clear();
+    }
+
+    /**
      * This method changes the value of turnoDeLaIA
      * @param turnoDeLaIA
      */
@@ -464,5 +490,23 @@ public class ModelBatallaNaval {
 
     public boolean getTurnoDeLaIA(){
         return this.turnoDeLaIA;
+    }
+
+    /**
+     * This method changes the value of puntosUsuario
+     * @param puntosUsuario
+     */
+
+    public void setPuntosUsuario(int puntosUsuario) {
+        this.puntosUsuario = puntosUsuario;
+    }
+
+    /**
+     * This method changes the value of puntosIA
+     * @param puntosIA
+     */
+
+    public void setPuntosIA(int puntosIA) {
+        this.puntosIA = puntosIA;
     }
 }

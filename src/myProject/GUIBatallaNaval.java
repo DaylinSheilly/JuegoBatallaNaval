@@ -23,10 +23,9 @@ public class GUIBatallaNaval extends JFrame {
     private CasillaPosicion[][] casillasPosicion;
     private CasillaPosicion casillaPosicionSeleccionada;
     private Escucha escucha;
-    private JPanel espacio1, espacio2, espacio3, espacio4, espacio5, espacio6, espacio7, panelInfo, panelOrientacion,
-            panelInstrucciones;
+    private JPanel espacio1, espacio2, espacio3, espacio4, espacio5, espacio6, espacio7, panelInfo, panelInstrucciones;
     private JTextArea instrucciones;
-    private JButton fragata, portavion, submarino, destructor, ayuda, salir, trampa, opcionHorizontal, opcionVertical;
+    private JButton fragata, portavion, submarino, destructor, ayuda, salir, trampa;
     private JLabel infoFallo, imagenFallo, infoImpacto, imagenImpacto, infoHundido, imagenHundido,
             indicativoTableroPosicion, indicativoTableroPrincipal, imagen;
     private ImageIcon unaImagen, imagenNuevoTamanho, imagenInstrucciones;
@@ -34,8 +33,8 @@ public class GUIBatallaNaval extends JFrame {
     private int cantidadFragatas, cantidadDestructores, cantidadSubmarinos, cantidadPortaviones, orientacion, marcadorBarcosIA;
     private boolean acceso, trampaAbilitada, enPartida = false;
     private String cualBarco = "";
-    private  static final String INSTRUCCIONES = "El obetivo del juego es derribar todos los barcos del oponente antes" +
-            " de que él derribe los tuyos. Si lo logras, habrás ganado la partida.\n"
+    private  static final String INSTRUCCIONES = "El obetivo del juego es derribar todos los barcos del oponente antes"
+            + " de que él derribe los tuyos. Si lo logras, habrás ganado la partida.\n"
             + "\nPara ubicar los barcos debes seleccionar el barco que deseas colocar, escoger su orientación"
             + " y colocarlo en el lugar deseado.\n"
             + "\nRecuerda que tienes una cantidad limitada de cada barco y cada uno ocupa un espacio diferente:\n"
@@ -46,7 +45,8 @@ public class GUIBatallaNaval extends JFrame {
             + "\nPara dispararle al enemigo, debes seleccionar casillas en el Tablero principal. En este tablero se"
             + " mostrarán íconos según: 1) No le das a ningún barco del enemigo (se muestra fallo), 2) Le das solo a una"
             + " parte del barco (se muestra impacto) y 3)"
-            + " Hundes el barco por completo (se muestra hundido).\n"
+            + " Hundes el barco por completo (se muestra hundido). Además, si cuando disparas aciertas, puedes seguir"
+            + " lanzando hasta fallar, sino pierdes turno y lanza el oponente. Para el oponente funciona igual.\n"
             + "\nEstos son los íconos:\n";
     private  static final String MENSAJE_INICIO = "¡Bienvenido a Batalla Naval!\n"
             + "\nComienza ubicando los barcos en el Tablero de posición.\n"
@@ -428,12 +428,6 @@ public class GUIBatallaNaval extends JFrame {
 
         //-------------------------------------------------------------------------------------------------------------------------
 
-        panelOrientacion = new JPanel();
-        opcionHorizontal = new JButton();
-        opcionVertical = new JButton();
-
-        //-------------------------------------------------------------------------------------------------------------------------
-
         ponerBarcosIA();
 
         revalidate();
@@ -685,7 +679,6 @@ public class GUIBatallaNaval extends JFrame {
 
     public void casillaADispararIA(){
         Random coordenadas = new Random();
-        Random time = new Random();
 
         int a = coordenadas.nextInt(10)+1;
         int b = coordenadas.nextInt(10)+1;
@@ -728,7 +721,7 @@ public class GUIBatallaNaval extends JFrame {
 
             for (int x = 0; x < 11; x++) {
                 for (int y = 0; y < 11; y++) {
-                    añadirEscuchasColocarBarcos();
+                    agregarEscuchasColocarBarcos();
                     if (e.getSource() == casillasPosicion[x][y]) {
                         casillaPosicionSeleccionada = casillasPosicion[x][y];
                         if (cualBarco.equals("fragata")) {
@@ -738,7 +731,7 @@ public class GUIBatallaNaval extends JFrame {
                                 cantidadFragatas--;
                                 game.casillasDelBote(casillaPosicionSeleccionada);
                             }
-                            añadirEscuchasColocarBarcos();
+                            agregarEscuchasColocarBarcos();
                             removerEscuchasTableroPosiciones();
                             break;
                         } else if (orientacion == 1) {
@@ -791,7 +784,7 @@ public class GUIBatallaNaval extends JFrame {
                                     cantidadPortaviones++;
                                 }
                             }
-                            añadirEscuchasColocarBarcos();
+                            agregarEscuchasColocarBarcos();
                             removerEscuchasTableroPosiciones();
                             break;
                         } else if (orientacion == 0) {
@@ -844,7 +837,7 @@ public class GUIBatallaNaval extends JFrame {
                                     cantidadPortaviones++;
                                 }
                             }
-                            añadirEscuchasColocarBarcos();
+                            agregarEscuchasColocarBarcos();
                             removerEscuchasTableroPosiciones();
                             break;
                         }
@@ -875,7 +868,7 @@ public class GUIBatallaNaval extends JFrame {
             } else if (e.getSource() == fragata) {
                 cualBarco = "fragata";
                 removerEscuchasColocarBarcos();
-                añadirEscuchasTableroPosiciones();
+                agregarEscuchasTableroPosiciones();
             } else if (e.getSource() == destructor) {
                 cualBarco = "destructor";
                 orientacion = JOptionPane.showOptionDialog(null, "Orientacion",
@@ -883,7 +876,7 @@ public class GUIBatallaNaval extends JFrame {
                         JOptionPane.QUESTION_MESSAGE, null,// null para icono por defecto.
                         new Object[]{"Vertical", "Horizontal"}, "opcion 1");
                 removerEscuchasColocarBarcos();
-                añadirEscuchasTableroPosiciones();
+                agregarEscuchasTableroPosiciones();
             } else if (e.getSource() == submarino) {
                 cualBarco = "submarino";
                 orientacion = JOptionPane.showOptionDialog(null, "Orientacion",
@@ -891,7 +884,7 @@ public class GUIBatallaNaval extends JFrame {
                         JOptionPane.QUESTION_MESSAGE, null,// null para icono por defecto.
                         new Object[]{"Vertical", "Horizontal"}, "opcion 1");
                 removerEscuchasColocarBarcos();
-                añadirEscuchasTableroPosiciones();
+                agregarEscuchasTableroPosiciones();
             } else if (e.getSource() == portavion) {
                 cualBarco = "portavion";
                 orientacion = JOptionPane.showOptionDialog(null, "Orientacion",
@@ -899,7 +892,7 @@ public class GUIBatallaNaval extends JFrame {
                         JOptionPane.QUESTION_MESSAGE, null,// null para icono por defecto.
                         new Object[]{"Vertical", "Horizontal"}, "opcion 1");
                 removerEscuchasColocarBarcos();
-                añadirEscuchasTableroPosiciones();
+                agregarEscuchasTableroPosiciones();
             } else if (e.getSource() == trampa) {
                 if (!acceso) {
                     String password = JOptionPane.showInputDialog("Digite la contraseña de " +
@@ -959,7 +952,7 @@ public class GUIBatallaNaval extends JFrame {
             if(!enPartida) {
                 removerEscuchasTableroPosiciones();
                 removerEscuchasColocarBarcos();
-                añadirEscuchasTableroPrincipal();
+                agregarEscuchasTableroPrincipal();
                 enPartida = true;
             }
         }
@@ -969,7 +962,7 @@ public class GUIBatallaNaval extends JFrame {
      * This function activates the position board listeners
      */
 
-    public void añadirEscuchasTableroPosiciones() {
+    public void agregarEscuchasTableroPosiciones() {
         for (int i = 0; i < 11; i++) {
             for (int j = 0; j < 11; j++) {
                 casillasPosicion[i][j].removeMouseListener(escucha);
@@ -994,7 +987,7 @@ public class GUIBatallaNaval extends JFrame {
      * This function activates the main board listeners
      */
 
-    public void añadirEscuchasTableroPrincipal() {
+    public void agregarEscuchasTableroPrincipal() {
         for (int i = 0; i < 11; i++) {
             for (int j = 0; j < 11; j++) {
                 casillasPrincipal[i][j].removeMouseListener(escucha);
@@ -1029,7 +1022,7 @@ public class GUIBatallaNaval extends JFrame {
     /**
      * This function activates the button listeners to insert ships
      */
-    public void añadirEscuchasColocarBarcos() {
+    public void agregarEscuchasColocarBarcos() {
         fragata.removeMouseListener(escucha);
         fragata.addMouseListener(escucha);
         destructor.removeMouseListener(escucha);
@@ -1044,18 +1037,51 @@ public class GUIBatallaNaval extends JFrame {
      * This function shows who is the winner
      */
 
-    public void ganar(){
-        if(game.determinarGanarUsuario()){
-            JOptionPane.showMessageDialog(null, "¡Felicidades!\n¡Has Ganado!");
+    public void ganar() {
+        if (game.determinarGanarUsuario()) {
+            JOptionPane.showMessageDialog(null, "¡Felicidades!\n¡Has Ganado!\n"
+                    + "\nLa partida se reiniciará automáticamente. Recuerda que puedes salirte en cualquier momento.");
+            removerEscuchasColocarBarcos();
+            removerEscuchasTableroPosiciones();
+            removerEscuchasTableroPrincipal();
+        } else if (game.determinarGanarIA()) {
+            JOptionPane.showMessageDialog(null, "El oponente ha ganado.\nHas perdido.\n"
+                    + "\nLa partida se reiniciará automáticamente. Recuerda que puedes salirte en cualquier momento.");
             removerEscuchasColocarBarcos();
             removerEscuchasTableroPosiciones();
             removerEscuchasTableroPrincipal();
         }
-        else if(game.determinarGanarIA()){
-            JOptionPane.showMessageDialog(null, "El oponente ha ganado.\nHas perdido.");
-            removerEscuchasColocarBarcos();
+        if (game.determinarGanarUsuario() || game.determinarGanarIA()) {
+
+            game.borrarBarcos();
+            ponerBarcosIA();
+            for (int i = 0; i < 11; i++) {
+                for (int j = 0; j < 11; j++) {
+                    casillasPosicion[i][j].setFueImpactada(false);
+                    casillasPosicion[i][j].setTieneBarco(false);
+                    casillasPosicion[i][j].pintarParteDelBarco("fondo");
+
+                    casillasPrincipal[i][j].setFueImpactada(false);
+                    casillasPrincipal[i][j].setTieneBarco(false);
+                    casillasPrincipal[i][j].pintarParteDelBarco("fondo");
+                }
+            }
+            game.setPuntosIA(0);
+            game.setPuntosUsuario(0);
+            cantidadFragatas = 4;
+            cantidadDestructores = 3;
+            cantidadSubmarinos = 2;
+            cantidadPortaviones = 1;
+            fragata.setVisible(true);
+            destructor.setVisible(true);
+            submarino.setVisible(true);
+            portavion.setVisible(true);
             removerEscuchasTableroPosiciones();
             removerEscuchasTableroPrincipal();
+            agregarEscuchasColocarBarcos();
+            trampaAbilitada = false;
+            trampa.setBackground(Color.white);
+            acceso = false;
         }
     }
 }

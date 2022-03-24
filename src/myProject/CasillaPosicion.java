@@ -8,10 +8,10 @@ import java.awt.*;
  */
 
 public class CasillaPosicion extends JButton {
-    private int fila, columna, insertarElBarco, resultadoDeTiro, resistenciaDeImpactos;
+    private int fila, columna, insertarElBarco, resultadoDeTiro;
     private String tipoDeBarco;
-    private boolean barcoCompleto, parteDelBarco, tieneBarco, fueImpactada;
-    private ImageIcon imageHundido, imagenNuevoTamanho, imageFallar;
+    private boolean tieneBarco, fueImpactada;
+    private ImageIcon imageHundido, imagenNuevoTamanho;
     private Image imagenOtroTamanho;
     private ImageIconToImage imageTransformada;
 
@@ -45,28 +45,21 @@ public class CasillaPosicion extends JButton {
         if (nombreDelBarco.equals("fragata")) {
             this.tipoDeBarco = nombreDelBarco;
             this.insertarElBarco = 1;
-            this.barcoCompleto = true;
             this.tieneBarco = true;
 
         } else if (nombreDelBarco.equals("destructor")) {
             this.tipoDeBarco = nombreDelBarco;
             this.insertarElBarco = 2;
-            this.barcoCompleto = false;
-            this.parteDelBarco = true;
             this.tieneBarco = true;
 
         } else if (nombreDelBarco.equals("submarino")) {
             this.tipoDeBarco = nombreDelBarco;
             this.insertarElBarco = 3;
-            this.barcoCompleto = false;
-            this.parteDelBarco = true;
             this.tieneBarco = true;
 
         } else if (nombreDelBarco.equals("portaviones")) {
             this.tipoDeBarco = nombreDelBarco;
             this.insertarElBarco = 4;
-            this.barcoCompleto = false;
-            this.parteDelBarco = true;
             this.tieneBarco = true;
 
         }
@@ -102,29 +95,24 @@ public class CasillaPosicion extends JButton {
             case 1:
                 g.setColor(Color.DARK_GRAY);
                 g.fillRect(0, 0, 46, 46);
-                resistenciaDeImpactos = 1;
                 break;
             case 2:
                 g.setColor(Color.pink);
                 g.fillRect(0, 0, 46, 46);
-                resistenciaDeImpactos = 2;
                 break;
             case 3:
                 g.setColor(Color.MAGENTA);
                 g.fillRect(0, 0, 46, 46);
-                resistenciaDeImpactos = 3;
                 break;
             case 4:
                 g.setColor(Color.ORANGE);
                 g.fillRect(0, 0, 46, 46);
-                resistenciaDeImpactos = 4;
                 break;
         }
         switch (resultadoDeTiro) {
             case 5:
                 g.setColor(Color.red);
                 g.fillRect(0, 0, 46, 46);
-                resistenciaDeImpactos = 4;
                 break;
             case 6:
                 imageHundido = new ImageIcon(getClass().getResource("/resources/hundido.png"));
@@ -135,7 +123,6 @@ public class CasillaPosicion extends JButton {
             case 7:
                 g.setColor(Color.cyan);
                 g.fillRect(0, 0, 46, 46);
-                resistenciaDeImpactos = 4;
                 break;
         }
     }

@@ -11,7 +11,7 @@ import java.awt.*;
 public class CasillaPrincipal extends JButton {
     private int fila, columna, resultadoDeTiro, insertarElBarco;
     private String tipoDeBarco;
-    private ImageIcon imageHundido, imagenNuevoTamanho, imageFallar;
+    private ImageIcon imageHundido, imagenNuevoTamanho;
     private Image imagenOtroTamanho;
     private ImageIconToImage imageTransformada;
     private boolean tieneBarco, fueImpactada;
@@ -112,7 +112,7 @@ public class CasillaPrincipal extends JButton {
         }
         switch (insertarElBarco) {
             case 1:
-                g.setColor(Color.BLACK);
+                g.setColor(Color.DARK_GRAY);
                 g.fillRect(0, 0, 46, 46);
                 break;
             case 2:
@@ -124,7 +124,7 @@ public class CasillaPrincipal extends JButton {
                 g.fillRect(0, 0, 46, 46);
                 break;
             case 4:
-                g.setColor(Color.BLUE);
+                g.setColor(Color.ORANGE);
                 g.fillRect(0, 0, 46, 46);
                 break;
             case 5:

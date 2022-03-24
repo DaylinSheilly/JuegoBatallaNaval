@@ -29,7 +29,7 @@ public class GUIBatallaNaval extends JFrame {
     private ImageIcon unaImagen, imagenNuevoTamanho;
     private Image imagenOtroTamanho;
     private int cantidadFragatas, cantidadDestructores, cantidadSubmarinos, cantidadPortaviones, orientacion, marcadorBarcosIA;
-    private boolean acceso, trampaAbilitada = false;
+    private boolean acceso, trampaAbilitada, enPartida = false;
     private String cualBarco = "";
 
     /**
@@ -558,43 +558,46 @@ public class GUIBatallaNaval extends JFrame {
                     if(orientacion==1){
                         if (b == 8) {
                             if(!(casillasPrincipal[a][b - 1].getTieneBarco() || casillaPrincipalSeleccionada.getTieneBarco() || casillasPrincipal[a][b + 1].getTieneBarco() || casillasPrincipal[a][b + 2].getTieneBarco())) {
+                                marcadorBarcosIA++;
                                 game.casillasDelBoteIA(casillasPrincipal[a][b - 1], casillaPrincipalSeleccionada, casillasPrincipal[a][b + 1], casillasPrincipal[a][b + 2]);
                             }
                         } else if (b == 9) {
                             if(!(casillasPrincipal[a][b - 2].getTieneBarco() || casillasPrincipal[a][b - 1].getTieneBarco() || casillaPrincipalSeleccionada.getTieneBarco() || casillasPrincipal[a][b + 1].getTieneBarco())) {
+                                marcadorBarcosIA++;
                                 game.casillasDelBoteIA(casillasPrincipal[a][b - 2], casillasPrincipal[a][b - 1], casillaPrincipalSeleccionada, casillasPrincipal[a][b + 1]);
                             }
                         } else if (b == 10) {
                             if(!(casillasPrincipal[a][b - 3].getTieneBarco() || casillasPrincipal[a][b - 2].getTieneBarco() || casillasPrincipal[a][b - 1].getTieneBarco() || casillaPrincipalSeleccionada.getTieneBarco())) {
+                                marcadorBarcosIA++;
                                 game.casillasDelBoteIA(casillasPrincipal[a][b - 3], casillasPrincipal[a][b - 2], casillasPrincipal[a][b - 1], casillaPrincipalSeleccionada);
                             }
                         } else if (!(casillaPrincipalSeleccionada.getTieneBarco() || casillasPrincipal[a][b + 1].getTieneBarco() || casillasPrincipal[a][b + 2].getTieneBarco() || casillasPrincipal[a][b + 3].getTieneBarco())) {
+                            marcadorBarcosIA++;
                             game.casillasDelBoteIA(casillaPrincipalSeleccionada, casillasPrincipal[a][b + 1], casillasPrincipal[a][b + 2], casillasPrincipal[a][b + 3]);
-                        }
-                        else{
-                            ponerBarcosIA();
                         }
                     }
                     else if(orientacion==0){
                         if (a == 8) {
                             if(!(casillasPrincipal[a - 1][b].getTieneBarco() || casillaPrincipalSeleccionada.getTieneBarco() || casillasPrincipal[a + 1][b].getTieneBarco() || casillasPrincipal[a + 2][b].getTieneBarco())) {
+                                marcadorBarcosIA++;
                                 game.casillasDelBoteIA(casillasPrincipal[a - 1][b], casillaPrincipalSeleccionada, casillasPrincipal[a + 1][b], casillasPrincipal[a + 2][b]);
                             }
                         } else if (a == 9) {
                             if(!(casillasPrincipal[a - 2][b].getTieneBarco() || casillasPrincipal[a - 1][b].getTieneBarco() || casillaPrincipalSeleccionada.getTieneBarco() || casillasPrincipal[a + 1][b].getTieneBarco())) {
+                                marcadorBarcosIA++;
                                 game.casillasDelBoteIA(casillasPrincipal[a - 2][b], casillasPrincipal[a - 1][b], casillaPrincipalSeleccionada, casillasPrincipal[a + 1][b]);
                             }
                         } else if (a == 10) {
                             if(!(casillasPrincipal[a - 3][b].getTieneBarco() || casillasPrincipal[a - 2][b].getTieneBarco() || casillasPrincipal[a - 1][b].getTieneBarco() || casillaPrincipalSeleccionada.getTieneBarco())) {
+                                marcadorBarcosIA++;
                                 game.casillasDelBoteIA(casillasPrincipal[a - 3][b], casillasPrincipal[a - 2][b], casillasPrincipal[a - 1][b], casillaPrincipalSeleccionada);
                             }
                         } else if (!(casillaPrincipalSeleccionada.getTieneBarco() || casillasPrincipal[a + 1][b].getTieneBarco() || casillasPrincipal[a + 2][b].getTieneBarco() || casillasPrincipal[a + 3][b].getTieneBarco())) {
+                            marcadorBarcosIA++;
                             game.casillasDelBoteIA(casillaPrincipalSeleccionada, casillasPrincipal[a + 1][b], casillasPrincipal[a + 2][b], casillasPrincipal[a + 3][b]);
                         }
-                        else {
-                            ponerBarcosIA();
-                        }
                     }
+                    ponerBarcosIA();
                     break;
             }
         }
@@ -657,6 +660,9 @@ public class GUIBatallaNaval extends JFrame {
                                 cantidadFragatas--;
                                 game.casillasDelBote(casillaPosicionSeleccionada);
                             }
+                            añadirEscuchasColocarBarcos();
+                            removerEscuchasTableroPosiciones();
+                            break;
                         } else if (orientacion == 1) {
                             if (cualBarco.equals("destructor")) {
                                 cantidadDestructores--;
@@ -766,7 +772,7 @@ public class GUIBatallaNaval extends JFrame {
                         }
                     }
                     if (e.getSource() == casillasPrincipal[x][y]) {
-                        if(!(game.getTurnoDeLaIA() & casillasPrincipal[x][y].getFueImpactada())){
+                        if(!(game.getTurnoDeLaIA())){
                             casillaPrincipalSeleccionada = casillasPrincipal[x][y];
                             game.dispararACasillaUsuario(casillaPrincipalSeleccionada);
                             casillaPrincipalSeleccionada.removeMouseListener(escucha);
@@ -843,6 +849,7 @@ public class GUIBatallaNaval extends JFrame {
                 }
             }
             ocultarBotonesBarcos();
+            ganar();
         }
     }
 
@@ -864,9 +871,12 @@ public class GUIBatallaNaval extends JFrame {
             portavion.setVisible(false);
         }
         if (cantidadFragatas <= 0 & cantidadSubmarinos <= 0 & cantidadDestructores <= 0 & cantidadPortaviones <= 0) {
-            removerEscuchasTableroPosiciones();
-            removerEscuchasColocarBarcos();
-            añadirEscuchasTableroPrincipal();
+            if(!enPartida) {
+                removerEscuchasTableroPosiciones();
+                removerEscuchasColocarBarcos();
+                añadirEscuchasTableroPrincipal();
+                enPartida = true;
+            }
         }
     }
 
@@ -943,6 +953,21 @@ public class GUIBatallaNaval extends JFrame {
         submarino.addMouseListener(escucha);
         portavion.removeMouseListener(escucha);
         portavion.addMouseListener(escucha);
+    }
+
+    public void ganar(){
+        if(game.determinarGanarUsuario()){
+            JOptionPane.showMessageDialog(null, "¡Felicidades!\n¡Has Ganado!");
+            removerEscuchasColocarBarcos();
+            removerEscuchasTableroPosiciones();
+            removerEscuchasTableroPrincipal();
+        }
+        else if(game.determinarGanarIA()){
+            JOptionPane.showMessageDialog(null, "El oponente ha ganado.\nHas perdido.");
+            removerEscuchasColocarBarcos();
+            removerEscuchasTableroPosiciones();
+            removerEscuchasTableroPrincipal();
+        }
     }
 }
 

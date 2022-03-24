@@ -8,10 +8,10 @@ import java.awt.*;
  */
 
 public class CasillaPosicion extends JButton {
-    private int fila, columna, insertarElBarco, resultadoDeTiro, resistenciaDeImpactos;
+    private int fila, columna, insertarElBarco, resultadoDeTiro;
     private String tipoDeBarco;
-    private boolean barcoCompleto, parteDelBarco, tieneBarco, fueImpactada;
-    private ImageIcon imageHundido, imagenNuevoTamanho, imageFallar;
+    private boolean tieneBarco, fueImpactada;
+    private ImageIcon imageHundido, imagenNuevoTamanho;
     private Image imagenOtroTamanho;
     private ImageIconToImage imageTransformada;
 
@@ -45,33 +45,31 @@ public class CasillaPosicion extends JButton {
         if (nombreDelBarco.equals("fragata")) {
             this.tipoDeBarco = nombreDelBarco;
             this.insertarElBarco = 1;
-            this.barcoCompleto = true;
             this.tieneBarco = true;
 
         } else if (nombreDelBarco.equals("destructor")) {
             this.tipoDeBarco = nombreDelBarco;
             this.insertarElBarco = 2;
-            this.barcoCompleto = false;
-            this.parteDelBarco = true;
             this.tieneBarco = true;
 
         } else if (nombreDelBarco.equals("submarino")) {
             this.tipoDeBarco = nombreDelBarco;
             this.insertarElBarco = 3;
-            this.barcoCompleto = false;
-            this.parteDelBarco = true;
             this.tieneBarco = true;
 
         } else if (nombreDelBarco.equals("portaviones")) {
             this.tipoDeBarco = nombreDelBarco;
             this.insertarElBarco = 4;
-            this.barcoCompleto = false;
-            this.parteDelBarco = true;
             this.tieneBarco = true;
 
         }
         repaint();
     }
+
+    /**
+     * This function displays an image depending on the shot
+     * @param resultadoDeTiro
+     */
 
     public void determinarPrecision(int resultadoDeTiro) {
         this.insertarElBarco=0;
@@ -95,31 +93,26 @@ public class CasillaPosicion extends JButton {
         super.paintComponent(g);
         switch (insertarElBarco) {
             case 1:
-                g.setColor(Color.BLACK);
+                g.setColor(Color.DARK_GRAY);
                 g.fillRect(0, 0, 46, 46);
-                resistenciaDeImpactos = 1;
                 break;
             case 2:
                 g.setColor(Color.pink);
                 g.fillRect(0, 0, 46, 46);
-                resistenciaDeImpactos = 2;
                 break;
             case 3:
                 g.setColor(Color.MAGENTA);
                 g.fillRect(0, 0, 46, 46);
-                resistenciaDeImpactos = 3;
                 break;
             case 4:
-                g.setColor(Color.BLUE);
+                g.setColor(Color.ORANGE);
                 g.fillRect(0, 0, 46, 46);
-                resistenciaDeImpactos = 4;
                 break;
         }
         switch (resultadoDeTiro) {
             case 5:
                 g.setColor(Color.red);
                 g.fillRect(0, 0, 46, 46);
-                resistenciaDeImpactos = 4;
                 break;
             case 6:
                 imageHundido = new ImageIcon(getClass().getResource("/resources/hundido.png"));
@@ -130,70 +123,43 @@ public class CasillaPosicion extends JButton {
             case 7:
                 g.setColor(Color.cyan);
                 g.fillRect(0, 0, 46, 46);
-                resistenciaDeImpactos = 4;
                 break;
         }
     }
 
     /**
-     * In this method, the ships are drawn and placed inside the square
-     * @return fila
+     * This method changes the value of tieneBarco
+     * @param tieneBarco
      */
-
-    public int getFila() {
-        return fila;
-    }
-
-    /**
-     * This method gets the column of the button
-     * @return columna
-     */
-    public int getColumna() {
-        return columna;
-    }
-
-    /**
-     * This method tells if the square has the whole ship or not
-     * @param casilla
-     * @return if you have the whole boat or not
-     */
-
-    public boolean getBarcoCompleto(CasillaPosicion casilla) {
-        return casilla.barcoCompleto;
-    }
-
-    /**
-     * This method tells if you have a ship part or not
-     * @return if you have a part of the boat or not
-     */
-
-    public boolean isParteDelBarco() {
-        return parteDelBarco;
-    }
-
-    public int getResistenciaDeImpactos() {
-        return resistenciaDeImpactos;
-    }
 
     public void setTieneBarco(boolean tieneBarco) {
         this.tieneBarco = tieneBarco;
     }
 
-    public boolean isTieneBarco() {
-        return tieneBarco;
-    }
 
     public void setTipoDeBarco(String nombreDelBarco) {
         this.tipoDeBarco = nombreDelBarco;
     }
 
+    /**
+     * This method gets the ship from the square that is painted on it
+     * @return the ship from the square that is painted on it
+     */
+
     public String getTipoDeBarco() {
         return tipoDeBarco;
     }
 
+    /**
+     * This method changes the value of fueImpactda
+     * @param fueImpactada
+     */
+
     public void setFueImpactada(boolean fueImpactada) {
         this.fueImpactada = fueImpactada;
     }
+
+
 
     public boolean getFueImpactada() {
         return fueImpactada;

@@ -25,11 +25,11 @@ public class GUIBatallaNaval extends JFrame {
     private Escucha escucha;
     private JPanel espacio1, espacio2, espacio3, espacio4, espacio5, espacio6, espacio7, panelInfo, panelOrientacion;
     private JButton fragata, portavion, submarino, destructor, ayuda, salir, trampa, opcionHorizontal, opcionVertical;
-    private JLabel infoFallo, imagenFallo, infoImpacto, infoHundido, imagenHundido;
+    private JLabel infoFallo, imagenFallo, infoImpacto, imagenImpacto, infoHundido, imagenHundido;
     private ImageIcon unaImagen, imagenNuevoTamanho;
     private Image imagenOtroTamanho;
     private int cantidadFragatas, cantidadDestructores, cantidadSubmarinos, cantidadPortaviones, orientacion, marcadorBarcosIA;
-    private boolean acceso, trampaAbilitada = false;
+    private boolean acceso, trampaAbilitada, enPartida = false;
     private String cualBarco = "";
 
     /**
@@ -112,7 +112,7 @@ public class GUIBatallaNaval extends JFrame {
         //-------------------------------------------------------------------------------------------------------------------------
 
         fragata = new JButton();
-        unaImagen = new ImageIcon(getClass().getResource("/resources/1.png"));
+        unaImagen = new ImageIcon(getClass().getResource("/resources/1.PNG"));
         imagenOtroTamanho = unaImagen.getImage().getScaledInstance(25, 25, Image.SCALE_SMOOTH);
         imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
         fragata.setIcon(imagenNuevoTamanho);
@@ -127,7 +127,7 @@ public class GUIBatallaNaval extends JFrame {
         //-------------------------------------------------------------------------------------------------------------------------
 
         destructor = new JButton();
-        unaImagen = new ImageIcon(getClass().getResource("/resources/2.png"));
+        unaImagen = new ImageIcon(getClass().getResource("/resources/2.PNG"));
         imagenOtroTamanho = unaImagen.getImage().getScaledInstance(50, 25, Image.SCALE_SMOOTH);
         imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
         destructor.setIcon(imagenNuevoTamanho);
@@ -142,7 +142,7 @@ public class GUIBatallaNaval extends JFrame {
         //-------------------------------------------------------------------------------------------------------------------------
 
         submarino = new JButton();
-        unaImagen = new ImageIcon(getClass().getResource("/resources/3.png"));
+        unaImagen = new ImageIcon(getClass().getResource("/resources/3.PNG"));
         imagenOtroTamanho = unaImagen.getImage().getScaledInstance(75, 25, Image.SCALE_SMOOTH);
         imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
         submarino.setIcon(imagenNuevoTamanho);
@@ -157,7 +157,7 @@ public class GUIBatallaNaval extends JFrame {
         //-------------------------------------------------------------------------------------------------------------------------
 
         portavion = new JButton();
-        unaImagen = new ImageIcon(getClass().getResource("/resources/4.png"));
+        unaImagen = new ImageIcon(getClass().getResource("/resources/4.PNG"));
         imagenOtroTamanho = unaImagen.getImage().getScaledInstance(100, 25, Image.SCALE_SMOOTH);
         imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
         portavion.setIcon(imagenNuevoTamanho);
@@ -394,11 +394,11 @@ public class GUIBatallaNaval extends JFrame {
         panelInfo.add(infoFallo, constraintsPanelInfo);
 
         imagenFallo = new JLabel();
-        unaImagen = new ImageIcon(getClass().getResource("/resources/fallar.png"));
-        imagenOtroTamanho = unaImagen.getImage().getScaledInstance(47, 75, Image.SCALE_SMOOTH);
+        unaImagen = new ImageIcon(getClass().getResource("/resources/fallar.PNG"));
+        imagenOtroTamanho = unaImagen.getImage().getScaledInstance(46, 46, Image.SCALE_SMOOTH);
         imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
         imagenFallo.setIcon(imagenNuevoTamanho);
-        imagenFallo.setPreferredSize(new Dimension(47, 75));
+        imagenFallo.setPreferredSize(new Dimension(46, 46));
         constraintsPanelInfo.gridx = 0;
         constraintsPanelInfo.gridy = 0;
         constraintsPanelInfo.fill = GridBagConstraints.CENTER;
@@ -421,20 +421,23 @@ public class GUIBatallaNaval extends JFrame {
 
         panelInfo.add(infoImpacto, constraintsPanelInfo);
 
-        infoImpacto = new JLabel("\uF0FB");
-        infoImpacto.setFont(new Font("SansSerif", Font.BOLD + Font.PLAIN, 50));
-        infoImpacto.setForeground(Color.red);
-        infoImpacto.setBackground(Color.white);
-        infoImpacto.setPreferredSize(new Dimension(100, 75));
-        infoImpacto.setAlignmentY(SwingConstants.CENTER);
-        infoImpacto.setHorizontalAlignment(JLabel.CENTER);
-        infoImpacto.setVerticalAlignment(JLabel.CENTER);
+        imagenImpacto = new JLabel();
+        unaImagen = new ImageIcon(getClass().getResource("/resources/acierto.PNG"));
+        imagenOtroTamanho = unaImagen.getImage().getScaledInstance(46, 46, Image.SCALE_SMOOTH);
+        imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
+        imagenImpacto.setIcon(imagenNuevoTamanho);
+        imagenImpacto.setForeground(Color.red);
+        imagenImpacto.setBackground(Color.white);
+        imagenImpacto.setPreferredSize(new Dimension(46, 46));
+        imagenImpacto.setAlignmentY(SwingConstants.CENTER);
+        imagenImpacto.setHorizontalAlignment(JLabel.CENTER);
+        imagenImpacto.setVerticalAlignment(JLabel.CENTER);
         constraintsPanelInfo.gridx = 0;
         constraintsPanelInfo.gridy = 1;
         constraintsPanelInfo.fill = GridBagConstraints.CENTER;
         constraintsPanelInfo.anchor = GridBagConstraints.CENTER;
 
-        panelInfo.add(infoImpacto, constraintsPanelInfo);
+        panelInfo.add(imagenImpacto, constraintsPanelInfo);
 
         infoHundido = new JLabel("Hundido");
         infoHundido.setFont(new Font("SansSerif", Font.BOLD + Font.PLAIN, 14));
@@ -555,41 +558,46 @@ public class GUIBatallaNaval extends JFrame {
                     if(orientacion==1){
                         if (b == 8) {
                             if(!(casillasPrincipal[a][b - 1].getTieneBarco() || casillaPrincipalSeleccionada.getTieneBarco() || casillasPrincipal[a][b + 1].getTieneBarco() || casillasPrincipal[a][b + 2].getTieneBarco())) {
+                                marcadorBarcosIA++;
                                 game.casillasDelBoteIA(casillasPrincipal[a][b - 1], casillaPrincipalSeleccionada, casillasPrincipal[a][b + 1], casillasPrincipal[a][b + 2]);
                             }
                         } else if (b == 9) {
                             if(!(casillasPrincipal[a][b - 2].getTieneBarco() || casillasPrincipal[a][b - 1].getTieneBarco() || casillaPrincipalSeleccionada.getTieneBarco() || casillasPrincipal[a][b + 1].getTieneBarco())) {
+                                marcadorBarcosIA++;
                                 game.casillasDelBoteIA(casillasPrincipal[a][b - 2], casillasPrincipal[a][b - 1], casillaPrincipalSeleccionada, casillasPrincipal[a][b + 1]);
                             }
                         } else if (b == 10) {
                             if(!(casillasPrincipal[a][b - 3].getTieneBarco() || casillasPrincipal[a][b - 2].getTieneBarco() || casillasPrincipal[a][b - 1].getTieneBarco() || casillaPrincipalSeleccionada.getTieneBarco())) {
+                                marcadorBarcosIA++;
                                 game.casillasDelBoteIA(casillasPrincipal[a][b - 3], casillasPrincipal[a][b - 2], casillasPrincipal[a][b - 1], casillaPrincipalSeleccionada);
                             }
                         } else if (!(casillaPrincipalSeleccionada.getTieneBarco() || casillasPrincipal[a][b + 1].getTieneBarco() || casillasPrincipal[a][b + 2].getTieneBarco() || casillasPrincipal[a][b + 3].getTieneBarco())) {
+                            marcadorBarcosIA++;
                             game.casillasDelBoteIA(casillaPrincipalSeleccionada, casillasPrincipal[a][b + 1], casillasPrincipal[a][b + 2], casillasPrincipal[a][b + 3]);
-                        }
-                        else{
                         }
                     }
                     else if(orientacion==0){
                         if (a == 8) {
                             if(!(casillasPrincipal[a - 1][b].getTieneBarco() || casillaPrincipalSeleccionada.getTieneBarco() || casillasPrincipal[a + 1][b].getTieneBarco() || casillasPrincipal[a + 2][b].getTieneBarco())) {
+                                marcadorBarcosIA++;
                                 game.casillasDelBoteIA(casillasPrincipal[a - 1][b], casillaPrincipalSeleccionada, casillasPrincipal[a + 1][b], casillasPrincipal[a + 2][b]);
                             }
                         } else if (a == 9) {
                             if(!(casillasPrincipal[a - 2][b].getTieneBarco() || casillasPrincipal[a - 1][b].getTieneBarco() || casillaPrincipalSeleccionada.getTieneBarco() || casillasPrincipal[a + 1][b].getTieneBarco())) {
+                                marcadorBarcosIA++;
                                 game.casillasDelBoteIA(casillasPrincipal[a - 2][b], casillasPrincipal[a - 1][b], casillaPrincipalSeleccionada, casillasPrincipal[a + 1][b]);
                             }
                         } else if (a == 10) {
                             if(!(casillasPrincipal[a - 3][b].getTieneBarco() || casillasPrincipal[a - 2][b].getTieneBarco() || casillasPrincipal[a - 1][b].getTieneBarco() || casillaPrincipalSeleccionada.getTieneBarco())) {
+                                marcadorBarcosIA++;
                                 game.casillasDelBoteIA(casillasPrincipal[a - 3][b], casillasPrincipal[a - 2][b], casillasPrincipal[a - 1][b], casillaPrincipalSeleccionada);
                             }
                         } else if (!(casillaPrincipalSeleccionada.getTieneBarco() || casillasPrincipal[a + 1][b].getTieneBarco() || casillasPrincipal[a + 2][b].getTieneBarco() || casillasPrincipal[a + 3][b].getTieneBarco())) {
+                            marcadorBarcosIA++;
                             game.casillasDelBoteIA(casillaPrincipalSeleccionada, casillasPrincipal[a + 1][b], casillasPrincipal[a + 2][b], casillasPrincipal[a + 3][b]);
                         }
-                        else {
-                        }
                     }
+                    ponerBarcosIA();
                     break;
             }
         }
@@ -652,6 +660,9 @@ public class GUIBatallaNaval extends JFrame {
                                 cantidadFragatas--;
                                 game.casillasDelBote(casillaPosicionSeleccionada);
                             }
+                            añadirEscuchasColocarBarcos();
+                            removerEscuchasTableroPosiciones();
+                            break;
                         } else if (orientacion == 1) {
                             if (cualBarco.equals("destructor")) {
                                 cantidadDestructores--;
@@ -764,6 +775,7 @@ public class GUIBatallaNaval extends JFrame {
                         if(!(game.getTurnoDeLaIA())){
                             casillaPrincipalSeleccionada = casillasPrincipal[x][y];
                             game.dispararACasillaUsuario(casillaPrincipalSeleccionada);
+                            casillaPrincipalSeleccionada.removeMouseListener(escucha);
                         }
                         if(game.getTurnoDeLaIA()) {
                             casillaADispararIA();
@@ -806,24 +818,25 @@ public class GUIBatallaNaval extends JFrame {
                 añadirEscuchasTableroPosiciones();
             } else if (e.getSource() == trampa) {
                 if (!acceso) {
-                    String password = JOptionPane.showInputDialog("Digite la contraseña de permisos de administrador");
-                    if (password.equals("Profe ponga 5.0 por favor")) {
-                        JOptionPane.showMessageDialog(null, "Contraseña Correcta");
+                    //String password = JOptionPane.showInputDialog("Digite la contraseña de permisos de administrador");
+                    //if (password.equals("Profe ponga 5.0 por favor")) {
+                    //    JOptionPane.showMessageDialog(null, "Contraseña Correcta");
                         trampa.setBackground(new Color(146, 208, 80));
                         acceso = true;
                         trampaAbilitada = true;
                         game.pintarBotesRival();
-                    } else {
+                    /*} else {
                         trampa.setVisible(false);
                         JOptionPane.showMessageDialog(null, "Para reintentar debes reabrir el juego");
                         acceso = false;
-                    }
+                    }*/
                 } else {
                     if (trampaAbilitada) {
                         trampa.setBackground(new Color(231, 230, 230));
                         trampaAbilitada = false;
                         for (int i = 0; i < 11; i++) {
                             for (int j = 0; j < 11; j++) {
+                                if(!(casillasPrincipal[i][j].getFueImpactada()))
                                 casillasPrincipal[i][j].pintarParteDelBarco("fondo");
                             }
                         }
@@ -836,6 +849,7 @@ public class GUIBatallaNaval extends JFrame {
                 }
             }
             ocultarBotonesBarcos();
+            ganar();
         }
     }
 
@@ -857,9 +871,12 @@ public class GUIBatallaNaval extends JFrame {
             portavion.setVisible(false);
         }
         if (cantidadFragatas <= 0 & cantidadSubmarinos <= 0 & cantidadDestructores <= 0 & cantidadPortaviones <= 0) {
-            removerEscuchasTableroPosiciones();
-            removerEscuchasColocarBarcos();
-            añadirEscuchasTableroPrincipal();
+            if(!enPartida) {
+                removerEscuchasTableroPosiciones();
+                removerEscuchasColocarBarcos();
+                añadirEscuchasTableroPrincipal();
+                enPartida = true;
+            }
         }
     }
 
@@ -936,6 +953,21 @@ public class GUIBatallaNaval extends JFrame {
         submarino.addMouseListener(escucha);
         portavion.removeMouseListener(escucha);
         portavion.addMouseListener(escucha);
+    }
+
+    public void ganar(){
+        if(game.determinarGanarUsuario()){
+            JOptionPane.showMessageDialog(null, "¡Felicidades!\n¡Has Ganado!");
+            removerEscuchasColocarBarcos();
+            removerEscuchasTableroPosiciones();
+            removerEscuchasTableroPrincipal();
+        }
+        else if(game.determinarGanarIA()){
+            JOptionPane.showMessageDialog(null, "El oponente ha ganado.\nHas perdido.");
+            removerEscuchasColocarBarcos();
+            removerEscuchasTableroPosiciones();
+            removerEscuchasTableroPrincipal();
+        }
     }
 }
 

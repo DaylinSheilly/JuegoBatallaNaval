@@ -178,5 +178,9 @@ public class CasillaPrincipal extends JButton {
     public void setFueImpactada(boolean fueImpactada) {
         this.fueImpactada = fueImpactada;
     }
+
+    public boolean getFueImpactada() {
+        return fueImpactada;
+    }
 }
 

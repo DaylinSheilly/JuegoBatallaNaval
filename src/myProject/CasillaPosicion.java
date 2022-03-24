@@ -100,7 +100,7 @@ public class CasillaPosicion extends JButton {
         super.paintComponent(g);
         switch (insertarElBarco) {
             case 1:
-                g.setColor(Color.BLACK);
+                g.setColor(Color.DARK_GRAY);
                 g.fillRect(0, 0, 46, 46);
                 resistenciaDeImpactos = 1;
                 break;
@@ -115,7 +115,7 @@ public class CasillaPosicion extends JButton {
                 resistenciaDeImpactos = 3;
                 break;
             case 4:
-                g.setColor(Color.BLUE);
+                g.setColor(Color.ORANGE);
                 g.fillRect(0, 0, 46, 46);
                 resistenciaDeImpactos = 4;
                 break;
@@ -149,6 +149,11 @@ public class CasillaPosicion extends JButton {
         this.tieneBarco = tieneBarco;
     }
 
+
+    public void setTipoDeBarco(String nombreDelBarco) {
+        this.tipoDeBarco = nombreDelBarco;
+    }
+
     /**
      * This method gets the ship from the square that is painted on it
      * @return the ship from the square that is painted on it
@@ -165,6 +170,12 @@ public class CasillaPosicion extends JButton {
 
     public void setFueImpactada(boolean fueImpactada) {
         this.fueImpactada = fueImpactada;
+    }
+
+
+
+    public boolean getFueImpactada() {
+        return fueImpactada;
     }
 
     /**

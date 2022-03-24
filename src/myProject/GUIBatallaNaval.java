@@ -25,7 +25,7 @@ public class GUIBatallaNaval extends JFrame {
     private Escucha escucha;
     private JPanel espacio1, espacio2, espacio3, espacio4, espacio5, espacio6, espacio7, panelInfo, panelOrientacion;
     private JButton fragata, portavion, submarino, destructor, ayuda, salir, trampa, opcionHorizontal, opcionVertical;
-    private JLabel infoFallo, imagenFallo, infoImpacto, infoHundido, imagenHundido;
+    private JLabel infoFallo, imagenFallo, infoImpacto, imagenImpacto, infoHundido, imagenHundido;
     private ImageIcon unaImagen, imagenNuevoTamanho;
     private Image imagenOtroTamanho;
     private int cantidadFragatas, cantidadDestructores, cantidadSubmarinos, cantidadPortaviones, orientacion, marcadorBarcosIA;
@@ -112,7 +112,7 @@ public class GUIBatallaNaval extends JFrame {
         //-------------------------------------------------------------------------------------------------------------------------
 
         fragata = new JButton();
-        unaImagen = new ImageIcon(getClass().getResource("/resources/1.png"));
+        unaImagen = new ImageIcon(getClass().getResource("/resources/1.PNG"));
         imagenOtroTamanho = unaImagen.getImage().getScaledInstance(25, 25, Image.SCALE_SMOOTH);
         imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
         fragata.setIcon(imagenNuevoTamanho);
@@ -127,7 +127,7 @@ public class GUIBatallaNaval extends JFrame {
         //-------------------------------------------------------------------------------------------------------------------------
 
         destructor = new JButton();
-        unaImagen = new ImageIcon(getClass().getResource("/resources/2.png"));
+        unaImagen = new ImageIcon(getClass().getResource("/resources/2.PNG"));
         imagenOtroTamanho = unaImagen.getImage().getScaledInstance(50, 25, Image.SCALE_SMOOTH);
         imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
         destructor.setIcon(imagenNuevoTamanho);
@@ -142,7 +142,7 @@ public class GUIBatallaNaval extends JFrame {
         //-------------------------------------------------------------------------------------------------------------------------
 
         submarino = new JButton();
-        unaImagen = new ImageIcon(getClass().getResource("/resources/3.png"));
+        unaImagen = new ImageIcon(getClass().getResource("/resources/3.PNG"));
         imagenOtroTamanho = unaImagen.getImage().getScaledInstance(75, 25, Image.SCALE_SMOOTH);
         imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
         submarino.setIcon(imagenNuevoTamanho);
@@ -157,7 +157,7 @@ public class GUIBatallaNaval extends JFrame {
         //-------------------------------------------------------------------------------------------------------------------------
 
         portavion = new JButton();
-        unaImagen = new ImageIcon(getClass().getResource("/resources/4.png"));
+        unaImagen = new ImageIcon(getClass().getResource("/resources/4.PNG"));
         imagenOtroTamanho = unaImagen.getImage().getScaledInstance(100, 25, Image.SCALE_SMOOTH);
         imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
         portavion.setIcon(imagenNuevoTamanho);
@@ -394,11 +394,11 @@ public class GUIBatallaNaval extends JFrame {
         panelInfo.add(infoFallo, constraintsPanelInfo);
 
         imagenFallo = new JLabel();
-        unaImagen = new ImageIcon(getClass().getResource("/resources/fallar.png"));
-        imagenOtroTamanho = unaImagen.getImage().getScaledInstance(47, 75, Image.SCALE_SMOOTH);
+        unaImagen = new ImageIcon(getClass().getResource("/resources/fallar.PNG"));
+        imagenOtroTamanho = unaImagen.getImage().getScaledInstance(46, 46, Image.SCALE_SMOOTH);
         imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
         imagenFallo.setIcon(imagenNuevoTamanho);
-        imagenFallo.setPreferredSize(new Dimension(47, 75));
+        imagenFallo.setPreferredSize(new Dimension(46, 46));
         constraintsPanelInfo.gridx = 0;
         constraintsPanelInfo.gridy = 0;
         constraintsPanelInfo.fill = GridBagConstraints.CENTER;
@@ -421,20 +421,23 @@ public class GUIBatallaNaval extends JFrame {
 
         panelInfo.add(infoImpacto, constraintsPanelInfo);
 
-        infoImpacto = new JLabel("\uF0FB");
-        infoImpacto.setFont(new Font("SansSerif", Font.BOLD + Font.PLAIN, 50));
-        infoImpacto.setForeground(Color.red);
-        infoImpacto.setBackground(Color.white);
-        infoImpacto.setPreferredSize(new Dimension(100, 75));
-        infoImpacto.setAlignmentY(SwingConstants.CENTER);
-        infoImpacto.setHorizontalAlignment(JLabel.CENTER);
-        infoImpacto.setVerticalAlignment(JLabel.CENTER);
+        imagenImpacto = new JLabel();
+        unaImagen = new ImageIcon(getClass().getResource("/resources/acierto.PNG"));
+        imagenOtroTamanho = unaImagen.getImage().getScaledInstance(46, 46, Image.SCALE_SMOOTH);
+        imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
+        imagenImpacto.setIcon(imagenNuevoTamanho);
+        imagenImpacto.setForeground(Color.red);
+        imagenImpacto.setBackground(Color.white);
+        imagenImpacto.setPreferredSize(new Dimension(46, 46));
+        imagenImpacto.setAlignmentY(SwingConstants.CENTER);
+        imagenImpacto.setHorizontalAlignment(JLabel.CENTER);
+        imagenImpacto.setVerticalAlignment(JLabel.CENTER);
         constraintsPanelInfo.gridx = 0;
         constraintsPanelInfo.gridy = 1;
         constraintsPanelInfo.fill = GridBagConstraints.CENTER;
         constraintsPanelInfo.anchor = GridBagConstraints.CENTER;
 
-        panelInfo.add(infoImpacto, constraintsPanelInfo);
+        panelInfo.add(imagenImpacto, constraintsPanelInfo);
 
         infoHundido = new JLabel("Hundido");
         infoHundido.setFont(new Font("SansSerif", Font.BOLD + Font.PLAIN, 14));
@@ -761,7 +764,7 @@ public class GUIBatallaNaval extends JFrame {
                         }
                     }
                     if (e.getSource() == casillasPrincipal[x][y]) {
-                        if(!(game.getTurnoDeLaIA())){
+                        if(!(game.getTurnoDeLaIA() & casillasPrincipal[x][y].getFueImpactada())){
                             casillaPrincipalSeleccionada = casillasPrincipal[x][y];
                             game.dispararACasillaUsuario(casillaPrincipalSeleccionada);
                         }

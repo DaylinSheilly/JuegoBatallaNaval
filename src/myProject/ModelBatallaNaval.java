@@ -221,6 +221,14 @@ public class ModelBatallaNaval {
         return ganarIA;
     }
 
+    /**
+     * This function is to create the opponent's aircraft carrier
+     * @param parte1
+     * @param parte2
+     * @param parte3
+     * @param parte4
+     */
+
     public void casillasDelBoteIA(CasillaPrincipal parte1, CasillaPrincipal parte2,
                                   CasillaPrincipal parte3, CasillaPrincipal parte4) {
         parte1.setTieneBarco(true);
@@ -233,6 +241,13 @@ public class ModelBatallaNaval {
         parte4.setTipoDeBarco("portaviones");
         portavionIA = new BarcosPrincipal(parte1, parte2, parte3, parte4);
     }
+
+    /**
+     * This function is to create the opponent's submarine
+     * @param parte1
+     * @param parte2
+     * @param parte3
+     */
 
     public void casillasDelBoteIA(CasillaPrincipal parte1, CasillaPrincipal parte2,
                                   CasillaPrincipal parte3) {
@@ -251,6 +266,12 @@ public class ModelBatallaNaval {
         }
     }
 
+    /**
+     * This function is to create the opponent's destructor
+     * @param parte1
+     * @param parte2
+     */
+
     public void casillasDelBoteIA(CasillaPrincipal parte1, CasillaPrincipal parte2) {
         parte1.setTieneBarco(true);
         parte2.setTieneBarco(true);
@@ -267,6 +288,11 @@ public class ModelBatallaNaval {
             destructores = 0;
         }
     }
+
+    /**
+     * This function is to create the opponent's frigate
+     * @param parte1
+     */
 
     public void casillasDelBoteIA(CasillaPrincipal parte1) {
         parte1.setTieneBarco(true);
@@ -285,6 +311,10 @@ public class ModelBatallaNaval {
             fragatas = 0;
         }
     }
+
+    /**
+     * This function paints the opponent's pots
+     */
 
     public void pintarBotesRival(){
         if(!(fragataIA1.get(0).getFueImpactada())) {
@@ -348,6 +378,11 @@ public class ModelBatallaNaval {
             portavionIA.get(3).pintarParteDelBarco("portaviones");
         }
     }
+
+    /**
+     * This function makes the opponent shoot at the player's squares
+     * @param casilla
+     */
 
     public void dispararACasillaIA(CasillaPosicion casilla){
         casilla.setFueImpactada(true);
@@ -413,9 +448,20 @@ public class ModelBatallaNaval {
         }
     }
 
+    /**
+     * This method changes the value of turnoDeLaIA
+     * @param turnoDeLaIA
+     */
+
     public void setTurnoDeLaIA(boolean turnoDeLaIA) {
         this.turnoDeLaIA = turnoDeLaIA;
     }
+
+    /**
+     * This method gets the opponent's turn
+     * @return turnoDeLaIA
+     */
+
     public boolean getTurnoDeLaIA(){
         return this.turnoDeLaIA;
     }

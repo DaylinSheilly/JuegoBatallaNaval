@@ -179,6 +179,10 @@ public class CasillaPrincipal extends JButton {
         this.fueImpactada = fueImpactada;
     }
 
+    /**
+     * This method gets if the ship was hit or not
+     * @return fueImpactada
+     */
     public boolean getFueImpactada() {
         return fueImpactada;
     }

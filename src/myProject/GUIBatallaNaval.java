@@ -23,14 +23,34 @@ public class GUIBatallaNaval extends JFrame {
     private CasillaPosicion[][] casillasPosicion;
     private CasillaPosicion casillaPosicionSeleccionada;
     private Escucha escucha;
-    private JPanel espacio1, espacio2, espacio3, espacio4, espacio5, espacio6, espacio7, panelInfo, panelOrientacion;
+    private JPanel espacio1, espacio2, espacio3, espacio4, espacio5, espacio6, espacio7, panelInfo, panelOrientacion,
+            panelInstrucciones;
+    private JTextArea instrucciones;
     private JButton fragata, portavion, submarino, destructor, ayuda, salir, trampa, opcionHorizontal, opcionVertical;
-    private JLabel infoFallo, imagenFallo, infoImpacto, imagenImpacto, infoHundido, imagenHundido;
-    private ImageIcon unaImagen, imagenNuevoTamanho;
+    private JLabel infoFallo, imagenFallo, infoImpacto, imagenImpacto, infoHundido, imagenHundido,
+            indicativoTableroPosicion, indicativoTableroPrincipal, imagen;
+    private ImageIcon unaImagen, imagenNuevoTamanho, imagenInstrucciones;
     private Image imagenOtroTamanho;
     private int cantidadFragatas, cantidadDestructores, cantidadSubmarinos, cantidadPortaviones, orientacion, marcadorBarcosIA;
     private boolean acceso, trampaAbilitada, enPartida = false;
     private String cualBarco = "";
+    private  static final String INSTRUCCIONES = "El obetivo del juego es derribar todos los barcos del oponente antes" +
+            " de que él derribe los tuyos. Si lo logras, habrás ganado la partida.\n"
+            + "\nPara ubicar los barcos debes seleccionar el barco que deseas colocar, escoger su orientación"
+            + " y colocarlo en el lugar deseado.\n"
+            + "\nRecuerda que tienes una cantidad limitada de cada barco y cada uno ocupa un espacio diferente:\n"
+            + "\nFragata: es de color negro y ocupa un espacio. Posees 4 de ellas.\n"
+            + "Destructor: es de color piel y ocupa 2 espacios. Posees 3 de ellos.\n"
+            + "Submarino: es de color rosa y ocupa 3 espacios. Posees 2 de ellos.\n"
+            + "Portavión: es de color amarillo y ocupa 4 espacios. Posees solo 1.\n"
+            + "\nPara dispararle al enemigo, debes seleccionar casillas en el Tablero principal. En este tablero se"
+            + " mostrarán íconos según: 1) No le das a ningún barco del enemigo (se muestra fallo), 2) Le das solo a una"
+            + " parte del barco (se muestra impacto) y 3)"
+            + " Hundes el barco por completo (se muestra hundido).\n"
+            + "\nEstos son los íconos:\n";
+    private  static final String MENSAJE_INICIO = "¡Bienvenido a Batalla Naval!\n"
+            + "\nComienza ubicando los barcos en el Tablero de posición.\n"
+            + "\n¡Buena suerte!";
 
     /**
      * Constructor of GUIBatallaNaval class
@@ -41,13 +61,12 @@ public class GUIBatallaNaval extends JFrame {
 
         //Default JFrame configuration
         this.setTitle("Batalla Naval");
-        //this.setSize(1320,700);
         this.pack();
-        this.setResizable(true);
+        this.setResizable(false);
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBackground(new Color(208, 206, 206));
+        this.getContentPane().setBackground(new Color(73, 255, 0));
     }
 
     /**
@@ -64,6 +83,28 @@ public class GUIBatallaNaval extends JFrame {
         game = new ModelBatallaNaval();
         //Set up JComponents
 
+        imagenInstrucciones = new ImageIcon(getClass().getResource("/resources/instrucciones.PNG"));
+        imagenOtroTamanho = imagenInstrucciones.getImage().getScaledInstance(300,500,Image.SCALE_SMOOTH);
+        imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
+
+        imagen = new JLabel(imagenNuevoTamanho);
+
+        panelInstrucciones = new JPanel();
+        panelInstrucciones.setPreferredSize(new Dimension(350,900));
+        panelInstrucciones.setBackground(Color.WHITE);
+        panelInstrucciones.setBorder(BorderFactory.createTitledBorder("Instrucciones del juego."));
+        panelInstrucciones.setFont(new Font(Font.DIALOG,Font.BOLD,40));
+        panelInstrucciones.setLayout(new BorderLayout());
+
+        instrucciones = new JTextArea();
+        instrucciones.setBackground(null);
+        instrucciones.setText(INSTRUCCIONES);
+        instrucciones.setLineWrap(true);
+        instrucciones.setPreferredSize(new Dimension(350, 390));
+        instrucciones.setWrapStyleWord(true);
+        instrucciones.setLineWrap(true);
+        instrucciones.setEditable(false);
+
         cantidadFragatas = 4;
         cantidadDestructores = 3;
         cantidadSubmarinos = 2;
@@ -74,7 +115,7 @@ public class GUIBatallaNaval extends JFrame {
         casillaPosicionSeleccionada = new CasillaPosicion(0, 0);
         casillaPrincipalSeleccionada = new CasillaPrincipal(0, 0);
 
-        headerProject = new Header("Batalla Naval", new Color(68, 114, 196));
+        headerProject = new Header("Batalla Naval", new Color(0, 0, 0));
         constraints.gridx = 0;
         constraints.gridy = 0;
         constraints.gridwidth = 12;
@@ -112,6 +153,7 @@ public class GUIBatallaNaval extends JFrame {
         //-------------------------------------------------------------------------------------------------------------------------
 
         fragata = new JButton();
+        fragata.setBackground(Color.white);
         unaImagen = new ImageIcon(getClass().getResource("/resources/1.PNG"));
         imagenOtroTamanho = unaImagen.getImage().getScaledInstance(25, 25, Image.SCALE_SMOOTH);
         imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
@@ -127,6 +169,7 @@ public class GUIBatallaNaval extends JFrame {
         //-------------------------------------------------------------------------------------------------------------------------
 
         destructor = new JButton();
+        destructor.setBackground(Color.white);
         unaImagen = new ImageIcon(getClass().getResource("/resources/2.PNG"));
         imagenOtroTamanho = unaImagen.getImage().getScaledInstance(50, 25, Image.SCALE_SMOOTH);
         imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
@@ -142,6 +185,7 @@ public class GUIBatallaNaval extends JFrame {
         //-------------------------------------------------------------------------------------------------------------------------
 
         submarino = new JButton();
+        submarino.setBackground(Color.white);
         unaImagen = new ImageIcon(getClass().getResource("/resources/3.PNG"));
         imagenOtroTamanho = unaImagen.getImage().getScaledInstance(75, 25, Image.SCALE_SMOOTH);
         imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
@@ -157,6 +201,7 @@ public class GUIBatallaNaval extends JFrame {
         //-------------------------------------------------------------------------------------------------------------------------
 
         portavion = new JButton();
+        portavion.setBackground(Color.white);
         unaImagen = new ImageIcon(getClass().getResource("/resources/4.PNG"));
         imagenOtroTamanho = unaImagen.getImage().getScaledInstance(100, 25, Image.SCALE_SMOOTH);
         imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
@@ -184,9 +229,9 @@ public class GUIBatallaNaval extends JFrame {
         //-------------------------------------------------------------------------------------------------------------------------
 
         ayuda = new JButton(" ? ");
-        ayuda.setFont(new Font("SansSerif", Font.BOLD + Font.PLAIN, 14));
-        ayuda.setForeground(Color.white);
-        ayuda.setBackground(new Color(0, 112, 192));
+        ayuda.setFont(new Font("SansSerif", Font.BOLD + Font.PLAIN, 15));
+        ayuda.setForeground(Color.black);
+        ayuda.setBackground(new Color(251, 255, 0));
         ayuda.addMouseListener(escucha);
         constraints.gridx = 7;
         constraints.gridy = 1;
@@ -198,9 +243,9 @@ public class GUIBatallaNaval extends JFrame {
 
         //-------------------------------------------------------------------------------------------------------------------------
 
-        salir = new JButton("salir");
-        salir.setFont(new Font("SansSerif", Font.BOLD + Font.PLAIN, 14));
-        salir.setForeground(Color.white);
+        salir = new JButton("Salir");
+        salir.setFont(new Font("SansSerif", Font.BOLD + Font.PLAIN, 15));
+        salir.setForeground(Color.black);
         salir.setBackground(new Color(192, 0, 0));
         salir.addMouseListener(escucha);
         constraints.gridx = 9;
@@ -270,9 +315,9 @@ public class GUIBatallaNaval extends JFrame {
         //-------------------------------------------------------------------------------------------------------------------------
 
         trampa = new JButton("tablero de posición del oponente");
-        trampa.setFont(new Font("SansSerif", Font.PLAIN, 10));
+        trampa.setFont(new Font("SansSerif", Font.PLAIN, 12));
         trampa.setForeground(Color.black);
-        trampa.setBackground(new Color(231, 230, 230));
+        trampa.setBackground(Color.white);
         trampa.addMouseListener(escucha);
         constraints.gridx = 8;
         constraints.gridy = 7;
@@ -354,6 +399,32 @@ public class GUIBatallaNaval extends JFrame {
         constraints.anchor = GridBagConstraints.CENTER;
 
         this.add(espacio7, constraints);
+
+        //-------------------------------------------------------------------------------------------------------------------------
+
+        indicativoTableroPosicion = new JLabel();
+        indicativoTableroPosicion.setFont(new Font("SansSerif", Font.BOLD + Font.PLAIN, 20));
+        indicativoTableroPosicion.setText("Tablero de posición");
+        constraints.gridx = 1;
+        constraints.gridy = 8;
+        constraints.gridwidth = 6;
+        constraints.fill = GridBagConstraints.CENTER;
+        constraints.anchor = GridBagConstraints.CENTER;
+
+        this.add(indicativoTableroPosicion, constraints);
+
+        //-------------------------------------------------------------------------------------------------------------------------
+
+        indicativoTableroPrincipal = new JLabel();
+        indicativoTableroPrincipal.setFont(new Font("SansSerif", Font.BOLD + Font.PLAIN, 20));
+        indicativoTableroPrincipal.setText("Tablero principal");
+        constraints.gridx = 10;
+        constraints.gridy = 8;
+        constraints.gridwidth = 1;
+        constraints.fill = GridBagConstraints.CENTER;
+        constraints.anchor = GridBagConstraints.CENTER;
+
+        this.add(indicativoTableroPrincipal, constraints);
 
         //-------------------------------------------------------------------------------------------------------------------------
 
@@ -467,6 +538,8 @@ public class GUIBatallaNaval extends JFrame {
 
         panelInfo.add(imagenHundido, constraintsPanelInfo);
     }
+
+
 
     /**
      * This function makes the opponent place their ships on the board position
@@ -606,6 +679,10 @@ public class GUIBatallaNaval extends JFrame {
         }
     }
 
+    /**
+     * This function allows the willing to shoot at the squares
+     */
+
     public void casillaADispararIA(){
         Random coordenadas = new Random();
         Random time = new Random();
@@ -636,6 +713,7 @@ public class GUIBatallaNaval extends JFrame {
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
             GUIBatallaNaval miProjectGUIBatallaNaval = new GUIBatallaNaval();
+            JOptionPane.showMessageDialog(null, MENSAJE_INICIO, "BIENVENIDO", JOptionPane.INFORMATION_MESSAGE);
         });
     }
 
@@ -785,7 +863,13 @@ public class GUIBatallaNaval extends JFrame {
                 }
             }
             if (e.getSource() == ayuda) {
+                panelInstrucciones.add(instrucciones, BorderLayout.NORTH);
+                panelInstrucciones.add(imagen, BorderLayout.CENTER);
 
+                JScrollPane scroll = new JScrollPane(panelInstrucciones);
+                scroll.setPreferredSize(new Dimension(440, 455));
+
+                JOptionPane.showMessageDialog(null, scroll, "Instrucciones del juego", JOptionPane.INFORMATION_MESSAGE);
             } else if (e.getSource() == salir) {
                 System.exit(0);
             } else if (e.getSource() == fragata) {
@@ -818,18 +902,19 @@ public class GUIBatallaNaval extends JFrame {
                 añadirEscuchasTableroPosiciones();
             } else if (e.getSource() == trampa) {
                 if (!acceso) {
-                    //String password = JOptionPane.showInputDialog("Digite la contraseña de permisos de administrador");
-                    //if (password.equals("Profe ponga 5.0 por favor")) {
-                    //    JOptionPane.showMessageDialog(null, "Contraseña Correcta");
+                    String password = JOptionPane.showInputDialog("Digite la contraseña de " +
+                            "permisos de administrador","La contraseña es \"BatallaNaval\"");
+                    if (password.equals("BatallaNaval")) {
+                        JOptionPane.showMessageDialog(null, "Contraseña Correcta");
                         trampa.setBackground(new Color(146, 208, 80));
                         acceso = true;
                         trampaAbilitada = true;
                         game.pintarBotesRival();
-                    /*} else {
+                    } else {
                         trampa.setVisible(false);
                         JOptionPane.showMessageDialog(null, "Para reintentar debes reabrir el juego");
                         acceso = false;
-                    }*/
+                    }
                 } else {
                     if (trampaAbilitada) {
                         trampa.setBackground(new Color(231, 230, 230));
@@ -954,6 +1039,10 @@ public class GUIBatallaNaval extends JFrame {
         portavion.removeMouseListener(escucha);
         portavion.addMouseListener(escucha);
     }
+
+    /**
+     * This function shows who is the winner
+     */
 
     public void ganar(){
         if(game.determinarGanarUsuario()){

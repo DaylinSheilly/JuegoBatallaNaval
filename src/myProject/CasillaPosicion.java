@@ -136,6 +136,10 @@ public class CasillaPosicion extends JButton {
         this.tieneBarco = tieneBarco;
     }
 
+    /**
+     * This method changes the value of nombreDelBarco
+     * @param nombreDelBarco
+     */
 
     public void setTipoDeBarco(String nombreDelBarco) {
         this.tipoDeBarco = nombreDelBarco;
@@ -159,7 +163,10 @@ public class CasillaPosicion extends JButton {
         this.fueImpactada = fueImpactada;
     }
 
-
+    /**
+     * This method gets if the ship was hit or not
+     * @return fueImpactada
+     */
 
     public boolean getFueImpactada() {
         return fueImpactada;

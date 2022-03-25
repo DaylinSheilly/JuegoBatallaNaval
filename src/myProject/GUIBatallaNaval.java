@@ -1046,15 +1046,12 @@ public class GUIBatallaNaval extends JFrame {
             removerEscuchasTableroPrincipal();
         } else if (game.determinarGanarIA()) {
             JOptionPane.showMessageDialog(null, "El oponente ha ganado.\nHas perdido.\n"
-                    + "\nLa partida se reiniciará automáticamente. Recuerda que puedes salirte en cualquier momento.");
+                    + "\nLa partida se reiniciará automáticamente.\nRecuerda que puedes salirte en cualquier momento.");
             removerEscuchasColocarBarcos();
             removerEscuchasTableroPosiciones();
             removerEscuchasTableroPrincipal();
         }
         if (game.determinarGanarUsuario() || game.determinarGanarIA()) {
-
-            game.borrarBarcos();
-            ponerBarcosIA();
             for (int i = 0; i < 11; i++) {
                 for (int j = 0; j < 11; j++) {
                     casillasPosicion[i][j].setFueImpactada(false);
@@ -1066,6 +1063,11 @@ public class GUIBatallaNaval extends JFrame {
                     casillasPrincipal[i][j].pintarParteDelBarco("fondo");
                 }
             }
+            game.borrarBarcos();
+            marcadorBarcosIA = 1;
+            enPartida=false;
+            game.restablecerBarcos();
+            ponerBarcosIA();
             game.setPuntosIA(0);
             game.setPuntosUsuario(0);
             cantidadFragatas = 4;
@@ -1082,6 +1084,7 @@ public class GUIBatallaNaval extends JFrame {
             trampaAbilitada = false;
             trampa.setBackground(Color.white);
             acceso = false;
+            System.out.println("reinicio con exito");
         }
     }
 }

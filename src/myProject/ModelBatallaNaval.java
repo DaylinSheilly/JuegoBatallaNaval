@@ -9,7 +9,7 @@ public class ModelBatallaNaval {
             destructorUsuario3, fragataUsuario1, fragataUsuario2, fragataUsuario3, fragataUsuario4;
     private BarcosPrincipal portavionIA, submarinoIA1, submarinoIA2, destructorIA1, destructorIA2, destructorIA3,
             fragataIA1, fragataIA2, fragataIA3, fragataIA4;
-    private int puntosUsuario, puntosIA, fragatas, destructores, submarinos, portaviones;
+    private int puntosUsuario, puntosIA, fragatas, destructores, submarinos;
     private boolean ganarUsuario, ganarIA, turnoDeLaIA;
 
     /**
@@ -17,14 +17,15 @@ public class ModelBatallaNaval {
      */
 
     public ModelBatallaNaval() {
-        puntosUsuario=0;
-        puntosIA=0;
-        ganarIA=false;
-        ganarUsuario=false;
+        puntosUsuario = 0;
+        puntosIA = 0;
+        ganarIA = false;
+        ganarUsuario = false;
     }
 
     /**
      * This function is to shoot at a square
+     *
      * @param casilla
      */
 
@@ -94,6 +95,7 @@ public class ModelBatallaNaval {
 
     /**
      * This function is to create the aircraft carrier
+     *
      * @param parte1
      * @param parte2
      * @param parte3
@@ -115,11 +117,11 @@ public class ModelBatallaNaval {
         parte3.setTipoDeBarco("portaviones");
         parte4.setTipoDeBarco("portaviones");
         portavionUsuario = new BarcosPosicion(parte1, parte2, parte3, parte4);
-        portaviones = 0;
     }
 
     /**
      * This function is to create the submarine
+     *
      * @param parte1
      * @param parte2
      * @param parte3
@@ -147,6 +149,7 @@ public class ModelBatallaNaval {
 
     /**
      * This function is to create the destructor
+     *
      * @param parte1
      * @param parte2
      */
@@ -172,6 +175,7 @@ public class ModelBatallaNaval {
 
     /**
      * This function is to create the frigate
+     *
      * @param parte1
      */
 
@@ -222,6 +226,7 @@ public class ModelBatallaNaval {
 
     /**
      * This function is to create the opponent's aircraft carrier
+     *
      * @param parte1
      * @param parte2
      * @param parte3
@@ -243,6 +248,7 @@ public class ModelBatallaNaval {
 
     /**
      * This function is to create the opponent's submarine
+     *
      * @param parte1
      * @param parte2
      * @param parte3
@@ -267,6 +273,7 @@ public class ModelBatallaNaval {
 
     /**
      * This function is to create the opponent's destructor
+     *
      * @param parte1
      * @param parte2
      */
@@ -290,6 +297,7 @@ public class ModelBatallaNaval {
 
     /**
      * This function is to create the opponent's frigate
+     *
      * @param parte1
      */
 
@@ -297,6 +305,7 @@ public class ModelBatallaNaval {
         parte1.setTieneBarco(true);
         parte1.setTipoDeBarco("fragata");
         if (fragatas == 0) {
+            System.out.println("Primer barco creado con éxito");
             fragataIA1 = new BarcosPrincipal(parte1);
             fragatas++;
         } else if (fragatas == 1) {
@@ -315,75 +324,76 @@ public class ModelBatallaNaval {
      * This function paints the opponent's pots
      */
 
-    public void pintarBotesRival(){
-        if(!(fragataIA1.get(0).getFueImpactada())) {
+    public void pintarBotesRival() {
+        if (!(fragataIA1.get(0).getFueImpactada())) {
             fragataIA1.get(0).pintarParteDelBarco("fragata");
         }
-        if(!(fragataIA2.get(0).getFueImpactada())) {
+        if (!(fragataIA2.get(0).getFueImpactada())) {
             fragataIA2.get(0).pintarParteDelBarco("fragata");
         }
-        if(!(fragataIA3.get(0).getFueImpactada())) {
+        if (!(fragataIA3.get(0).getFueImpactada())) {
             fragataIA3.get(0).pintarParteDelBarco("fragata");
         }
-        if(!(fragataIA4.get(0).getFueImpactada())) {
+        if (!(fragataIA4.get(0).getFueImpactada())) {
             fragataIA4.get(0).pintarParteDelBarco("fragata");
         }
-        if(!(destructorIA1.get(0).getFueImpactada())) {
+        if (!(destructorIA1.get(0).getFueImpactada())) {
             destructorIA1.get(0).pintarParteDelBarco("destructor");
         }
-        if(!(destructorIA1.get(1).getFueImpactada())) {
+        if (!(destructorIA1.get(1).getFueImpactada())) {
             destructorIA1.get(1).pintarParteDelBarco("destructor");
         }
-        if(!(destructorIA2.get(0).getFueImpactada())) {
+        if (!(destructorIA2.get(0).getFueImpactada())) {
             destructorIA2.get(0).pintarParteDelBarco("destructor");
         }
-        if(!(destructorIA1.get(1).getFueImpactada())) {
+        if (!(destructorIA1.get(1).getFueImpactada())) {
             destructorIA2.get(1).pintarParteDelBarco("destructor");
         }
-        if(!(destructorIA3.get(0).getFueImpactada())) {
+        if (!(destructorIA3.get(0).getFueImpactada())) {
             destructorIA3.get(0).pintarParteDelBarco("destructor");
         }
-        if(!(destructorIA3.get(1).getFueImpactada())) {
+        if (!(destructorIA3.get(1).getFueImpactada())) {
             destructorIA3.get(1).pintarParteDelBarco("destructor");
         }
-        if(!(submarinoIA1.get(0).getFueImpactada())) {
+        if (!(submarinoIA1.get(0).getFueImpactada())) {
             submarinoIA1.get(0).pintarParteDelBarco("submarino");
         }
-        if(!(submarinoIA1.get(1).getFueImpactada())) {
+        if (!(submarinoIA1.get(1).getFueImpactada())) {
             submarinoIA1.get(1).pintarParteDelBarco("submarino");
         }
-        if(!(submarinoIA1.get(2).getFueImpactada())) {
+        if (!(submarinoIA1.get(2).getFueImpactada())) {
             submarinoIA1.get(2).pintarParteDelBarco("submarino");
         }
-        if(!(submarinoIA2.get(0).getFueImpactada())) {
+        if (!(submarinoIA2.get(0).getFueImpactada())) {
             submarinoIA2.get(0).pintarParteDelBarco("submarino");
         }
-        if(!(submarinoIA2.get(1).getFueImpactada())) {
+        if (!(submarinoIA2.get(1).getFueImpactada())) {
             submarinoIA2.get(1).pintarParteDelBarco("submarino");
         }
-        if(!(submarinoIA2.get(2).getFueImpactada())) {
+        if (!(submarinoIA2.get(2).getFueImpactada())) {
             submarinoIA2.get(2).pintarParteDelBarco("submarino");
         }
-        if(!(portavionIA.get(0).getFueImpactada())) {
+        if (!(portavionIA.get(0).getFueImpactada())) {
             portavionIA.get(0).pintarParteDelBarco("portaviones");
         }
-        if(!(portavionIA.get(1).getFueImpactada())) {
+        if (!(portavionIA.get(1).getFueImpactada())) {
             portavionIA.get(1).pintarParteDelBarco("portaviones");
         }
-        if(!(portavionIA.get(2).getFueImpactada())) {
+        if (!(portavionIA.get(2).getFueImpactada())) {
             portavionIA.get(2).pintarParteDelBarco("portaviones");
         }
-        if(!(portavionIA.get(3).getFueImpactada())) {
+        if (!(portavionIA.get(3).getFueImpactada())) {
             portavionIA.get(3).pintarParteDelBarco("portaviones");
         }
     }
 
     /**
      * This function makes the opponent shoot at the player's squares
+     *
      * @param casilla
      */
 
-    public void dispararACasillaIA(CasillaPosicion casilla){
+    public void dispararACasillaIA(CasillaPosicion casilla) {
         casilla.setFueImpactada(true);
         if (casilla.getTieneBarco()) {
             if (casilla.getTipoDeBarco().equals("portaviones")) {
@@ -451,31 +461,52 @@ public class ModelBatallaNaval {
      * This function deletes all the ships
      */
 
-    public void borrarBarcos(){
+    public void borrarBarcos() {
         portavionUsuario.clear();
+        portavionUsuario = null;
         submarinoUsuario1.clear();
+        submarinoUsuario1 = null;
         submarinoUsuario2.clear();
+        submarinoUsuario2 = null;
         destructorUsuario1.clear();
+        destructorUsuario1 = null;
         destructorUsuario2.clear();
+        destructorUsuario2 = null;
         destructorUsuario3.clear();
+        destructorUsuario3 = null;
         fragataUsuario1.clear();
+        fragataUsuario1 = null;
         fragataUsuario2.clear();
+        fragataUsuario2 = null;
         fragataUsuario3.clear();
+        fragataUsuario3 = null;
         fragataUsuario4.clear();
+        fragataUsuario4 = null;
         portavionIA.clear();
+        portavionIA = null;
         submarinoIA1.clear();
+        submarinoIA1 = null;
         submarinoIA2.clear();
+        submarinoIA2 = null;
         destructorIA1.clear();
+        destructorIA1 = null;
         destructorIA2.clear();
+        destructorIA2 = null;
         destructorIA3.clear();
+        destructorIA3 = null;
         fragataIA1.clear();
+        fragataIA1 = null;
         fragataIA2.clear();
+        fragataIA2 = null;
         fragataIA3.clear();
+        fragataIA3 = null;
         fragataIA4.clear();
+        fragataIA4 = null;
     }
 
     /**
      * This method changes the value of turnoDeLaIA
+     *
      * @param turnoDeLaIA
      */
 
@@ -485,15 +516,17 @@ public class ModelBatallaNaval {
 
     /**
      * This method gets the opponent's turn
+     *
      * @return turnoDeLaIA
      */
 
-    public boolean getTurnoDeLaIA(){
+    public boolean getTurnoDeLaIA() {
         return this.turnoDeLaIA;
     }
 
     /**
      * This method changes the value of puntosUsuario
+     *
      * @param puntosUsuario
      */
 
@@ -503,10 +536,20 @@ public class ModelBatallaNaval {
 
     /**
      * This method changes the value of puntosIA
+     *
      * @param puntosIA
      */
 
     public void setPuntosIA(int puntosIA) {
         this.puntosIA = puntosIA;
+    }
+
+    public void restablecerBarcos() {
+        fragatas = 0;
+        destructores = 0;
+        submarinos = 0;
+
+        ganarIA=false;
+        ganarUsuario=false;
     }
 }
